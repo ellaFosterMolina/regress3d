@@ -1,0 +1,43 @@
+url: ~
+template:
+  bootstrap: 5
+
+articles:
+  - title: Testing
+    navbar: ~
+    contents:
+      - linear_models_3d
+      - linear_models_w_interactions_3d
+      - generalized_linear_models_3d
+
+reference:
+  - title: Core functions
+    desc: >
+      These are some of the core functionality of regress3d
+    contents:
+      - add_3d_surface
+      - add_marginals
+      - add_jitter
+
+  - title: Auxiliary functions
+    desc: >
+      These are less likely to be useful to the user.
+    contents:
+      - add_direction
+      - create_constant_value
+      - create_glm_adjustment
+      - create_marginal_x_vars
+      - create_named_coeffs
+      - create_surface_data
+      - create_surface_x_vars
+      - create_y_estimates
+      - jitter_40pct
+      - tibble_to_dataframe
+
+  - title: Data
+    desc: >
+      Datasets used for examples.
+    contents:
+      - county_data
+      - hair_data
+

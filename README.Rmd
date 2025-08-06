@@ -1,0 +1,138 @@
+---
+output: github_document
+always_allow_html: true
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%",
+  message = F,
+  warning = F
+)
+```
+
+# regress3d
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+__regress3d__ is an R package for plotting regression surfaces and marginal effects in three dimensions. The plots created by __regress3d__ are __plotly__ objects. They can be customized using functions and arguments from the __plotly__ package. 
+
+The core two functions of __regress3d__ are  
+
+* `add_3d_surface`, and
+* `add_marginals`.
+
+One additional handy feature is the function `add_jitter`. This is designed to mimic `geom_jitter` in __ggplot2__, helping users visualize overlaid points in a three dimensional graphic.
+
+## Getting Started
+
+The vignettes walk you through examples of regression surfaces for three types of models.
+
+* [Linear models](vignette("linear_models_3d")) `vignette("linear_models_3d")`
+* [Linear models with an interaction term](file:///C:/Users/marciposafm/Dropbox/research/dira/regress3d/docs/articles/linear_models_w_interactions_3d.html)
+* [Generalized linear models](file:///C:/Users/marciposafm/Dropbox/research/dira/regress3d/docs/articles/generalized_linear_models_3d.html) (binomial, poisson, negative binomial, gamma, etc). 
+
+ We recommend you start with the vignette on [linear models](file:///C:/Users/marciposafm/Dropbox/research/dira/regress3d/docs/articles/linear_models_3d.html), which will introduce you to working with the interactive images, interpreting the regression surface, and understanding the marginal effects. 
+
+
+## Installation
+
+Install __regress3d__ from __GitHub__:
+
+```{r}
+if (!require("devtools")) {
+  install.packages("devtools")
+}
+# devtools::install_github("xx")
+```
+
+## Example
+
+__regress3d__ allows the user to plot regression surfaces and marginal effects in three dimensions. Linear models, generalized linear models, and either of those model types with interaction terms are currently supported.
+
+A multiple linear regression is shown below using the core two functions in __regress3d__: 
+
+* `add_3d_surface`, and
+* `add_marginals`.
+
+### Setup
+
+Start by calling the two required libraries: __regress3d__ and __plotly__.
+
+```{r}
+library(regress3d)
+library(plotly)
+```
+
+### Data
+
+This dataset uses county level measures of
+
+* the shift towards Donald Trump in 2016, as measured as the difference between the county's vote for Trump in 2016 and the county's vote for the Republican presidential nominee, Mitt Romney, in 2012,
+* median income, and 
+* the percent of the county that was enrolled in college at some point, regardless of whether they graduated.
+
+### Model 
+
+`add_3d_surface` and `add_marginals` both require the user to specify either a linear or a generalized linear model. In this case, we add county level population weights to give larger counties higher weight in the model
+
+```{r}
+mymodel <- lm(r_shift ~ median_income16 + any_college, 
+              data = county_data, weight = pop_estimate16)
+```
+
+### Regression surface
+```{r, eval=F}
+plot_ly( data = county_data,
+         x = ~median_income16,
+         y = ~any_college,
+         z = ~r_shift) %>%
+  add_markers(size = ~pop_estimate16, color = I("black"))  %>%
+  add_3d_surface(model = mymodel) %>%
+  add_marginals(model = mymodel) %>%
+  layout( 
+    scene = list(xaxis = list(title = 'County median income'),
+                 yaxis = list(title = 'County college experience'),
+                 zaxis = list(title = 'Shift to Trump'))
+    )
+```
+
+The code above renders to an html figure. It displays the outputs of:
+
+* `add_3d_surface`: a regression surface in translucent blue, and the 95\% confidence intervals in translucent grey;
+* `add_marginals`: the marginal effects and 95\% confidence intervals of each $x$ variable with red and orange lines;
+* `add_markers`: a plotly function to create a scattercloud of each county used to generate the regression surface;
+* `layout`: a plotly function to adjust the graphic's labels.
+
+However, the landing page for a package does not support interactive html figures. A gif of the interactive html figure is displayed below to demonstrate some of the functionality of the interactive html image. See xxx for an interactive version of this image.
+
+```{r, out.width = '70%', echo = F}
+knitr::include_graphics("man/figures/regression rotating.gif")
+```
+
+This graphic corresponds to the following results.
+
+```{r, results='asis', echo =F}
+library(stargazer)
+
+county_data$median_income16_1k <- county_data$median_income16/1000
+
+mymodel <- lm(r_shift ~ median_income16_1k + any_college, 
+              data = county_data, weight = pop_estimate16)
+
+stargazer(mymodel, type = 'html',
+          keep.stat = c("n", "adj.rsq"),
+          star.cutoffs = c(0.05),
+          covariate.labels = c("County median income (&#36;1,000s)", "County college experience", "Constant"),
+          dep.var.labels = "% shift to Trump, 2012-2016",
+          dep.var.caption = "",
+          model.numbers          = FALSE, 
+          notes="<span>&#42;</span> p<0.05",
+          notes.append=F)
+```

@@ -1,0 +1,88 @@
+---
+title: "3D Regression Surfaces for Generalized Linear Models"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{3D Regression Surfaces for Generalized Linear Models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = F,
+  warning = F
+)
+```
+
+## Introduction
+
+A multiple linear regression creates a flat regression surface. A multiple linear regression with an interaction term creates a curved regression surface with linear marginal effects. A generalized linear model takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. 
+
+This vignette demonstrates a binomial model and a Gamma model. At this time, __regress3d__ has been tested on 
+
+
+## Setup
+
+The package regress3d is built on the syntax of plotly in R. Both libraries are called in the initial setup.
+
+```{r setup}
+library(regress3d)
+library(plotly)
+```
+
+Note that interaction terms are also allowed in these models. The function `add_jitter` is demonstrated in the example of a binomial glm.
+
+
+# Logistic Regression
+
+```{r, out.width = "450px", out.height = "450px"}
+mymodel <- glm(plurality_Trump16 ~ any_college+prcnt_black, data = county_data, family = "binomial")
+
+plot_ly( data = county_data,
+                        x = ~any_college,
+                        y = ~prcnt_black,
+                        z = ~plurality_Trump16) %>%
+  add_markers(size = 1, color = I('black'))%>%
+  add_3d_surface(model = mymodel, ci = T) 
+
+```
+
+# Gamma Models
+
+```{r}
+county_data %>%
+  ggplot(aes(x = median_income16)) +
+  geom_histogram()
+```
+
+```{r, out.width = "450px", out.height = "450px"}
+mymodel <- glm(median_income16 ~ prcnt_black +any_college, data = county_data, family = Gamma)
+# summary(mymodel)
+
+p <- plot_ly( data = county_data,
+              x = ~prcnt_black,
+              y = ~any_college,
+              z = ~median_income16) %>%
+  add_markers(size = ~pop_estimate16, color = I('black')) %>%
+  add_3d_surface(model = mymodel)%>%
+  add_marginals(model = mymodel) 
+
+p
+```
+
+
+```{r, out.width = "450px", out.height = "450px", eval = F, echo = F}
+# mymodel <- glm(median_income16 ~ prcnt_black *any_college, data = county_data, family = Gamma)
+# p <- plot_ly( data = county_data,
+#               x = ~prcnt_black,
+#               y = ~any_college,
+#               z = ~median_income16) %>%
+#   add_markers(size = ~pop_estimate16, color = I('black')) %>%
+#   add_3d_surface(model = mymodel)%>%
+#   add_marginals(model = mymodel) %>%
+#   layout(
+#     scene = list(
+#       zaxis = list(range = c(0, 140000))))
+```

@@ -1,0 +1,88 @@
+---
+title: "3D Linear Regression Surfaces with Interaction Terms"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{3D Linear Regression Surfaces with Interaction Terms}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", 
+  warning = F,
+  message = F
+)
+```
+
+
+## Introduction
+This vignette examines the functions `add_3d_surface` and `add_marginals` for regression surfaces that feature interaction terms.
+
+## Setup 
+
+The package __regress3d__ is built on the syntax of __plotly__ in R. Both libraries are called in the initial setup.  
+
+```{r setup, message = F, warning=F}
+library(regress3d)
+library(plotly)
+```
+
+
+**Documentation:**
+
+* help("add_3d_surface)
+* add link
+
+## Interaction Terms
+```{r, out.width = "800px", out.height = "450px"}
+
+mymodel <- lm(prcnt_GOP16~ prcnt_unemployed * college_2cat_num, 
+              data = county_data, weights = pop_estimate16)
+
+plot_ly( data = county_data,
+         x = ~median_income16,
+         y = ~any_college,
+         z = ~r_shift) %>%
+  add_3d_surface(model = mymodel)%>%
+  add_marginals(model = mymodel, x1_constant_val = 5, x2_constant_val =0)%>%
+  add_marginals(model = mymodel, x1_constant_val = 20, x2_constant_val =1)
+```
+
+
+
+```{r, out.width = "800px", out.height = "450px"}
+library(scales)
+
+county_data$prcnt_unemployed_log <- log(county_data$prcnt_unemployed)
+mymodel <- lm(prcnt_GOP16~ prcnt_unemployed_log * college_2cat_num, 
+              data = county_data, weights = pop_estimate16)
+
+
+plot_ly(data = county_data, 
+              x = ~prcnt_unemployed_log,
+              y = ~college_2cat_num,
+              z = ~prcnt_GOP16 ) %>%
+  add_markers(size = ~pop_estimate16,
+              hovertemplate = ~paste("<b>", county_state,"</b><br>",
+                            "County population: ",comma(pop_estimate16),"<br><br>",
+                            "County unemployment: ",prcnt_unemployed,"<br>",
+                            "County college experience: ",percent(any_college, accuracy = 0.1, scale = 1),"<br>",
+                            "Trump Vote %: ",percent(prcnt_GOP16, accuracy = 0.01, scale = 1),"<br>"),
+              showlegend = F, name = "county",
+              color = ~college_2cat,
+              colors = c("deepskyblue", "dimgrey"))  %>%
+  add_3d_surface(model = mymodel)%>%
+  add_marginals(model = mymodel, x1_constant_val = 2.5, x2_constant_val =0)%>%
+  add_marginals(model = mymodel, x1_constant_val = 1, x2_constant_val =1) %>%
+  layout( 
+    title = "\nCounty Vote for Trump by\n unemployment & education",
+    scene = list(xaxis = list(title = 'unemployment'),
+                 yaxis = list(title = 'education'),
+                 zaxis = list(title = '% vote for Trump 2016')),
+    # width = 500, height = 500,
+    legend = list(font = list(size = 8))
+    )
+```
+

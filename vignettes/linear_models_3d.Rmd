@@ -1,0 +1,97 @@
+---
+title: "3D Linear Regression Surfaces with Marginal Effects"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{3D Linear Regression Surfaces with Marginal Effects}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  warning = F
+)
+```
+
+
+## Introduction
+Multiple regressions create regression **surfaces**, which have as many dimensions as there are $x$ variables in the multiple regression equation. This vignette introduces 3 dimensional visualizations of regression surfaces and marginal effects in R using the package __regress3d__.
+
+
+## Setup 
+
+The package __regress3d__ is built on the syntax of __plotly__ in R. Both libraries are called in the initial setup.  
+
+```{r setup, message = F, warning=F}
+library(regress3d)
+library(plotly)
+```
+
+
+**Documentation:**
+
+* help("add_3d_surface")
+* add link
+
+## Linear Regression Surfaces
+
+The basic functionality of the functions `add_3d_surface` and `add_marginals` are demonstrated used a multiple linear regression with two $x$ variables. This creates a flat regression *surface*. Both functions:
+
+* default to the plot data specified in the call to `plot_ly()`,
+* can also take `data`, `x`, `y`, and `z` as separate arguments,
+* have an optional `ci` argument to visualize the confidence intervals.
+
+
+```{r, out.width = "800px", out.height = "450px"}
+
+mymodel <- lm(r_shift ~ median_income16 + any_college, 
+              data = county_data, weight = pop_estimate16)
+
+plot_ly( data = county_data,
+         x = ~median_income16,
+         y = ~any_college,
+         z = ~r_shift) %>%
+  add_3d_surface(model = mymodel)%>%
+  add_marginals(model = mymodel)
+```
+
+
+-   Click and drag on the graphic to rotate it.
+-   When needed, you can reset the image to its starting point. Hover over the image and click on the house symbol at the top right above the graphic title. Alternately, you can reload the page.
+-   The regression surface is shown in the flat dark blue surface. 
+-   The gray curved surfaces above and below the regression surface are the 95\% confidence intervals.
+-   The marginal effects and their corresponding confidence intervals are shown in [red]{style="color: crimson;"} and [orange]{style="color: orange;"} lines. 
+
+## Improvements with Plotly
+
+We can make this interactive image prettier by adding scatterpoints with the __plotly__ function `add_markers`, a hovertemplate for each point, and improving the labels for the plotly graphic. The library __scales__ helps present the numeric values, percentages, and dollars more clearly.
+
+```{r, out.width = "800px", out.height = "450px"}
+library(scales)
+plot_ly( data = county_data,
+         x = ~median_income16,
+         y = ~any_college,
+         z = ~r_shift) %>%
+  add_markers(size = ~pop_estimate16, 
+              hovertemplate = ~paste("<b>", county_state,"</b><br>", 
+                            "County population: ",comma(pop_estimate16),"<br><br>",
+                            "County median income: ",dollar(median_income16),"<br>", 
+                            "County college experience: ",percent(any_college, 
+                                                                  accuracy = 0.1, 
+                                                                  scale = 1),"<br>", 
+                            "Shift to Trump: ",percent(r_shift, 
+                                                       accuracy = 0.01, scale = 1),"<br>"),
+              showlegend = F, name = "county",
+              color = I("black")) %>%
+  add_3d_surface(model = mymodel) %>%
+  add_marginals(model = mymodel) %>%
+  layout( 
+    title = "\nCounty shift to Trump in 2016",
+    scene = list(xaxis = list(title = 'County median income'),
+                 yaxis = list(title = 'County college experience'),
+                 zaxis = list(title = 'Shift to Trump')),
+    legend = list(font = list(size = 8))
+    )
+```
