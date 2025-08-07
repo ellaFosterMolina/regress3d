@@ -10,6 +10,15 @@
 
 Simple regressions can easily be visualized in 2 dimensions; regressions with 2 explanatory variables can be visualized using interactive 3 dimensional visuals. These 3 dimensional interactive visuals provide statisticians and data analysts a new method to interpret a variety of different common types of regressions.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ellaFosterMolina/regress3d}
+  \item \url{https://ellafostermolina.github.io/regress3d/}
+  \item Report bugs at \url{https://github.com/ellaFosterMolina/regress3d/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Ella Foster-Molina \email{ella.fostermolina@gmail.com} (\href{https://orcid.org/0000-0001-7455-7221}{ORCID})
 
