@@ -28,5 +28,5 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-URL: https://github.com/ellaFosterMolina/regress3d
+URL: https://github.com/ellaFosterMolina/regress3d, https://ellafostermolina.github.io/regress3d/
 BugReports: https://github.com/ellaFosterMolina/regress3d/issues
