@@ -34,7 +34,7 @@ One additional handy feature is the function `add_jitter`. This is designed to m
 
 The vignettes walk you through examples of regression surfaces for three types of models.
 
-* [Linear models](vignette("linear_models_3d")) `vignette("linear_models_3d")`
+* [Linear models](`vignette("linear_models_3d")`) 
 * [Linear models with an interaction term](file:///C:/Users/marciposafm/Dropbox/research/dira/regress3d/docs/articles/linear_models_w_interactions_3d.html)
 * [Generalized linear models](file:///C:/Users/marciposafm/Dropbox/research/dira/regress3d/docs/articles/generalized_linear_models_3d.html) (binomial, poisson, negative binomial, gamma, etc). 
 

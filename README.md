@@ -26,8 +26,7 @@ overlaid points in a three dimensional graphic.
 The vignettes walk you through examples of regression surfaces for three
 types of models.
 
-- [Linear models](vignette(%22linear_models_3d%22))
-  `vignette("linear_models_3d")`
+- [Linear models](%60vignette(%22linear_models_3d%22)%60)
 - [Linear models with an interaction
   term](file:///C:/Users/marciposafm/Dropbox/research/dira/regress3d/docs/articles/linear_models_w_interactions_3d.html)
 - [Generalized linear
