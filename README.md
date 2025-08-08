@@ -26,15 +26,16 @@ overlaid points in a three dimensional graphic.
 The vignettes walk you through examples of regression surfaces for three
 types of models.
 
-- [Linear models](%60vignette(%22linear_models_3d%22)%60)
+- [Linear
+  models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html)
 - [Linear models with an interaction
-  term](file:///C:/Users/marciposafm/Dropbox/research/dira/regress3d/docs/articles/linear_models_w_interactions_3d.html)
+  term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html)
 - [Generalized linear
-  models](file:///C:/Users/marciposafm/Dropbox/research/dira/regress3d/docs/articles/generalized_linear_models_3d.html)
+  models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html)
   (binomial, poisson, negative binomial, gamma, etc).
 
 We recommend you start with the vignette on [linear
-models](file:///C:/Users/marciposafm/Dropbox/research/dira/regress3d/docs/articles/linear_models_3d.html),
+models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html),
 which will introduce you to working with the interactive images,
 interpreting the regression surface, and understanding the marginal
 effects.
