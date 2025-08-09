@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/ellaFosterMolina/regress3d/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ellaFosterMolina/regress3d/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **regress3d** is an R package for plotting regression surfaces and
@@ -56,11 +57,11 @@ if (!require("devtools")) {
 devtools::install_github("ellaFosterMolina/regress3d")
 #> 
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>       ✔  checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpEZklSP\remotes5f68a5c20f1\ellaFosterMolina-regress3d-7db219b/DESCRIPTION'
+#>          checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpY7jc7t\remotes7da033a1f79\ellaFosterMolina-regress3d-0c2b1fb/DESCRIPTION' ...  ✔  checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpY7jc7t\remotes7da033a1f79\ellaFosterMolina-regress3d-0c2b1fb/DESCRIPTION'
 #>       ─  preparing 'regress3d':
-#>    checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
+#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
 #>       ─  checking for LF line-endings in source and make files and shell scripts
-#>   ─  checking for empty or unneeded directories
+#>       ─  checking for empty or unneeded directories
 #>       ─  building 'regress3d_0.0.0.9000.tar.gz'
 #>      
 #> 

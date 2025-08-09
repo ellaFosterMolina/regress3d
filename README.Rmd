@@ -19,14 +19,15 @@ knitr::opts_chunk$set(
 # regress3d
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/ellaFosterMolina/regress3d/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ellaFosterMolina/regress3d/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 __regress3d__ is an R package for plotting regression surfaces and marginal effects in three dimensions. The plots created by __regress3d__ are __plotly__ objects. They can be customized using functions and arguments from the __plotly__ package. 
 
 The core two functions of __regress3d__ are  
 
-* `add_3d_surface`: create a three dimensional surface for a regression with two explanatory $x$ variables , and
-* `add_marginals`: create a three dimensional visual for the marginal effects of a regression with two $x$ variables.
+* `add_3d_surface()`: create a three dimensional surface for a regression with two explanatory $x$ variables , and
+* `add_marginals()`: create a three dimensional visual for the marginal effects of a regression with two $x$ variables.
 
 ## Getting Started
 
@@ -36,7 +37,7 @@ The vignettes walk you through examples of regression surfaces for three types o
 * [Linear models with an interaction term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html)
 * [Generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html) (binomial, poisson, negative binomial, Gamma, gaussian, inverse Gaussian). 
 
-A handy feature for binomial glms and other regressions that use discrete data is the function `add_jitter`. This function mimics `geom_jitter` in __ggplot2__, helping users visualize overlaid points in a three dimensional graphic.
+A handy feature for binomial glms and other regressions that use discrete data is the function `add_jitter()`. This function mimics `ggplot2::geom_jitter()` in __ggplot2__, helping users visualize overlaid points in a three dimensional graphic.
 
 We recommend you start with the vignette on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html), which will introduce you to working with the interactive images, interpreting the regression surface, and understanding the marginal effects. 
 
@@ -60,7 +61,7 @@ __regress3d__ allows the user to plot regression surfaces and marginal effects i
 A multiple linear regression is shown below using the core two functions in __regress3d__: 
 
 * `add_3d_surface()`, and
-* `add_marginals`.
+* `add_marginals()`.
 
 ### Setup
 
@@ -92,7 +93,7 @@ mymodel <- lm(r_shift ~ median_income16 + any_college,
 
 ### Regression surface
 
-Next, we create a plotly object using the same variables. $z$ is the outcome variable typically denoted by $y$ in a multiple linear regression. 
+Next, we create a `plotly::plot_ly()` object using the same variables. $z$ is the outcome variable typically denoted by $y$ in a multiple linear regression. 
 
 ```{r, eval=F}
 plot_ly( data = county_data,
@@ -111,10 +112,10 @@ plot_ly( data = county_data,
 
 The code above renders to an html figure. It displays the outputs of:
 
-* `add_3d_surface`: a regression surface in translucent blue, and the 95\% confidence intervals in translucent grey;
-* `add_marginals`: the marginal effects and 95\% confidence intervals of each $x$ variable with red and orange lines;
-* `add_markers`: a plotly function to create a scattercloud of each county used to generate the regression surface;
-* `layout`: a plotly function to adjust the graphic's labels.
+* `add_3d_surface()`: a regression surface in translucent blue, and the 95\% confidence intervals in translucent grey;
+* `add_marginals()`: the marginal effects and 95\% confidence intervals of each $x$ variable with red and orange lines;
+* `plotly::add_markers()`: a plotly function to create a scattercloud of each county used to generate the regression surface;
+* `plotly::layout()`: a plotly function to adjust the graphic's labels.
 
 However, the landing page for a package does not support interactive html figures. A gif of the interactive html figure is displayed below to demonstrate some of the functionality of the interactive html image. See xxx for an interactive version of this image.
 
