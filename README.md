@@ -14,9 +14,9 @@ arguments from the **plotly** package.
 
 The core two functions of **regress3d** are
 
-- `add_3d_surface`: create a three dimensional surface for a regression
-  with two explanatory $x$ variables , and
-- `add_marginals`: create a three dimensional visual for the marginal
+- `add_3d_surface()`: create a three dimensional surface for a
+  regression with two explanatory $x$ variables , and
+- `add_marginals()`: create a three dimensional visual for the marginal
   effects of a regression with two $x$ variables.
 
 ## Getting Started
@@ -34,9 +34,9 @@ types of models.
   Gaussian).
 
 A handy feature for binomial glms and other regressions that use
-discrete data is the function `add_jitter`. This function mimics
-`geom_jitter` in **ggplot2**, helping users visualize overlaid points in
-a three dimensional graphic.
+discrete data is the function `add_jitter()`. This function mimics
+`ggplot2::geom_jitter()` in **ggplot2**, helping users visualize
+overlaid points in a three dimensional graphic.
 
 We recommend you start with the vignette on [linear
 models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html),
@@ -56,7 +56,7 @@ if (!require("devtools")) {
 devtools::install_github("ellaFosterMolina/regress3d")
 #> 
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>       ✔  checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpcjPjgp\remotes778c6a225ac2\ellaFosterMolina-regress3d-8fa2d77/DESCRIPTION'
+#>       ✔  checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpEZklSP\remotes5f68a5c20f1\ellaFosterMolina-regress3d-7db219b/DESCRIPTION'
 #>       ─  preparing 'regress3d':
 #>    checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
 #>       ─  checking for LF line-endings in source and make files and shell scripts
@@ -77,7 +77,7 @@ A multiple linear regression is shown below using the core two functions
 in **regress3d**:
 
 - `add_3d_surface()`, and
-- `add_marginals`.
+- `add_marginals()`.
 
 ### Setup
 
@@ -116,9 +116,9 @@ mymodel <- lm(r_shift ~ median_income16 + any_college,
 
 ### Regression surface
 
-Next, we create a plotly object using the same variables. $z$ is the
-outcome variable typically denoted by $y$ in a multiple linear
-regression.
+Next, we create a `plotly::plot_ly()` object using the same variables.
+$z$ is the outcome variable typically denoted by $y$ in a multiple
+linear regression.
 
 ``` r
 plot_ly( data = county_data,
@@ -137,13 +137,13 @@ plot_ly( data = county_data,
 
 The code above renders to an html figure. It displays the outputs of:
 
-- `add_3d_surface`: a regression surface in translucent blue, and the
+- `add_3d_surface()`: a regression surface in translucent blue, and the
   95% confidence intervals in translucent grey;
-- `add_marginals`: the marginal effects and 95% confidence intervals of
-  each $x$ variable with red and orange lines;
-- `add_markers`: a plotly function to create a scattercloud of each
-  county used to generate the regression surface;
-- `layout`: a plotly function to adjust the graphic’s labels.
+- `add_marginals()`: the marginal effects and 95% confidence intervals
+  of each $x$ variable with red and orange lines;
+- `plotly::add_markers()`: a plotly function to create a scattercloud of
+  each county used to generate the regression surface;
+- `plotly::layout()`: a plotly function to adjust the graphic’s labels.
 
 However, the landing page for a package does not support interactive
 html figures. A gif of the interactive html figure is displayed below to
