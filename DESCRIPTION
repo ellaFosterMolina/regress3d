@@ -1,5 +1,5 @@
 Package: regress3d
-Title: Creates 3D Regression Surfaces
+Title: Create 3D Regression Surfaces
 Version: 0.0.0.9000
 Authors@R: 
     person("Ella", "Foster-Molina", , "ella.fostermolina@gmail.com", role = c("aut", "cre"),
