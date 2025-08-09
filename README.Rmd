@@ -59,7 +59,7 @@ __regress3d__ allows the user to plot regression surfaces and marginal effects i
 
 A multiple linear regression is shown below using the core two functions in __regress3d__: 
 
-* add_3d_surface(), and
+* `add_3d_surface()`, and
 * `add_marginals`.
 
 ### Setup

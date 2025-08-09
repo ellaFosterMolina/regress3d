@@ -56,9 +56,9 @@ if (!require("devtools")) {
 devtools::install_github("ellaFosterMolina/regress3d")
 #> 
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>       ✔  checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpOyv6D6\remotes7f8c18cd1a93\ellaFosterMolina-regress3d-8ec2eaa/DESCRIPTION'
-#>       ─  preparing 'regress3d': (640ms)
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
+#>       ✔  checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpcjPjgp\remotes778c6a225ac2\ellaFosterMolina-regress3d-8fa2d77/DESCRIPTION'
+#>       ─  preparing 'regress3d':
+#>    checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
 #>       ─  checking for LF line-endings in source and make files and shell scripts
 #>   ─  checking for empty or unneeded directories
 #>       ─  building 'regress3d_0.0.0.9000.tar.gz'
@@ -76,7 +76,7 @@ supported.
 A multiple linear regression is shown below using the core two functions
 in **regress3d**:
 
-- add_3d_surface(), and
+- `add_3d_surface()`, and
 - `add_marginals`.
 
 ### Setup
