@@ -14,12 +14,10 @@ arguments from the **plotly** package.
 
 The core two functions of **regress3d** are
 
-- `add_3d_surface`, and
-- `add_marginals`.
-
-One additional handy feature is the function `add_jitter`. This is
-designed to mimic `geom_jitter` in **ggplot2**, helping users visualize
-overlaid points in a three dimensional graphic.
+- `add_3d_surface`: create a three dimensional surface for a regression
+  with two explanatory $x$ variables , and
+- `add_marginals`: create a three dimensional visual for the marginal
+  effects of a regression with two $x$ variables.
 
 ## Getting Started
 
@@ -32,7 +30,13 @@ types of models.
   term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html)
 - [Generalized linear
   models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html)
-  (binomial, poisson, negative binomial, gamma, etc).
+  (binomial, poisson, negative binomial, Gamma, gaussian, inverse
+  Gaussian).
+
+A handy feature for binomial glms and other regressions that use
+discrete data is the function `add_jitter`. This function mimics
+`geom_jitter` in **ggplot2**, helping users visualize overlaid points in
+a three dimensional graphic.
 
 We recommend you start with the vignette on [linear
 models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html),
@@ -48,7 +52,18 @@ Install **regress3d** from **GitHub**:
 if (!require("devtools")) {
   install.packages("devtools")
 }
-# devtools::install_github("xx")
+
+devtools::install_github("ellaFosterMolina/regress3d")
+#> 
+#> ── R CMD build ─────────────────────────────────────────────────────────────────
+#>       ✔  checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpOyv6D6\remotes7f8c18cd1a93\ellaFosterMolina-regress3d-8ec2eaa/DESCRIPTION'
+#>       ─  preparing 'regress3d': (640ms)
+#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
+#>       ─  checking for LF line-endings in source and make files and shell scripts
+#>   ─  checking for empty or unneeded directories
+#>       ─  building 'regress3d_0.0.0.9000.tar.gz'
+#>      
+#> 
 ```
 
 ## Example
@@ -61,7 +76,7 @@ supported.
 A multiple linear regression is shown below using the core two functions
 in **regress3d**:
 
-- `add_3d_surface`, and
+- add_3d_surface(), and
 - `add_marginals`.
 
 ### Setup
@@ -76,21 +91,23 @@ library(plotly)
 
 ### Data
 
-This dataset uses county level measures of
+The variables in the regression are county level measures from 2016.
 
-- the shift towards Donald Trump in 2016, as measured as the difference
-  between the county’s vote for Trump in 2016 and the county’s vote for
-  the Republican presidential nominee, Mitt Romney, in 2012,
-- median income, and
-- the percent of the county that was enrolled in college at some point,
-  regardless of whether they graduated.
+- `r_shift`: the shift towards Donald Trump in 2016, as measured as the
+  difference between the county’s vote for Trump in 2016 and the
+  county’s vote for the Republican presidential nominee, Mitt Romney, in
+  2012,
+- `median_income16`: median income, and
+- `any_college`: the percent of the county that was enrolled in college
+  at some point, regardless of whether they graduated.
+
+The regression is weighted by `pop_estimate16` to capture the influence
+of large counties.
 
 ### Model
 
-`add_3d_surface` and `add_marginals` both require the user to specify
-either a linear or a generalized linear model. In this case, we add
-county level population weights to give larger counties higher weight in
-the model
+We start by specifying the model, in this case a multiple linear
+regression with two $x$ variables.
 
 ``` r
 mymodel <- lm(r_shift ~ median_income16 + any_college, 
@@ -98,6 +115,10 @@ mymodel <- lm(r_shift ~ median_income16 + any_college,
 ```
 
 ### Regression surface
+
+Next, we create a plotly object using the same variables. $z$ is the
+outcome variable typically denoted by $y$ in a multiple linear
+regression.
 
 ``` r
 plot_ly( data = county_data,
