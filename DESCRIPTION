@@ -15,7 +15,6 @@ Imports:
     magrittr,
     plotly,
     rlang,
-    scales,
     stats,
     tibble
 Depends: 
@@ -24,6 +23,7 @@ LazyData: true
 Suggests: 
     knitr,
     rmarkdown,
+    scales,
     stargazer,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

@@ -120,7 +120,7 @@ The code above renders to an html figure. It displays the outputs of:
 However, the landing page for a package does not support interactive html figures. A gif of the interactive html figure is displayed below to demonstrate some of the functionality of the interactive html image. See xxx for an interactive version of this image.
 
 ```{r, out.width = '70%', echo = F}
-knitr::include_graphics("man/figures/regression rotating.gif")
+knitr::include_graphics("man/figures/regression-rotating.gif")
 ```
 
 This graphic corresponds to the following results.

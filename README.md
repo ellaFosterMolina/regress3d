@@ -57,11 +57,11 @@ if (!require("devtools")) {
 devtools::install_github("ellaFosterMolina/regress3d")
 #> 
 #> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>          checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpY7jc7t\remotes7da033a1f79\ellaFosterMolina-regress3d-0c2b1fb/DESCRIPTION' ...  ✔  checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpY7jc7t\remotes7da033a1f79\ellaFosterMolina-regress3d-0c2b1fb/DESCRIPTION'
-#>       ─  preparing 'regress3d':
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
+#>       ✔  checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpaeqYMj\remotes54e874ec7c3\ellaFosterMolina-regress3d-68dc2ee/DESCRIPTION'
+#>       ─  preparing 'regress3d': (494ms)
+#>    checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
 #>       ─  checking for LF line-endings in source and make files and shell scripts
-#>       ─  checking for empty or unneeded directories
+#>   ─  checking for empty or unneeded directories
 #>       ─  building 'regress3d_0.0.0.9000.tar.gz'
 #>      
 #> 
@@ -151,7 +151,7 @@ html figures. A gif of the interactive html figure is displayed below to
 demonstrate some of the functionality of the interactive html image. See
 xxx for an interactive version of this image.
 
-<img src="man/figures/regression rotating.gif" width="70%" />
+<img src="man/figures/regression-rotating.gif" width="70%" />
 
 This graphic corresponds to the following results.
 

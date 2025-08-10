@@ -4,7 +4,7 @@
 \name{regress3d-package}
 \alias{regress3d}
 \alias{regress3d-package}
-\title{regress3d: Creates 3D Regression Surfaces}
+\title{regress3d: Create 3D Regression Surfaces}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
