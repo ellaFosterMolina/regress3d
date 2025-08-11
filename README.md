@@ -18,7 +18,7 @@ The core two functions of **regress3d** are
 - `add_3d_surface()`: create a three dimensional surface for a
   regression with two explanatory $x$ variables , and
 - `add_marginals()`: create a three dimensional visual for the marginal
-  effects of a regression with two $x$ variables.
+  effects of a regression with two explanatory $x$ variables.
 
 ## Getting Started
 
@@ -31,8 +31,6 @@ types of models.
   term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html)
 - [Generalized linear
   models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html)
-  (binomial, poisson, negative binomial, Gamma, gaussian, inverse
-  Gaussian).
 
 A handy feature for binomial glms and other regressions that use
 discrete data is the function `add_jitter()`. This function mimics
@@ -97,8 +95,8 @@ a county, to capture the influence of large counties.
 
 ### Model
 
-We start by specifying the model, in this case a multiple linear
-regression with two $x$ variables.
+Specify the model. Here we use a multiple linear regression with two $x$
+variables.
 
 ``` r
 mymodel <- lm(r_shift ~ median_income16 + any_college, 
@@ -107,11 +105,11 @@ mymodel <- lm(r_shift ~ median_income16 + any_college,
 
 ### Regression surface
 
-Next, we create a `plotly::plot_ly()` object using the same variables.
-Note that regression notation uses $x_1$ and $x_2$ to represent the
-explanatory variables, and $y$ for the outcome. The plotly command
-denotes the explanatory variables as $x$ and $y$, and the outcome
-variable is $z$.
+Next, create a `plotly::plot_ly()` object using the same variables and
+layer on the scattercloud, 3D surface, marginals, and labels. Note that
+regression notation uses $x_1$ and $x_2$ to represent the explanatory
+variables, and $y$ for the outcome. The plotly command denotes the
+explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
 ``` r
 plot_ly( data = county_data,
@@ -138,15 +136,15 @@ The code above renders to an html figure. It displays the outputs of:
   each county used to generate the regression surface;
 - `plotly::layout()`: a plotly function to adjust the graphic’s labels.
 
-However, the landing page for a package does not support interactive
-html figures. A gif of the interactive html figure is displayed below to
+The landing page for a package does not support interactive html
+figures. A gif of the interactive html figure is displayed below to
 demonstrate some of the functionality of the interactive html image. See
 <https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly>
 for an interactive version of this image.
 
 <img src="man/figures/regression-rotating.gif" width="70%" />
 
-This graphic corresponds to the following results.
+This graphic corresponds to the following numerical regression results.
 
 <table style="text-align:center">
 

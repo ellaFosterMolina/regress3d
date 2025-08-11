@@ -27,7 +27,7 @@ __regress3d__ is an R package for plotting regression surfaces and marginal effe
 The core two functions of __regress3d__ are  
 
 * `add_3d_surface()`: create a three dimensional surface for a regression with two explanatory $x$ variables , and
-* `add_marginals()`: create a three dimensional visual for the marginal effects of a regression with two $x$ variables.
+* `add_marginals()`: create a three dimensional visual for the marginal effects of a regression with two explanatory $x$ variables.
 
 ## Getting Started
 
@@ -35,7 +35,7 @@ The vignettes walk you through examples of regression surfaces for three types o
 
 * [Linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html) 
 * [Linear models with an interaction term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html)
-* [Generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html) (binomial, poisson, negative binomial, Gamma, gaussian, inverse Gaussian). 
+* [Generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html)
 
 A handy feature for binomial glms and other regressions that use discrete data is the function `add_jitter()`. This function mimics `ggplot2::geom_jitter()` in __ggplot2__, helping users visualize overlaid points in a three dimensional graphic.
 
@@ -84,7 +84,7 @@ The regression is weighted by `pop_estimate16`, the number of people in a county
 
 ### Model 
 
-We start by specifying the model, in this case a multiple linear regression with two $x$ variables.
+Specify the model. Here we use a multiple linear regression with two $x$ variables.
 
 ```{r}
 mymodel <- lm(r_shift ~ median_income16 + any_college, 
@@ -93,7 +93,7 @@ mymodel <- lm(r_shift ~ median_income16 + any_college,
 
 ### Regression surface
 
-Next, we create a `plotly::plot_ly()` object using the same variables. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
+Next, create a `plotly::plot_ly()` object using the same variables and layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
 ```{r, eval=F}
 plot_ly( data = county_data,
@@ -117,13 +117,13 @@ The code above renders to an html figure. It displays the outputs of:
 * `plotly::add_markers()`: a plotly function to create a scattercloud of each county used to generate the regression surface;
 * `plotly::layout()`: a plotly function to adjust the graphic's labels.
 
-However, the landing page for a package does not support interactive html figures. A gif of the interactive html figure is displayed below to demonstrate some of the functionality of the interactive html image. See https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly for an interactive version of this image.
+The landing page for a package does not support interactive html figures. A gif of the interactive html figure is displayed below to demonstrate some of the functionality of the interactive html image. See https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly for an interactive version of this image.
 
 ```{r, out.width = '70%', echo = F}
 knitr::include_graphics("man/figures/regression-rotating.gif")
 ```
 
-This graphic corresponds to the following results.
+This graphic corresponds to the following numerical regression results.
 
 ```{r, results='asis', echo =F}
 library(stargazer)
