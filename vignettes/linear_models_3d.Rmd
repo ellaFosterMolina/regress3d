@@ -17,8 +17,12 @@ knitr::opts_chunk$set(
 
 
 ## Introduction
-Multiple regressions create regression **surfaces**, which have as many dimensions as there are $x$ variables in the multiple regression equation. This vignette introduces 3 dimensional visualizations of regression surfaces and marginal effects in R using the package __regress3d__.
 
+Multiple regressions create regression **surfaces**, which have as many dimensions as there are variables (both $x$ and $y$) in the multiple regression equation. Marginal effects are a direction in this surface, which can be visualized by a line in the surface. 
+
+This vignette demonstrates a 3 dimensional visualization of marginal effects (`add_marginals`) and regression surface (`add_3d_surface()`) for a linear regression with two $x$ variables. This kind of model creates a flat regression surface.
+
+Other types of regression surfaces are shown in vignette(`linear_models_w_interactions_3d`) and vignette(`generalized_linear_models_3d`).
 
 ## Setup 
 
@@ -29,19 +33,14 @@ library(regress3d)
 library(plotly)
 ```
 
-
-**Documentation:**
-
-* help("add_3d_surface")
-* add link
-
 ## Linear Regression Surfaces
 
-The basic functionality of the functions `add_3d_surface` and `add_marginals` are demonstrated used a multiple linear regression with two $x$ variables. This creates a flat regression *surface*. Both functions:
+The basic functionality of the functions `add_3d_surface()` and `add_marginals()` are demonstrated in this vignette. Both functions:
 
 * default to the plot data specified in the call to `plot_ly()`,
-* can also take `data`, `x`, `y`, and `z` as separate arguments,
-* have an optional `ci` argument to visualize the confidence intervals.
+* have an optional `ci` argument to visualize the confidence intervals, which defaults to `TRUE`.
+
+Both the marginal effects and the regression surface shown below, but either can be plotted independently of the other.
 
 
 ```{r, out.width = "800px", out.height = "450px"}
@@ -61,12 +60,12 @@ plot_ly( data = county_data,
 -   Click and drag on the graphic to rotate it.
 -   When needed, you can reset the image to its starting point. Hover over the image and click on the house symbol at the top right above the graphic title. Alternately, you can reload the page.
 -   The regression surface is shown in the flat dark blue surface. 
--   The gray curved surfaces above and below the regression surface are the 95\% confidence intervals.
+-   The gray curved surfaces above and below the regression surface represent the 95\% confidence intervals.
 -   The marginal effects and their corresponding confidence intervals are shown in [red]{style="color: crimson;"} and [orange]{style="color: orange;"} lines. 
 
 ## Improvements with Plotly
 
-We can make this interactive image prettier by adding scatterpoints with the __plotly__ function `add_markers`, a hovertemplate for each point, and improving the labels for the plotly graphic. The library __scales__ helps present the numeric values, percentages, and dollars more clearly.
+We can make this interactive image prettier by adding scatterpoints with the __plotly__ function `add_markers()`, a hovertemplate for each point, and better labels. The library __scales__ helps present the numeric values, percentages, and dollars more clearly.
 
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)
