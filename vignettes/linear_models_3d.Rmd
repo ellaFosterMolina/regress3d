@@ -1,8 +1,8 @@
 ---
-title: "3D Linear Regression Surfaces with Marginal Effects"
+title: "Linear Regression Surfaces with Marginal Effects in 3D"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{3D Linear Regression Surfaces with Marginal Effects}
+  %\VignetteIndexEntry{Linear Regression Surfaces with Marginal Effects in 3D}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -20,9 +20,9 @@ knitr::opts_chunk$set(
 
 Multiple regressions create regression **surfaces**, which have as many dimensions as there are variables (both $x$ and $y$) in the multiple regression equation. Marginal effects are a direction in this surface and can be visualized by a line in the surface. 
 
-This vignette demonstrates a 3 dimensional visualization of marginal effects (`add_marginals`) and regression surface (`add_3d_surface()`) for a linear regression with two $x$ variables. This kind of model creates a flat regression surface.
+This vignette demonstrates a 3 dimensional visualization of marginal effects with `add_marginals()` and regression surface with `add_3d_surface()` for a linear regression with two $x$ variables. This kind of model creates a flat regression surface.
 
-Other types of regression surfaces are shown in `vignette("linear_models_w_interactions_3d")` and vignette("generalized_linear_models_3d").
+Other types of regression surfaces are shown in `vignette("linear_models_w_interactions_3d")` and `vignette("generalized_linear_models_3d")`.
 
 ## Setup 
 
@@ -37,10 +37,10 @@ library(plotly)
 
 The basic functionality of the functions `add_3d_surface()` and `add_marginals()` are demonstrated in this vignette. Both functions:
 
-* default to the plot data specified in the call to `plot_ly()`,
+* default to the plot data specified in the call to `plot_ly()`, and
 * have an optional `ci` argument to visualize the confidence intervals, which defaults to `TRUE`.
 
-Both the marginal effects and the regression surface shown below, but either can be plotted independently of the other.
+Both the marginal effects and the regression surface are shown below, but either can be plotted independently of the other.
 
 
 ```{r, out.width = "800px", out.height = "450px"}
@@ -62,6 +62,8 @@ plot_ly( data = county_data,
 -   The regression surface is shown in the flat dark blue surface. 
 -   The gray curved surfaces above and below the regression surface represent the 95\% confidence intervals.
 -   The marginal effects and their corresponding confidence intervals are shown in [red]{style="color: crimson;"} and [orange]{style="color: orange;"} lines. 
+-   Remove a marginal effect by clicking once on the marginal effect in the legend.Return it by clicking on the marginal effect again.
+-   Isolate a marginal effect and remove all other layers by double clicking on the marginal effect in the legend. Double click again to return all layers.
 
 ## Improvements with Plotly
 

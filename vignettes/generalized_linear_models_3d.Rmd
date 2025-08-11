@@ -1,8 +1,8 @@
 ---
-title: "3D Regression Surfaces for Generalized Linear Models"
+title: "Generalized Linear Models in 3D"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{3D Regression Surfaces for Generalized Linear Models}
+  %\VignetteIndexEntry{Generalized Linear Models in 3D}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

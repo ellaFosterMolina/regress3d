@@ -1,8 +1,8 @@
 ---
-title: "3D Linear Regression Surfaces with Interaction Terms"
+title: "Interaction Terms in 3D"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{3D Linear Regression Surfaces with Interaction Terms}
+  %\VignetteIndexEntry{Interaction Terms in 3D}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
