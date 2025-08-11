@@ -39,7 +39,7 @@ The vignettes walk you through examples of regression surfaces for three types o
 
 A handy feature for binomial glms and other regressions that use discrete data is the function `add_jitter()`. This function mimics `ggplot2::geom_jitter()` in __ggplot2__, helping users visualize overlaid points in a three dimensional graphic.
 
-We recommend you start with the vignette on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html), which will introduce you to working with the interactive images, interpreting the regression surface, and understanding the marginal effects. 
+We recommend you start with the vignette on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html), which will introduce you to working with the interactive images, interpreting the regression surface, and understanding how the marginal effects are depicted. 
 
 
 ## Installation

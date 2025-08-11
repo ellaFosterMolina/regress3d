@@ -40,8 +40,8 @@ overlaid points in a three dimensional graphic.
 We recommend you start with the vignette on [linear
 models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html),
 which will introduce you to working with the interactive images,
-interpreting the regression surface, and understanding the marginal
-effects.
+interpreting the regression surface, and understanding how the marginal
+effects are depicted.
 
 ## Installation
 
