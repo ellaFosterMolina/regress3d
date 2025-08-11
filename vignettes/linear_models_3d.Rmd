@@ -22,7 +22,7 @@ Multiple regressions create regression **surfaces**, which have as many dimensio
 
 This vignette demonstrates a 3 dimensional visualization of marginal effects (`add_marginals`) and regression surface (`add_3d_surface()`) for a linear regression with two $x$ variables. This kind of model creates a flat regression surface.
 
-Other types of regression surfaces are shown in `vignette("linear_models_w_interactions_3d")` and `vignette(generalized_linear_models_3d)`.
+Other types of regression surfaces are shown in `vignette("linear_models_w_interactions_3d")` and vignette("generalized_linear_models_3d").
 
 ## Setup 
 
