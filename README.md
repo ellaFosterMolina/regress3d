@@ -55,16 +55,6 @@ if (!require("devtools")) {
 }
 
 devtools::install_github("ellaFosterMolina/regress3d")
-#> 
-#> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>       ✔  checking for file 'C:\Users\Ella\AppData\Local\Temp\RtmpaeqYMj\remotes54e874ec7c3\ellaFosterMolina-regress3d-68dc2ee/DESCRIPTION'
-#>       ─  preparing 'regress3d': (494ms)
-#>    checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
-#>       ─  checking for LF line-endings in source and make files and shell scripts
-#>   ─  checking for empty or unneeded directories
-#>       ─  building 'regress3d_0.0.0.9000.tar.gz'
-#>      
-#> 
 ```
 
 ## Example
@@ -102,8 +92,8 @@ The variables in the regression are county level measures from 2016.
 - `any_college`: the percent of the county that was enrolled in college
   at some point, regardless of whether they graduated.
 
-The regression is weighted by `pop_estimate16` to capture the influence
-of large counties.
+The regression is weighted by `pop_estimate16`, the number of people in
+a county, to capture the influence of large counties.
 
 ### Model
 
@@ -118,8 +108,10 @@ mymodel <- lm(r_shift ~ median_income16 + any_college,
 ### Regression surface
 
 Next, we create a `plotly::plot_ly()` object using the same variables.
-$z$ is the outcome variable typically denoted by $y$ in a multiple
-linear regression.
+Note that regression notation uses $x_1$ and $x_2$ to represent the
+explanatory variables, and $y$ for the outcome. The plotly command
+denotes the explanatory variables as $x$ and $y$, and the outcome
+variable is $z$.
 
 ``` r
 plot_ly( data = county_data,
@@ -149,7 +141,8 @@ The code above renders to an html figure. It displays the outputs of:
 However, the landing page for a package does not support interactive
 html figures. A gif of the interactive html figure is displayed below to
 demonstrate some of the functionality of the interactive html image. See
-xxx for an interactive version of this image.
+<https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly>
+for an interactive version of this image.
 
 <img src="man/figures/regression-rotating.gif" width="70%" />
 

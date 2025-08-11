@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 
 ## Introduction
-This vignette examines the functions `add_3d_surface` and `add_marginals` for regression surfaces that feature interaction terms.
+This vignette examines the functions `add_3d_surface()` and `add_marginals()` for regression surfaces that feature interaction terms.
 
 ## Setup 
 
@@ -32,7 +32,7 @@ library(plotly)
 
 **Documentation:**
 
-* help("add_3d_surface)
+* `help("add_3d_surface")`
 * add link
 
 ## Interaction Terms
@@ -66,10 +66,13 @@ plot_ly(data = county_data,
               z = ~prcnt_GOP16 ) %>%
   add_markers(size = ~pop_estimate16,
               hovertemplate = ~paste("<b>", county_state,"</b><br>",
-                            "County population: ",comma(pop_estimate16),"<br><br>",
-                            "County unemployment: ",prcnt_unemployed,"<br>",
-                            "County college experience: ",percent(any_college, accuracy = 0.1, scale = 1),"<br>",
-                            "Trump Vote %: ",percent(prcnt_GOP16, accuracy = 0.01, scale = 1),"<br>"),
+                            "County population: ",comma(pop_estimate16),
+                            "<br><br>", 
+                            "County unemployment: ", prcnt_unemployed,"<br>",
+                            "County college experience: ",
+                            percent(any_college, accuracy = 0.1, scale = 1),"<br>",
+                            "Trump Vote %: ",
+                            percent(prcnt_GOP16, accuracy = 0.01, scale = 1),"<br>"),
               showlegend = F, name = "county",
               color = ~college_2cat,
               colors = c("deepskyblue", "dimgrey"))  %>%

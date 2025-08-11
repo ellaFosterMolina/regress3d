@@ -46,7 +46,7 @@ We recommend you start with the vignette on [linear models](https://ellafostermo
 
 Install __regress3d__ from __GitHub__:
 
-```{r}
+```{r, eval = FALSE}
 if (!require("devtools")) {
   install.packages("devtools")
 }
@@ -80,7 +80,7 @@ The variables in the regression are county level measures from 2016.
 * `median_income16`: median income, and 
 * `any_college`: the percent of the county that was enrolled in college at some point, regardless of whether they graduated.
 
-The regression is weighted by `pop_estimate16` to capture the influence of large counties.
+The regression is weighted by `pop_estimate16`, the number of people in a county, to capture the influence of large counties.
 
 ### Model 
 
@@ -93,7 +93,7 @@ mymodel <- lm(r_shift ~ median_income16 + any_college,
 
 ### Regression surface
 
-Next, we create a `plotly::plot_ly()` object using the same variables. $z$ is the outcome variable typically denoted by $y$ in a multiple linear regression. 
+Next, we create a `plotly::plot_ly()` object using the same variables. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
 ```{r, eval=F}
 plot_ly( data = county_data,
@@ -117,7 +117,7 @@ The code above renders to an html figure. It displays the outputs of:
 * `plotly::add_markers()`: a plotly function to create a scattercloud of each county used to generate the regression surface;
 * `plotly::layout()`: a plotly function to adjust the graphic's labels.
 
-However, the landing page for a package does not support interactive html figures. A gif of the interactive html figure is displayed below to demonstrate some of the functionality of the interactive html image. See xxx for an interactive version of this image.
+However, the landing page for a package does not support interactive html figures. A gif of the interactive html figure is displayed below to demonstrate some of the functionality of the interactive html image. See https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly for an interactive version of this image.
 
 ```{r, out.width = '70%', echo = F}
 knitr::include_graphics("man/figures/regression-rotating.gif")
