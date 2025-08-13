@@ -33,26 +33,42 @@ library(plotly)
 
 An interaction term in a linear regression can be depicted as a curved regression surface with linear marginal effects. The marginal effects of $x_1$ ($x_2$) are allowed to linearly change as $x_2$ ($x_1$) changes. This captures heterogenous effects in a regression, where the effect of $x_1$ is different for different values of $x_2$. Note that the change in the effect of $x_1$ as $x_2$ changes is restricted by the linearity of the interaction term.
 
+The equation for the predicted values from a linear regression with two $x$ variables and an interaction term is below.
+
 \begin{align*}
 \hat{y} =& \hat{\beta}_1 x_1 +\hat{\beta}_2 x_2 +\hat{\beta}_{12} x_1 x_2 +  \hat{\beta}_0 
 \end{align*}
 
+### Data
+
+The variables in this example are county level demographic and voting measures from 2016.
+
+* `prcnt_GOP16`: the percent of the county's voters who voted for Trump in 2016,
+* `prcnt_unemployed`: the percent of the county that was unemployed in 2016, and 
+* `any_college`: a binary measure of county college experience. It is 0 if the county was below the median value of adult residents who had been enrolled in college at some point regardless of whether they graduated, and 1 otherwise.
+
+The regression is weighted by `pop_estimate16`, the number of people in a county, to capture the influence of large counties.
+
+### Code and graphic
+
 
 ```{r, out.width = "800px", out.height = "450px"}
 
-mymodel <- lm(prcnt_GOP16~ prcnt_unemployed * college_2cat_num, 
+county_data$prcnt_unemployed_log <- log(county_data$prcnt_unemployed)
+
+mymodel <- lm(prcnt_GOP16~ prcnt_unemployed_log * college_2cat_num, 
               data = county_data, weights = pop_estimate16)
 
 plot_ly( data = county_data,
-         x = ~median_income16,
-         y = ~any_college,
-         z = ~r_shift) %>%
+         x = ~prcnt_unemployed_log,
+         y = ~college_2cat_num,
+         z = ~prcnt_GOP16) %>%
   add_3d_surface(model = mymodel)%>%
-  add_marginals(model = mymodel, x1_constant_val = 5, x2_constant_val =0)%>%
-  add_marginals(model = mymodel, x1_constant_val = 20, x2_constant_val =1)
+  add_marginals(model = mymodel, x1_constant_val = 2.5, x2_constant_val =0)%>%
+  add_marginals(model = mymodel, x1_constant_val = 1, x2_constant_val =1) 
 ```
 
-
+## Improvements with Plotly
 
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)

@@ -42,6 +42,19 @@ The basic functionality of the functions `add_3d_surface()` and `add_marginals()
 
 Both the marginal effects and the regression surface are shown below, but either can be plotted independently of the other.
 
+### Data
+
+The variables in this example are county level demographic and voting measures from 2016.
+
+* `r_shift`: the shift towards Donald Trump in 2016, as measured as the difference between the county's vote for Trump in 2016 and the county's vote for the Republican presidential nominee, Mitt Romney, in 2012,
+* `median_income16`: median income, and 
+* `any_college`: the percent of the county that was enrolled in college at some point, regardless of whether they graduated.
+
+The regression is weighted by `pop_estimate16`, the number of people in a county, to capture the influence of large counties.
+
+### Code and graphic
+
+The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables and layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
 ```{r, out.width = "800px", out.height = "450px"}
 
@@ -59,10 +72,10 @@ plot_ly( data = county_data,
 
 -   Click and drag on the graphic to rotate it.
 -   When needed, you can reset the image to its starting point. Hover over the image and click on the house symbol at the top right above the graphic title. Alternately, you can reload the page.
--   The regression surface is shown in the flat dark blue surface. 
+-   The regression surface is created from the predicted values of the model. It is shown in the flat dark blue surface. 
 -   The gray curved surfaces above and below the regression surface represent the 95\% confidence intervals.
 -   The marginal effects and their corresponding confidence intervals are shown in [red]{style="color: crimson;"} and [orange]{style="color: orange;"} lines. 
--   Remove a marginal effect by clicking once on the marginal effect in the legend.Return it by clicking on the marginal effect again.
+-   Remove a marginal effect by clicking once on the marginal effect in the legend. Return it by clicking on the marginal effect again.
 -   Isolate a marginal effect and remove all other layers by double clicking on the marginal effect in the legend. Double click again to return all layers.
 
 ## Improvements with Plotly
