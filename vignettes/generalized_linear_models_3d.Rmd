@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 A multiple linear regression creates a flat regression surface. A multiple linear regression with an interaction term creates a curved regression surface with linear marginal effects. A generalized linear model takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. 
 
-This vignette demonstrates a binomial model and a Gamma model. At this time, __regress3d__ has been tested on 
+This vignette demonstrates a binomial model and a Gamma model. At this time, __regress3d__ has been tested on binomial models, negative binomials, and Gammas, but it should work for all generalized linear models.
 
 
 ## Setup
@@ -50,7 +50,7 @@ plot_ly( data = county_data,
 
 ```
 
-# Gamma Models
+# Gamma Model
 
 ```{r}
 county_data %>%

@@ -78,9 +78,14 @@ plot_ly( data = county_data,
 -   Remove a marginal effect by clicking once on the marginal effect in the legend. Return it by clicking on the marginal effect again.
 -   Isolate a marginal effect and remove all other layers by double clicking on the marginal effect in the legend. Double click again to return all layers.
 
-## Improvements with Plotly
+## Improvements with plotly, scales, and regress3d
 
-We can make this interactive image prettier by adding scatterpoints with the __plotly__ function `add_markers()`, a hovertemplate for each point, and better labels. The library __scales__ helps present the numeric values, percentages, and dollars more clearly.
+We can make this interactive image prettier by adding scatterpoints with the __plotly__ function `add_markers()`, a hovertemplate for each point, and better labels. 
+
+The library __scales__ helps present the numeric values, percentages, and dollars more clearly.
+
+__regress3d__ lets us modify the legend text by changing `x1_direction_name` and `x2_direction_name`. The default is "Predicted marginal effect of x1". It is possible, but not shown here, to adjust which value $x_2$ ($x_1$) is held constant at. See the vignette on interaction terms for an example.
+
 
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)
@@ -100,7 +105,9 @@ plot_ly( data = county_data,
               showlegend = F, name = "county",
               color = I("black")) %>%
   add_3d_surface(model = mymodel) %>%
-  add_marginals(model = mymodel) %>%
+  add_marginals(model = mymodel,
+                x1_direction_name = "Marginal effect of<br>county median income",
+                x2_direction_name = "Marginal effect of<br>county college experience") %>%
   layout( 
     title = "\nCounty shift to Trump in 2016",
     scene = list(xaxis = list(title = 'County median income'),

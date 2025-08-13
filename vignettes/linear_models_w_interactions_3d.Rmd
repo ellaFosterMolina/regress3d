@@ -45,7 +45,7 @@ The variables in this example are county level demographic and voting measures f
 
 * `prcnt_GOP16`: the percent of the county's voters who voted for Trump in 2016,
 * `prcnt_unemployed`: the percent of the county that was unemployed in 2016, and 
-* `any_college`: a binary measure of county college experience. It is 0 if the county was below the median value of adult residents who had been enrolled in college at some point regardless of whether they graduated, and 1 otherwise.
+* `college_2cat_num`: a binary measure of county college experience. It is 0 if the county was below the median value of adult residents who had been enrolled in college at some point regardless of whether they graduated, and 1 otherwise.
 
 The regression is weighted by `pop_estimate16`, the number of people in a county, to capture the influence of large counties.
 

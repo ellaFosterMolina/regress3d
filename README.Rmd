@@ -123,6 +123,8 @@ Since the landing page for a package does not support interactive html figures, 
 knitr::include_graphics("man/figures/regression-rotating.gif")
 ```
 
+### Numeric regression results
+
 This graphic corresponds to the following numerical regression results.
 
 ```{r, results='asis', echo =F}
