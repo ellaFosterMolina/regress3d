@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 
 ## Introduction
-This vignette examines the functions `add_3d_surface()` and `add_marginals()` for regression surfaces that feature interaction terms.
+This vignette examines the functions `add_3d_surface()` and `add_marginals()` for a linear regression surface that features an interaction term.
 
 ## Setup 
 
@@ -29,13 +29,15 @@ library(regress3d)
 library(plotly)
 ```
 
-
-**Documentation:**
-
-* `help("add_3d_surface")`
-* add link
-
 ## Interaction Terms
+
+An interaction term in a linear regression can be depicted as a curved regression surface with linear marginal effects. The marginal effects of $x_1$ ($x_2$) are allowed to linearly change as $x_2$ ($x_1$) changes. This captures heterogenous effects in a regression, where the effect of $x_1$ is different for different values of $x_2$. Note that the change in the effect of $x_1$ as $x_2$ changes is restricted by the linearity of the interaction term.
+
+\begin{align*}
+\hat{y} =& \hat{\beta}_1 x_1 +\hat{\beta}_2 x_2 +\hat{\beta}_{12} x_1 x_2 +  \hat{\beta}_0 
+\end{align*}
+
+
 ```{r, out.width = "800px", out.height = "450px"}
 
 mymodel <- lm(prcnt_GOP16~ prcnt_unemployed * college_2cat_num, 

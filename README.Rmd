@@ -33,9 +33,9 @@ The core two functions of __regress3d__ are
 
 The vignettes walk you through examples of regression surfaces for three types of models.
 
-* [Linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html) 
-* [Linear models with an interaction term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html)
-* [Generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html)
+* [Linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html): These models create flat regression surfaces.
+* [Linear models with an interaction term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html): A linear model with an interaction term creates a curved regression surface with linear marginal effects.
+* [Generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html): These models produce curved regression surfaces.
 
 A handy feature for binomial glms and other regressions that use discrete data is the function `add_jitter()`. This function mimics `ggplot2::geom_jitter()` in __ggplot2__, helping users visualize overlaid points in a three dimensional graphic.
 
@@ -112,12 +112,12 @@ plot_ly( data = county_data,
 
 The code above renders to an html figure. It displays the outputs of:
 
-* `add_3d_surface()`: a regression surface in translucent blue, and the 95\% confidence intervals in translucent grey;
+* `add_3d_surface()`: a regression surface in translucent blue with 95\% confidence intervals in translucent grey;
 * `add_marginals()`: the marginal effects and 95\% confidence intervals of each $x$ variable with red and orange lines;
 * `plotly::add_markers()`: a plotly function to create a scattercloud of each county used to generate the regression surface;
 * `plotly::layout()`: a plotly function to adjust the graphic's labels.
 
-The landing page for a package does not support interactive html figures. A gif of the interactive html figure is displayed below to demonstrate some of the functionality of the interactive html image. See https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly for an interactive version of this image.
+Since the landing page for a package does not support interactive html figures, a gif is displayed below. See https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly for an interactive version of this image.
 
 ```{r, out.width = '70%', echo = F}
 knitr::include_graphics("man/figures/regression-rotating.gif")
