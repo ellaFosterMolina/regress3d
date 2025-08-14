@@ -43,9 +43,9 @@ A plotly object with the regression surface added to the plot.
 This function adds a 3 dimensional regression surface to a plotly plot.
 }
 \details{
-Additional plotly layers can
+Additional plotly layers such as add_markers() can
 be added to the plotly plot, but be aware that many plotly layers inherit the data from the prior layer.
-As such, a function such as add_markers may not work if called after add_3d_surface.
+As such, a function such as add_markers may not work as intended if called after add_3d_surface.
 
 The surface can be built from either an lm or glm. For glms, testing has been primarily focused on
 binomial and Gamma families.

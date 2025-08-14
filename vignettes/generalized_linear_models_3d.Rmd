@@ -18,12 +18,11 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-A multiple linear regression creates a flat regression surface. A multiple linear regression with an interaction term creates a curved regression surface with linear marginal effects. A generalized linear model takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. 
+A multiple *linear* regression creates a flat regression surface. A multiple linear regression with an *interaction* term can be depicted as a curved regression surface with linear marginal effects. A *generalized linear model (glm)* takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. 
 
-This vignette demonstrates a binomial model and a Gamma model. At this time, __regress3d__ has been tested on binomial models, negative binomials, and Gammas, but it should work for all generalized linear models.
+This vignette demonstrates a binomial model and a Gamma model. At this time, __regress3d__ has been tested on binomial models, negative binomials, and Gammas, but it should work for all generalized linear models. The function `add_jitter()` is demonstrated in the example of a binomial glm. Note that interaction terms are also allowed in the graphics for generalized linear regressions.
 
-
-## Setup
+# Setup
 
 The package regress3d is built on the syntax of plotly in R. Both libraries are called in the initial setup.
 
@@ -32,10 +31,19 @@ library(regress3d)
 library(plotly)
 ```
 
-Note that interaction terms are also allowed in these models. The function `add_jitter()` is demonstrated in the example of a binomial glm.
-
 
 # Logistic Regression
+
+### Data
+
+The variables in the regression are county level measures from 2016.
+
+* `plurality_Trump16`: a binary variable indicating whether the plurality of a county voted for Trump in 2016.
+* `any_college`: the percent of adults in the county that had ever enrolled in college, regardless of whether they graduated.
+* `prcnt_black`: the percent of the county that identified as Black in the 2016 census. 
+
+The regression is weighted by `pop_estimate16`, the number of people in a county, to capture the influence of large counties.
+
 
 ```{r, out.width = "800px", out.height = "450px"}
 mymodel <- glm(plurality_Trump16 ~ any_college+prcnt_black, 
@@ -46,7 +54,8 @@ plot_ly( data = county_data,
                         y = ~prcnt_black,
                         z = ~plurality_Trump16) %>%
   add_markers(size = 1, color = I('black'))%>%
-  add_3d_surface(model = mymodel, ci = T) 
+  add_3d_surface(model = mymodel, ci = T) %>%
+  add_marginals(model = mymodel, ci = T) 
 
 ```
 
@@ -60,7 +69,7 @@ county_data %>%
 
 ```{r, out.width = "800px", out.height = "450px"}
 mymodel <- glm(median_income16 ~ prcnt_black +any_college, 
-               data = county_data, family = Gamma)
+               data = county_data, weight = pop_estimate16, family = Gamma)
 
 p <- plot_ly( data = county_data,
               x = ~prcnt_black,

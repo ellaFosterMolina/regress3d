@@ -37,7 +37,7 @@ The vignettes walk you through examples of regression surfaces for three types o
 * [Linear models with an interaction term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html): A linear model with an interaction term creates a curved regression surface with linear marginal effects.
 * [Generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html): These models produce curved regression surfaces.
 
-A handy feature for binomial glms and other regressions that use discrete data is the function `add_jitter()`. This function mimics `ggplot2::geom_jitter()` in __ggplot2__, helping users visualize overlaid points in a three dimensional graphic.
+A handy feature for binomial glms and other regressions that use discrete data is the function `add_jitter()`. This function mimics `ggplot2::geom_jitter()` in __ggplot2__, helping users visualize overlaid points in a three dimensional graphic. It is demonstrated in the Generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html) vignette.
 
 We recommend you start with the vignette on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html), which will introduce you to working with the interactive images, interpreting the regression surface, and understanding how the marginal effects are depicted. 
 
@@ -58,7 +58,7 @@ devtools::install_github("ellaFosterMolina/regress3d")
 
 __regress3d__ allows the user to plot regression surfaces and marginal effects in three dimensions. Linear models, generalized linear models, and either of those model types with interaction terms are currently supported.
 
-A multiple linear regression is shown below using the core two functions in __regress3d__: 
+A multiple linear regression surface and marginal effects are shown below using the core two functions in __regress3d__: 
 
 * `add_3d_surface()`, and
 * `add_marginals()`.
@@ -84,7 +84,7 @@ The regression is weighted by `pop_estimate16`, the number of people in a county
 
 ### Model 
 
-Specify the model. Here we use a multiple linear regression with two $x$ variables.
+The model can be specified within `add_3d_surface()` and `add_marginals()`, but for clarity we specify it before we create the graphic. Here we use a multiple linear regression with two $x$ variables.
 
 ```{r}
 mymodel <- lm(r_shift ~ median_income16 + any_college, 
@@ -93,7 +93,9 @@ mymodel <- lm(r_shift ~ median_income16 + any_college,
 
 ### Regression surface
 
-Next, create a `plotly::plot_ly()` object using the same variables and layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
+Next, we create a `plotly::plot_ly()` object using the same variables as in the model. We then layer on the scattercloud, 3D surface, marginals, and labels. 
+
+Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
 ```{r, eval=F}
 plot_ly( data = county_data,

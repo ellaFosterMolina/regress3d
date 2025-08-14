@@ -2,9 +2,9 @@
 #'
 #' This function adds a 3 dimensional regression surface to a plotly plot.
 #'
-#' Additional plotly layers can
+#' Additional plotly layers such as add_markers() can
 #' be added to the plotly plot, but be aware that many plotly layers inherit the data from the prior layer.
-#' As such, a function such as add_markers may not work if called after add_3d_surface.
+#' As such, a function such as add_markers may not work as intended if called after add_3d_surface.
 #'
 #' The surface can be built from either an lm or glm. For glms, testing has been primarily focused on
 #' binomial and Gamma families.
@@ -33,7 +33,6 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
                            surfacecolor = "blue", surfacecolor_ci = "grey",
                            opacity = 0.5, ...){
   data <- data %||% plotly::plotly_data(p, id = names(p$x$visdat)[1])
-  #prior version required plotly_data(p, id = names(p$x$visdat)[1]), but this no longer works
   coefficients <- create_named_coeffs(model= model)
   #could pass coefficients through surface_data, but keeping it here makes the function more flexible
   surface_data <- create_surface_data(data, model)
@@ -79,6 +78,10 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
 
 #' Add 3d marginal effects to a plot_ly plot
 #'
+#' Additional plotly layers such as add_markers() can
+#' be added to the plotly plot, but be aware that many plotly layers inherit the data from the prior layer.
+#' As such, a function such as add_markers may not work as intended if called after add_marginals().
+#'
 #' @param p A plotly object
 #' @param model A glm with exactly two x variables
 #' @param data An optional dataframe to be used to create the regression surface. By default, this will be the data used by the inherited plotly object.
@@ -99,7 +102,6 @@ add_marginals <- function(p, model, data =NULL, ci = T,
                           x2_direction_name = "Predicted marginal effect of x2"){
   data <- data %||% plotly::plotly_data(p, id = names(p$x$visdat)[1])
   if(is_tibble(data)) data <- tibble_to_dataframe(tibble = data)
-  #prior version required plotly_data(p, id = names(p$x$visdat)[1]), but this no longer works
   coefficients <- create_named_coeffs(model)
   marginal_x1_vars <- create_marginal_x_vars(data, model = model, marginal_of_x1 = T,
                                              constant_value = x2_constant_val)
