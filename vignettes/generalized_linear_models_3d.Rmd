@@ -20,7 +20,11 @@ knitr::opts_chunk$set(
 
 A multiple *linear* regression creates a flat regression surface. A multiple linear regression with an *interaction* term can be depicted as a curved regression surface with linear marginal effects. A *generalized linear model (glm)* takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. 
 
-This vignette demonstrates a binomial model and a Gamma model. At this time, __regress3d__ has been tested on binomial models, negative binomials, and Gammas, but it should work for all generalized linear models. The function `add_jitter()` is demonstrated in the example of a binomial glm. Note that interaction terms are also allowed in the graphics for generalized linear regressions.
+This vignette demonstrates a binomial model and a Gamma model. 
+
+* At this time, __regress3d__ has been tested on binomial models, negative binomials, and Gammas, but it should work for all generalized linear models. 
+* Interaction terms are also allowed in the graphics for generalized linear regressions.
+* The function `add_jitter()` is demonstrated in the example of a binomial glm. 
 
 # Setup
 
@@ -46,13 +50,18 @@ For the purpose of this example the regression is not weighted by `pop_estimate1
 
 ## 2D plot of a logistic regression
 
-For reference, a two dimensional plot of logistic regression can look like this. The outcome variable, `plurality_Trump16`, is binary. The explanatory variable, `prcnt_black`, is continuous. The model is specified to require an s-shape for the predicted probabilities cannot exceed the range $(0,1)$.
+For reference, a two dimensional plot of logistic regression can look like this. 
+
+* The outcome variable, `plurality_Trump16`, is binary. We use `ggplot2::geom_jitter()` to reveal the density of observations for counties that have very few Black residents. 
+* In this case, the explanatory variable, `prcnt_black`, is continuous. 
+* A logistic regression model is specified to require an s-shape for the predicted probabilities so that they cannot exceed the range $(0,1)$.
 
 ```{r}
 county_data %>%
   ggplot(aes(x = prcnt_black, y = plurality_Trump16)) +
-  geom_point() + 
-  geom_smooth(method = "glm", method.args = list(family = "binomial")) 
+  geom_jitter(width = 0, height = 0.1, alpha = 0.5) + 
+  geom_smooth(method = "glm", method.args = list(family = "binomial")) +
+  theme_classic()
 ```
 
 ## 3D plot of a logistic regression
@@ -70,7 +79,8 @@ plot_ly( data = county_data,
                         x = ~any_college,
                         y = ~prcnt_black,
                         z = ~plurality_Trump16) %>%
-  add_markers(size = 1, color = I('black'))%>%
+  add_jitter(, x_jitter = 0, y_jitter = 0, z_jitter = 0.1,
+             size = 1, color = I('black'))%>%
   add_3d_surface(model = mymodel, ci = T) %>%
   add_marginals(model = mymodel, ci = T) 
 
