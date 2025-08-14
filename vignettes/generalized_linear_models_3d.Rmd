@@ -34,9 +34,9 @@ library(plotly)
 
 # Logistic Regression
 
-### Data
+## Data
 
-The variables in the regression are county level measures from 2016. They are chosen to emphasize the s-shape of a logistic regression.
+The variables in the regression are county level measures from 2016. For pedagogical purposes, the variables are chosen to emphasize the s-shape of a logistic regression.
 
 * `plurality_Trump16`: a binary variable indicating whether the plurality of a county voted for Trump in 2016.
 * `any_college`: the percent of adults in the county that had ever enrolled in college, regardless of whether they graduated.
@@ -44,9 +44,9 @@ The variables in the regression are county level measures from 2016. They are ch
 
 For the purpose of this example the regression is not weighted by `pop_estimate16`. When using weights, the regression only produces 0 and 1 estimates. 
 
-### 2D plot of a logistic regression
+## 2D plot of a logistic regression
 
-For reference, a two dimensional plot of logistic regression can look like this.
+For reference, a two dimensional plot of logistic regression can look like this. The outcome variable, `plurality_Trump16`, is binary. The explanatory variable, `prcnt_black`, is continuous. The model is specified to require an s-shape for the predicted probabilities cannot exceed the range $(0,1)$.
 
 ```{r}
 county_data %>%
@@ -55,7 +55,7 @@ county_data %>%
   geom_smooth(method = "glm", method.args = list(family = "binomial")) 
 ```
 
-### 3D plot of a logistic regression
+## 3D plot of a logistic regression
 
 The three dimensional plot adds education to the logistic regression. 
 
@@ -76,7 +76,7 @@ plot_ly( data = county_data,
 
 ```
 
-### Numeric regression results
+## Numeric regression results
 
 
 ```{r, results='asis', echo =F}
