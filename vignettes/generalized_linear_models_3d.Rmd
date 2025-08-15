@@ -66,11 +66,9 @@ county_data %>%
 
 ## 3D plot of a logistic regression
 
-The three dimensional plot adds education to the logistic regression. 
+The three dimensional plot adds education, `any_college`, to the logistic regression depicted above. 
 
 ```{r, out.width = "800px", out.height = "450px"}
-# county_data$frac_gop16 <- county_data$prcnt_GOP16/100 
-
 mymodel <- glm(plurality_Trump16 ~ any_college+prcnt_black, 
                data = county_data, 
                family = "binomial")
@@ -129,16 +127,20 @@ county_data %>%
   theme_classic()
 ```
 
-## 2D plot of a Gamma regression
+## 3D plot of a Gamma regression
+
+The three dimensional plot adds `prcnt_black` to the Gamma regression depicted above. 
 
 ```{r, out.width = "800px", out.height = "450px"}
-mymodel <- glm(median_income16 ~ prcnt_black +any_college, 
+county_data$median_income16_1k <- county_data$median_income16/1000
+
+mymodel <- glm(median_income16_1k ~ prcnt_black +any_college, 
                data = county_data, weight = pop_estimate16, family = Gamma)
 
 p <- plot_ly( data = county_data,
               x = ~prcnt_black,
               y = ~any_college,
-              z = ~median_income16) %>%
+              z = ~median_income16_1k) %>%
   add_markers(size = ~pop_estimate16, color = I('black')) %>%
   add_3d_surface(model = mymodel)%>%
   add_marginals(model = mymodel) 
