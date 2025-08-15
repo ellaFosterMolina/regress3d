@@ -164,7 +164,7 @@ two_vars_model <- glm(median_income16_1k ~ prcnt_black +any_college,
                family = "Gamma")
 
 stargazer(one_var_model, two_vars_model , 
-          # type = 'html',
+          type = 'html',
           keep.stat = c("n", "adj.rsq"),
           star.cutoffs = c(0.05),
           covariate.labels = c("% Black", "County college experience", "Constant"),
