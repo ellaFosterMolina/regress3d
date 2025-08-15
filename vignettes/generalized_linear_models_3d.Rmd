@@ -155,15 +155,16 @@ p
 ```{r, results='asis', echo =F}
 library(stargazer)
 
-one_var_model <- glm(median_income16 ~ any_college, 
-               data = county_data, 
+one_var_model <- glm(median_income16_1k ~ any_college, 
+               data = county_data, weight = pop_estimate16,
                family = "Gamma")
 
-two_vars_model <- glm(median_income16 ~ prcnt_black +any_college, 
-               data = county_data, 
+two_vars_model <- glm(median_income16_1k ~ prcnt_black +any_college, 
+               data = county_data, weight = pop_estimate16,
                family = "Gamma")
 
-stargazer(one_var_model, two_vars_model , type = 'html',
+stargazer(one_var_model, two_vars_model , 
+          # type = 'html',
           keep.stat = c("n", "adj.rsq"),
           star.cutoffs = c(0.05),
           covariate.labels = c("% Black", "County college experience", "Constant"),
