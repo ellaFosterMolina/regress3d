@@ -54,7 +54,7 @@ The regression is weighted by `pop_estimate16`, the number of people in a county
 
 ### Code and graphic
 
-The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables and layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
+The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables. Next layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
 ```{r, out.width = "800px", out.height = "450px"}
 
@@ -84,7 +84,7 @@ We can make this interactive image prettier by adding scatterpoints with the __p
 
 The library __scales__ helps present the numeric values, percentages, and dollars more clearly.
 
-__regress3d__ lets us modify the legend text by changing `x1_direction_name` and `x2_direction_name`. The default is "Predicted marginal effect of x1". It is possible, but not shown here, to adjust which value $x_2$ ($x_1$) is held constant at. See the vignette on interaction terms for an example.
+__regress3d__ lets us modify the legend text by changing `x1_direction_name` and `x2_direction_name`. The default is "Predicted marginal effect of x1". It is possible, but not shown here, to adjust which value $x_2$ ($x_1$) is held constant at. See the [vignette on interaction terms](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html) for an example.
 
 
 ```{r, out.width = "800px", out.height = "450px"}

@@ -122,7 +122,7 @@ For reference, a two dimensional plot of Gamma regression can look like this.
 ```{r}
 county_data %>%
   ggplot(aes(x = any_college, y = median_income16)) +
-  geom_jitter(width = 0, height = 0.1, alpha = 0.5) + 
+  geom_point() + 
   geom_smooth(method = "glm", method.args = list(family = "Gamma")) +
   theme_classic()
 ```
@@ -155,7 +155,7 @@ p
 ```{r, results='asis', echo =F}
 library(stargazer)
 
-one_var_model <- glm(median_income16_1k ~ any_college, 
+one_var_model <- glm(median_income16 ~ any_college, 
                data = county_data, weight = pop_estimate16,
                family = "Gamma")
 
@@ -168,7 +168,7 @@ stargazer(one_var_model, two_vars_model ,
           keep.stat = c("n", "adj.rsq"),
           star.cutoffs = c(0.05),
           covariate.labels = c("% Black", "County college experience", "Constant"),
-          dep.var.labels = "County median income",
+          dep.var.labels = "County median income (&#36;1,000s)",
           dep.var.caption = "",
           model.numbers          = FALSE, 
           notes="<span>&#42;</span> p<0.05",
