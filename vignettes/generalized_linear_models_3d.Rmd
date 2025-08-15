@@ -115,11 +115,21 @@ stargazer(one_var_model, two_vars_model , type = 'html',
 
 # Gamma Model
 
+## 2D plot of a Gamma regression
+
+For reference, a two dimensional plot of Gamma regression can look like this. 
+
+* The outcome variable, `median_income16`, is continuous, positive, and right skewed. 
+
 ```{r}
 county_data %>%
-  ggplot(aes(x = median_income16)) +
-  geom_histogram()
+  ggplot(aes(x = any_college, y = median_income16)) +
+  geom_jitter(width = 0, height = 0.1, alpha = 0.5) + 
+  geom_smooth(method = "glm", method.args = list(family = "Gamma")) +
+  theme_classic()
 ```
+
+## 2D plot of a Gamma regression
 
 ```{r, out.width = "800px", out.height = "450px"}
 mymodel <- glm(median_income16 ~ prcnt_black +any_college, 
@@ -134,6 +144,32 @@ p <- plot_ly( data = county_data,
   add_marginals(model = mymodel) 
 
 p
+```
+
+
+## Numeric regression results
+
+
+```{r, results='asis', echo =F}
+library(stargazer)
+
+one_var_model <- glm(median_income16 ~ any_college, 
+               data = county_data, 
+               family = "Gamma")
+
+two_vars_model <- glm(median_income16 ~ prcnt_black +any_college, 
+               data = county_data, 
+               family = "Gamma")
+
+stargazer(one_var_model, two_vars_model , type = 'html',
+          keep.stat = c("n", "adj.rsq"),
+          star.cutoffs = c(0.05),
+          covariate.labels = c("% Black", "County college experience", "Constant"),
+          dep.var.labels = "County median income",
+          dep.var.caption = "",
+          model.numbers          = FALSE, 
+          notes="<span>&#42;</span> p<0.05",
+          notes.append=F)
 ```
 
 
