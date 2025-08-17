@@ -139,10 +139,10 @@ plot_ly(data = county_data,
 
 ## Numeric regression results
 
-These graphics correspond to the following numerical regression results. Three models are presented to allow the reader to examine three effects shown in the graphic.
+This graphic corresponds to the following numerical regression results. Three models are presented to allow the reader to examine three effects shown in the graphic.
 
 1.  The multiple regression equation with an interaction term for the regression surface in blue with grey confidence intervals.
-2.  A simple regression using only logged unemployment rate and counties **below** the national mean education level (low education) for the marginal effect shown with a [yellow]{style="color: yellow;"} line. Note that while the  [yellow]{style="color: yellow;"} line reflects the effect size in the for both the simple regression and the multiple regression with an interaction term, the confidence intervals in the simple regression and multiple regression are different.
+2.  A simple regression using only logged unemployment rate and counties **below** the national mean education level (low education) for the marginal effect shown with a [yellow]{style="color: yellow;background-color: lightgrey;"} line. Note that while the  [yellow]{style="color: yellow;background-color: lightgrey;"} line reflects the effect size in the for both the simple regression and the multiple regression with an interaction term, the confidence intervals in the simple regression and multiple regression are different.
 3.  A simple regression using only logged unemployment rate and counties **above** the national mean education level (high education) for the marginal effect shown with an [orange]{style="color: orange;"} line. Note that while the  [orange]{style="color: orange;"} line reflects the effect size in the for both the simple regression and the multiple regression with an interaction term, the confidence intervals in the simple regression and multiple regression are different.
 
 ```{r, results='asis', echo =F}
