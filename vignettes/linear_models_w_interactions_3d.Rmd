@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 
 ## Introduction
-This vignette examines the functions `add_3d_surface()` and `add_marginals()` for a linear regression surface that features an interaction term.
+This vignette examines the functions `add_3d_surface()` and `add_marginals()` for a linear regression surface that features an interaction term. The functionality of `add_3d_surface()` and `add_marginals()` is the same as in a linear regression model without an interaction term. However, the visuals are sufficiently different to merit a separate description.
 
 ## Setup 
 
@@ -41,16 +41,17 @@ The equation for the predicted values from a linear regression with two $x$ vari
 
 ### Data
 
-The variables in this example are county level demographic and voting measures from 2016.
+The variables in this example are county level demographic and voting measures from 2016. The data was chosen to emphasize the twist in the regression surface and highlight change in the marginal effects. The explanatory variable `college_2cat_num` was chosen to be binary to make it easier to see how the marginal effect for one value of the binary variable is different from the marginal effect for the other value.
 
 * `prcnt_GOP16`: the percent of the county's voters who voted for Trump in 2016,
-* `prcnt_unemployed`: the percent of the county that was unemployed in 2016, and 
+* `prcnt_unemployed_log`: the logged percent of the county that was unemployed in 2016, and 
 * `college_2cat_num`: a binary measure of county college experience. It is 0 if the county was below the median value of adult residents who had been enrolled in college at some point regardless of whether they graduated, and 1 otherwise.
 
 The regression is weighted by `pop_estimate16`, the number of people in a county, to capture the influence of large counties.
 
 ### Code and graphic
 
+The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables. Next layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
 ```{r, out.width = "800px", out.height = "450px"}
 
@@ -68,7 +69,19 @@ plot_ly( data = county_data,
   add_marginals(model = mymodel, x1_constant_val = 1, x2_constant_val =1) 
 ```
 
+See the article on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#code-and-graphic) for more information on how to manipulate this graphic. 
+
+The marginal effects are called twice in this example to highlight key features of the regression surface. The [orange]{style="color: orange;"} marginal effects of $x_1$ are linear for any given value of $x_2$. The size of the marginal effect of $x_1$ is different for the two values of $x_2$ plotted.
+
+Note that because $x_2$ is binary, the magnitude of the marginal effect of $x_1$, unemployment, when $x_2$, education, has the value of $0$ and $1$ is easily recoverable. Simply estimate the regression on the subset of data where education has the value of 1, and again for 0. The standard errors for those subsets are different from those depicted in the image, but the magnitude of the effects are the same. 
+
 ## Improvements with Plotly
+
+We can make this interactive image prettier by adding scatterpoints with the __plotly__ function `add_markers()`, a hovertemplate for each point, and better labels. 
+
+The library __scales__ helps present the numeric values, percentages, and dollars more clearly.
+
+__regress3d__ lets us modify the legend text by changing `x1_direction_name` and `x2_direction_name`. The default is "Predicted marginal effect of x1". It is possible, but not shown here, to adjust which value $x_2$ ($x_1$) is held constant at. 
 
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)
@@ -105,5 +118,29 @@ plot_ly(data = county_data,
     # width = 500, height = 500,
     legend = list(font = list(size = 8))
     )
+```
+
+# More on marginal effects
+
+# Numeric regression results
+
+These graphics correspond to the following numerical regression results.
+
+```{r, results='asis', echo =F}
+library(stargazer)
+
+county_data$prcnt_unemployed_log <- log(county_data$prcnt_unemployed)
+mymodel <- lm(prcnt_GOP16~ prcnt_unemployed_log * college_2cat_num, 
+              data = county_data, weights = pop_estimate16)
+
+stargazer(mymodel, type = 'html',
+          keep.stat = c("n", "adj.rsq"),
+          star.cutoffs = c(0.05),
+          covariate.labels = c("% unemployed (logged)", "County college experience (binary)", "Constant"),
+          dep.var.labels = "% of county that voted for Trump in 2016",
+          dep.var.caption = "",
+          model.numbers          = FALSE, 
+          notes="<span>&#42;</span> p<0.05",
+          notes.append=F)
 ```
 
