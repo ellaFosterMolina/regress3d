@@ -29,7 +29,7 @@ library(regress3d)
 library(plotly)
 ```
 
-## Interaction Terms
+## Interaction terms
 
 An interaction term in a linear regression can be depicted as a curved regression surface with linear marginal effects. The marginal effect of $x_1$ ($x_2$) is allowed to linearly change as $x_2$ ($x_1$) changes. This captures heterogenous effects in a regression, where the effect of $x_1$ is different for different values of $x_2$. Note that the change in the effect of $x_1$ as $x_2$ changes is restricted by the linearity of the interaction term.
 
@@ -45,7 +45,7 @@ The variables in this example are county level demographic and voting measures f
 
 * `prcnt_GOP16`: the percent of the county's voters who voted for Trump in 2016,
 * `prcnt_unemployed_log`: the logged percent of the county that was unemployed in 2016, and 
-* `college_2cat_num`: a binary measure of county college experience. It is 0 if the county was below the median value of adult residents who had been enrolled in college at some point regardless of whether they graduated, and 1 otherwise.
+* `college_2cat_num`: a binary measure of county college experience. It is 0 if the county was below the county level mean value of adult residents who had been enrolled in college at some point regardless of whether they graduated, and 1 otherwise.
 
 The regression is weighted by `pop_estimate16`, the number of people in a county, to capture the influence of large counties.
 
@@ -80,11 +80,11 @@ Click, hold, and drag the regression surface to spin it. See the article on [lin
 
 ## More on marginal effects
 
-In a linear regression, the marginal effect of $x_1$ is constant for changing values of $x_2$ and vice versa. When an interaction term is added to the model, this is clearly not true. The next image highlights some properties of regression surfaces with interaction terms using adjustments via the packages __plotly__, __scales__, and __regress3d__.
+In a linear regression, the marginal effect of $x_1$ is constant for changing values of $x_2$ and vice versa. This is not true when an interaction term is added to the model. The next image highlights this fact by adjusting the image using the packages __plotly__, __scales__, and __regress3d__.
 
-* Using __plotly__ functions and arguments, we add scatterpoints, a hovertemplate for each point, and better labels. We adjust the colors of the scatterpoints to emphasize the low ([black]{style="color: black;"}) and high ([blue]{style="color: blue;"}) values of the education variable.
-* The library __scales__ helps present the numeric values and percentages in the hovertext more clearly.
-* __regress3d__ lets us modify the marginal effects to highlight their changing values. In `add_marginal()`, we adjust the  legend text by changing `x1_direction_name` and `x2_direction_name`. We also adjust the color of the lines using `x1_color` and `x2_color`. As before, we adjust the location of the marginal effects using `x2_constant_val` and `x1_constant_val`.
+* Using __plotly__ functions and arguments, we add scatterpoints, a hovertemplate for each point, and better labels. We adjust the colors of the scatterpoints to emphasize the low (**black**) and high ([blue]{style="color: blue;"}) values of the education variable.
+* The package __scales__ presents the numeric values and percentages in the hovertext more clearly.
+* __regress3d__ lets us modify the marginal effects to highlight their changing values. In `add_marginal()`, we adjust the  legend text by changing `x1_direction_name` and `x2_direction_name`. We also adjust the color of the lines using `x1_color` and `x2_color`. As before, we adjust the location of the marginal effects using `x1_constant_val` and `x2_constant_val`.
 
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)
@@ -92,7 +92,6 @@ library(scales)
 county_data$prcnt_unemployed_log <- log(county_data$prcnt_unemployed)
 mymodel <- lm(prcnt_GOP16~ prcnt_unemployed_log * college_2cat_num, 
               data = county_data, weights = pop_estimate16)
-
 
 plot_ly(data = county_data, 
               x = ~prcnt_unemployed_log,
@@ -134,15 +133,15 @@ plot_ly(data = county_data,
 
 Because $x_2$ (education) is binary, the numeric value of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ or $1$ is easily recoverable from the multiple regression with an interaction term. Either perform some algebra by substituting the values of 0 and 1 into the equation for predicted values, or estimate the regression on the subset of data where education has the value of 1, and again for 0. Note the following. 
 
-* The **standard errors** for unemployment in the simple regression estimated for `college_2cat_num` == 0  are **different** from those created in the multiple regression where `college_2cat_num`== 0. The same holds for `college_2cat_num` == 1.
-* The **estimated value** for unemployment in the simple regression estimated for `college_2cat_num` == 0  are **the same** as those created in the multiple regression where `college_2cat_num` == 0. The same holds for `college_2cat_num` == 1.
+* The estimated **standard errors** for unemployment in the simple regression estimated for `college_2cat_num` == 0  are **different** from those created in the multiple regression where `college_2cat_num`== 0. The same holds for `college_2cat_num` == 1.
+* The **estimated value** of the effect of unemployment in the simple regression estimated for `college_2cat_num` == 0  is **the same** as the marginal effect in the multiple regression for `college_2cat_num` == 0. The same holds for `college_2cat_num` == 1.
 
 ## Numeric regression results
 
 This graphic corresponds to the following numerical regression results. Three models are presented to allow the reader to examine three effects shown in the graphic.
 
 1.  The multiple regression equation with an interaction term for the regression surface in blue with grey confidence intervals.
-2.  A simple regression using only logged unemployment rate and counties **below** the national mean education level (low education) for the marginal effect shown with a [black]{style="color: black;"} line. Note that while the  [black]{style="color: black;"} line reflects the effect size in the for both the simple regression and the multiple regression with an interaction term, the confidence intervals in the simple regression and multiple regression are different.
+2.  A simple regression using only logged unemployment rate and counties **below** the national mean education level (low education) for the marginal effect shown with a **black** line. Note that while the **black** line reflects the effect size in the for both the simple regression and the multiple regression with an interaction term, the confidence intervals in the simple regression and multiple regression are different.
 3.  A simple regression using only logged unemployment rate and counties **above** the national mean education level (high education) for the marginal effect shown with an [blue]{style="color: blue;"} line. Note that while the  [blue]{style="color: blue;"} line reflects the effect size in the for both the simple regression and the multiple regression with an interaction term, the confidence intervals in the simple regression and multiple regression are different.
 
 ```{r, results='asis', echo =F}
