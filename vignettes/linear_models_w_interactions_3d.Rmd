@@ -124,26 +124,32 @@ plot_ly(data = county_data,
 
 # Numeric regression results
 
-These graphics correspond to the following numerical regression results.
+These graphics correspond to the following numerical regression results. Three models are presented to allow the reader to examine the 
+
+1.  The multiple regression equation with an interaction term.
+2.  A simple regression using only education. 
 
 ```{r, results='asis', echo =F}
 library(stargazer)
 
 county_data$prcnt_unemployed_log <- log(county_data$prcnt_unemployed)
 
-edu_model <- lm(prcnt_GOP16~ college_2cat_num, 
-              data = county_data, weights = pop_estimate16)
-unemployed_model <- lm(prcnt_GOP16~ prcnt_unemployed_log, 
-              data = county_data, weights = pop_estimate16)
+unemployed_model_edu0 <- lm(prcnt_GOP16~ prcnt_unemployed_log, 
+              data = subset(county_data, college_2cat_num == 0), 
+              weights = pop_estimate16)
+unemployed_model_edu1 <- lm(prcnt_GOP16~ prcnt_unemployed_log, 
+              data = subset(county_data, college_2cat_num == 1), 
+              weights = pop_estimate16)
 two_vars_model <- lm(prcnt_GOP16~ prcnt_unemployed_log * college_2cat_num, 
               data = county_data, weights = pop_estimate16)
 
-stargazer(two_vars_model, edu_model, unemployed_model, type = 'html',
+stargazer(two_vars_model, unemployed_model_edu0, unemployed_model_edu1, type = 'html',
           keep.stat = c("n", "adj.rsq"),
           star.cutoffs = c(0.05),
           covariate.labels = c("% unemployed (logged)", "County college experience (binary)", "Constant"),
           dep.var.labels = "% of county that voted for Trump in 2016",
           dep.var.caption = "",
+          column.labels = c("test1", "test2", "test3"),
           model.numbers          = FALSE, 
           notes="<span>&#42;</span> p<0.05",
           notes.append=F)
