@@ -78,6 +78,10 @@ plot_ly( data = county_data,
 -   Remove a marginal effect by clicking once on the marginal effect in the legend. Return it by clicking on the marginal effect again.
 -   Isolate a marginal effect and remove all other layers by double clicking on the marginal effect in the legend. Double click again to return all layers.
 
+### More on marginal effects
+
+The [orange]{style="color: orange;"} marginal effects in the graphic represent the change in $x_1$, median income, as $x_2$ is held constant. The orange line traverses the range of median income. `add_marginals()` defaults to holding $x_2$, education, constant at the mean value for $x_2$. This is 51.2\%. Note that although the regression is weighted by county population, the mean value is not weighted, so 51.2\% does not represent the mean value of college attendance for the country in 2016.
+
 ## Improvements with plotly, scales, and regress3d
 
 We can make this interactive image prettier by adding scatterpoints with the __plotly__ function `add_markers()`, a hovertemplate for each point, and better labels. 
