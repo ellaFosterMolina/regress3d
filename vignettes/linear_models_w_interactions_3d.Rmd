@@ -130,10 +130,15 @@ These graphics correspond to the following numerical regression results.
 library(stargazer)
 
 county_data$prcnt_unemployed_log <- log(county_data$prcnt_unemployed)
-mymodel <- lm(prcnt_GOP16~ prcnt_unemployed_log * college_2cat_num, 
+
+edu_model <- lm(prcnt_GOP16~ college_2cat_num, 
+              data = county_data, weights = pop_estimate16)
+unemployed_model <- lm(prcnt_GOP16~ prcnt_unemployed_log, 
+              data = county_data, weights = pop_estimate16)
+two_vars_model <- lm(prcnt_GOP16~ prcnt_unemployed_log * college_2cat_num, 
               data = county_data, weights = pop_estimate16)
 
-stargazer(mymodel, type = 'html',
+stargazer(two_vars_model, edu_model, unemployed_model, type = 'html',
           keep.stat = c("n", "adj.rsq"),
           star.cutoffs = c(0.05),
           covariate.labels = c("% unemployed (logged)", "County college experience (binary)", "Constant"),
