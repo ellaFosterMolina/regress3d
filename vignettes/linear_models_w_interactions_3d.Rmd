@@ -31,7 +31,7 @@ library(plotly)
 
 ## Interaction Terms
 
-An interaction term in a linear regression can be depicted as a curved regression surface with linear marginal effects. The marginal effects of $x_1$ ($x_2$) are allowed to linearly change as $x_2$ ($x_1$) changes. This captures heterogenous effects in a regression, where the effect of $x_1$ is different for different values of $x_2$. Note that the change in the effect of $x_1$ as $x_2$ changes is restricted by the linearity of the interaction term.
+An interaction term in a linear regression can be depicted as a curved regression surface with linear marginal effects. The marginal effect of $x_1$ ($x_2$) is allowed to linearly change as $x_2$ ($x_1$) changes. This captures heterogenous effects in a regression, where the effect of $x_1$ is different for different values of $x_2$. Note that the change in the effect of $x_1$ as $x_2$ changes is restricted by the linearity of the interaction term.
 
 The equation for the predicted values from a linear regression with two $x$ variables and an interaction term is below.
 
@@ -53,7 +53,7 @@ The regression is weighted by `pop_estimate16`, the number of people in a county
 
 The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables. Next layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
-The marginal effects are called twice in this example to highlight two key features of the regression surface. Each call to `add_marginals()` specifies different constant values for each marginal effect, using the argument `x1_constant_val` and `x2_constant_val`.
+In this example, each call to `add_marginals()` specifies different constant values for each marginal effect using the arguments `x1_constant_val` and `x2_constant_val`. This highlights two key features of the regression surface.
 
 * The [orange]{style="color: orange;"} marginal effects of $x_1$ are linear for any given value of $x_2$. The same is true for the [red]{style="color: red;"} marginal effects of $x_2$.
 * The size of the marginal effect of $x_1$ ($x_2$) is different for the two values of $x_2$ ($x_1$) plotted.
@@ -80,15 +80,16 @@ See the article on [linear models](https://ellafostermolina.github.io/regress3d/
 
 ## More on marginal effects
 
-Because $x_2$ (education) is binary, the magnitude of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ and $1$ is easily recoverable from the multiple regression with an interaction term. Simply estimate the regression on the subset of data where education has the value of 1, and again for 0. The standard errors in the simple regressions estimated on the subsetted data is different from those in the multiple regression, but the estimate value of the effects in the multiple regression and the subsetted simple regressions are the same. 
+Because $x_2$ (education) is binary, the magnitude of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ and $1$ is easily recoverable from the multiple regression with an interaction term. Simply estimate the regression on the subset of data where education has the value of 1, and again for 0. 
+
+* The standard errors in the simple regressions estimated on the subsetted data arem different from those in the multiple regression.
+* The estimated value of the effects in the multiple regression and the subsetted simple regressions are the same. 
 
 We can highlight this fact in the image using __plotly__, __scales__, and __regress3d__.
 
-Using __plotly__ functions and arguments, we add scatterpoints, a hovertemplate for each point, and better labels. 
-
-The library __scales__ helps present the numeric values and percentages in the hovertext more clearly.
-
-__regress3d__ lets us modify the marginal effects. In `add_marginal()`, we use the argment  legend text by changing `x1_direction_name` and `x2_direction_name`. We also adjust the color of the lines using `x1_color` and `x2_color`. As before, we adjust the location of the marginal effect using `x2_constant_val` and `x1_constant_val`.
+* Using __plotly__ functions and arguments, we add scatterpoints, a hovertemplate for each point, and better labels. 
+* The library __scales__ helps present the numeric values and percentages in the hovertext more clearly.
+* __regress3d__ lets us modify the marginal effects. In `add_marginal()`, we adjust the  legend text by changing `x1_direction_name` and `x2_direction_name`. We also adjust the color of the lines using `x1_color` and `x2_color`. As before, we adjust the location of the marginal effects using `x2_constant_val` and `x1_constant_val`.
 
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)
