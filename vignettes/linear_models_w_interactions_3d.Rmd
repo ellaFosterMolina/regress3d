@@ -80,16 +80,16 @@ Click, hold, and drag the regression surface to spin it. See the article on [lin
 
 ## More on marginal effects
 
-Because $x_2$ (education) is binary, the magnitude of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ or $1$ is easily recoverable from the multiple regression with an interaction term. Simply estimate the regression on the subset of data where education has the value of 1, and again for 0. 
+In a linear regression, the marginal effect of $x_1$ is constant for changing values of $x_2$ and vice versa. When an interaction term is added to the model, this is clearly not true. The next image highlights some properties of regression surfaces with interaction terms using adjustments via the packages __plotly__, __scales__, and __regress3d__.
 
-* The standard errors for unemployment in the simple regression estimated for `college_2cat_num` $== 0$  are **different** from those created in the multiple regression where `college_2cat_num`== 0. The same holds for `college_2cat_num` $== 1$.
-* The estimated value for unemployment in the simple regression estimated for `college_2cat_num` $== 0$  are **the same** as those created in the multiple regression where `college_2cat_num` $== 0$. The same holds for `college_2cat_num` $== 1$.
-
-We can highlight this fact in the image using __plotly__, __scales__, and __regress3d__.
-
-* Using __plotly__ functions and arguments, we add scatterpoints, a hovertemplate for each point, and better labels. 
+* Using __plotly__ functions and arguments, we add scatterpoints, a hovertemplate for each point, and better labels. We adjust the colors of the scatterpoints to emphasize the low and high values of the education variable.
 * The library __scales__ helps present the numeric values and percentages in the hovertext more clearly.
-* __regress3d__ lets us modify the marginal effects. In `add_marginal()`, we adjust the  legend text by changing `x1_direction_name` and `x2_direction_name`. We also adjust the color of the lines using `x1_color` and `x2_color`. As before, we adjust the location of the marginal effects using `x2_constant_val` and `x1_constant_val`.
+* __regress3d__ lets us modify the marginal effects to highlight their changing values. In `add_marginal()`, we adjust the  legend text by changing `x1_direction_name` and `x2_direction_name`. We also adjust the color of the lines using `x1_color` and `x2_color`. As before, we adjust the location of the marginal effects using `x2_constant_val` and `x1_constant_val`.
+
+Because $x_2$ (education) is binary, the numeric value of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ or $1$ is easily recoverable from the multiple regression with an interaction term. Either perform some algebra by substituting the values of 0 and 1 into the equation for predicted values, or estimate the regression on the subset of data where education has the value of 1, and again for 0. Note the following. 
+
+* The **standard errors** for unemployment in the simple regression estimated for `college_2cat_num` == 0  are **different** from those created in the multiple regression where `college_2cat_num`== 0. The same holds for `college_2cat_num` == 1.
+* The **estimated value** for unemployment in the simple regression estimated for `college_2cat_num` == 0  are **the same** as those created in the multiple regression where `college_2cat_num` == 0. The same holds for `college_2cat_num` == 1.
 
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)
