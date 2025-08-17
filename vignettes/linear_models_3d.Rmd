@@ -80,7 +80,11 @@ plot_ly( data = county_data,
 
 ### More on marginal effects
 
-The [orange]{style="color: orange;"} marginal effects in the graphic represent the change in $x_1$, median income, as $x_2$ is held constant. The orange line traverses the range of median income. `add_marginals()` defaults to holding $x_2$, education, constant at the mean value for $x_2$. This is 51.2\%. Note that although the regression is weighted by county population, the mean value is not weighted, so 51.2\% does not represent the mean value of college attendance for the country in 2016.
+The [orange]{style="color: orange;"} marginal effects in the graphic represent the change in $x_1$, median income, as $x_2$ is held constant. The orange line traverses the range of median income while $x_2$, education, is held constant at its mean 51.2\%. Note that although the regression is weighted by county population, the mean value is not weighted. Therefore 51.2\% does not represent the mean value of college attendance for the country in 2016. 
+
+`add_marginals()` defaults to holding $x_2$ constant at its mean. The decision over which value to hold $x_2$ constant at is arbitrary in a linear regression. The rate of change of the marginal effect is unchanged for any value of $x_2$. `add_marginals()` allows the user to specify other values with the argument `x2_constant_val`. See the documentation for `add_marginals()`. 
+
+The same logic holds for the [red]{style="color: crimson;"} line representing the marginal effect of $x_2$, education, while $x_1$, income, is held constant.
 
 ## Improvements with plotly, scales, and regress3d
 
