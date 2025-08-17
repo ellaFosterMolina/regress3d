@@ -82,8 +82,8 @@ See the article on [linear models](https://ellafostermolina.github.io/regress3d/
 
 Because $x_2$ (education) is binary, the magnitude of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ and $1$ is easily recoverable from the multiple regression with an interaction term. Simply estimate the regression on the subset of data where education has the value of 1, and again for 0. 
 
-* The standard errors in the simple regression estimated for $\text(college_2cat_num) == 0$  are different from those created in the multiple regression where $\text(college_2cat_num) == 0$.
-* The estimated value of the effects in the multiple regression and the subsetted simple regressions are the same. 
+* The standard errors for unemployment in the simple regression estimated for `college_2cat_num` $== 0$  are **different** from those created in the multiple regression where `college_2cat_num` $== 0$. The same holds for `college_2cat_num` $== 1$.
+* The estimated value for unemployment in the simple regression estimated for `college_2cat_num` $== 0$  are **the same** as those created in the multiple regression where `college_2cat_num` $== 0$. The same holds for `college_2cat_num` $== 1$.
 
 We can highlight this fact in the image using __plotly__, __scales__, and __regress3d__.
 
