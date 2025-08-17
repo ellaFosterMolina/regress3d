@@ -53,6 +53,11 @@ The regression is weighted by `pop_estimate16`, the number of people in a county
 
 The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables. Next layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
+The marginal effects are called twice in this example to highlight two key features of the regression surface. Each call to `add_marginals()` specifies different constant values for each marginal effect, using the argument `x1_constant_val` and `x2_constant_val`.
+
+* The [orange]{style="color: orange;"} marginal effects of $x_1$ are linear for any given value of $x_2$. The same is true for the [red]{style="color: red;"} marginal effects of $x_2$.
+* The size of the marginal effect of $x_1$ ($x_2$) is different for the two values of $x_2$ ($x_1$) plotted.
+
 ```{r, out.width = "800px", out.height = "450px"}
 
 county_data$prcnt_unemployed_log <- log(county_data$prcnt_unemployed)
@@ -64,21 +69,18 @@ plot_ly( data = county_data,
          x = ~prcnt_unemployed_log,
          y = ~college_2cat_num,
          z = ~prcnt_GOP16) %>%
-  add_3d_surface(model = mymodel)%>%
-  add_marginals(model = mymodel, x1_constant_val = 2.5, x2_constant_val =0)%>%
-  add_marginals(model = mymodel, x1_constant_val = 1, x2_constant_val =1) 
+  add_3d_surface(model = mymodel) %>%
+  add_marginals(model = mymodel, 
+                x1_constant_val = 2.5, x2_constant_val =0) %>%
+  add_marginals(model = mymodel, 
+                x1_constant_val = 1, x2_constant_val =1) 
 ```
 
 See the article on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#code-and-graphic) for more information on how to manipulate this graphic. 
 
-The marginal effects are called twice in this example to highlight two key features of the regression surface. 
-
-* The [orange]{style="color: orange;"} marginal effects of $x_1$ are linear for any given value of $x_2$. The same is true for the [red]{style="color: red;"} marginal effects of $x_2$.
-* The size of the marginal effect of $x_1$ ($x_2$) is different for the two values of $x_2$ ($x_1$) plotted.
-
 ## More on marginal effects
 
-Because $x_2$ (education) is binary, the magnitude of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ and $1$ is easily recoverable. Simply estimate the regression on the subset of data where education has the value of 1, and again for 0. The standard errors for those subsets are different from those depicted in the image, but the magnitude of the effects are the same. 
+Because $x_2$ (education) is binary, the magnitude of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ and $1$ is easily recoverable from the multiple regression with an interaction term. Simply estimate the regression on the subset of data where education has the value of 1, and again for 0. The standard errors in the simple regressions estimated on the subsetted data is different from those in the multiple regression, but the estimate value of the effects in the multiple regression and the subsetted simple regressions are the same. 
 
 We can highlight this fact in the image using __plotly__, __scales__, and __regress3d__.
 
@@ -86,7 +88,7 @@ Using __plotly__ functions and arguments, we add scatterpoints, a hovertemplate 
 
 The library __scales__ helps present the numeric values and percentages in the hovertext more clearly.
 
-__regress3d__ lets us modify the marginal effects.  legend text by changing `x1_direction_name` and `x2_direction_name`. The default is "Predicted marginal effect of x1". It is possible, but not shown here, to adjust which value $x_2$ ($x_1$) is held constant at. 
+__regress3d__ lets us modify the marginal effects. In `add_marginal()`, we use the argment  legend text by changing `x1_direction_name` and `x2_direction_name`. We also adjust the color of the lines using `x1_color` and `x2_color`. As before, we adjust the location of the marginal effect using `x2_constant_val` and `x1_constant_val`.
 
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)
@@ -113,12 +115,13 @@ plot_ly(data = county_data,
               color = ~college_2cat,
               colors = c("deepskyblue", "dimgrey"))  %>%
   add_3d_surface(model = mymodel)%>%
-  add_marginals(model = mymodel, x1_constant_val = 2.5, x2_constant_val =0,
-                x1_color = "yellow",
-                x2_color = "grey",
+  add_marginals(model = mymodel,
+                x1_constant_val = 2.5, x2_constant_val =0,
+                x1_color = "yellow", x2_color = "grey",
                 x1_direction_name = "Marginal effect of unemployment<br>for low education counties",
                 x2_direction_name = "")%>%
-  add_marginals(model = mymodel, x1_constant_val = 1, x2_constant_val =1,
+  add_marginals(model = mymodel,
+                x1_constant_val = 1, x2_constant_val =1,
                 x2_color = "grey",
                 x1_direction_name = "Marginal effect of unemployment<br>for high education counties",
                 x2_direction_name = "") %>%
@@ -137,8 +140,8 @@ plot_ly(data = county_data,
 These graphics correspond to the following numerical regression results. Three models are presented to allow the reader to examine three effects shown in the graphic.
 
 1.  The multiple regression equation with an interaction term for the regression surface in blue with grey confidence intervals.
-2.  A simple regression using only logged unemployment rate and counties **below** the national mean education level (low education) for the marginal effect shown with a yellow line.
-3.  A simple regression using only logged unemployment rate and counties **above** the national mean education level (high education) for the marginal effect shown with an orange line.
+2.  A simple regression using only logged unemployment rate and counties **below** the national mean education level (low education) for the marginal effect shown with a [yellow]{style="color: yellow;"} line.
+3.  A simple regression using only logged unemployment rate and counties **above** the national mean education level (high education) for the marginal effect shown with an [orange]{style="color: orange;"} line.
 
 ```{r, results='asis', echo =F}
 library(stargazer)
