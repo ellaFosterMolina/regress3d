@@ -41,7 +41,7 @@ The equation for the predicted values from a linear regression with two $x$ vari
 
 ## Data
 
-The variables in this example are county level demographic and voting measures from 2016. The data was chosen to emphasize the twist in the regression surface and highlight change in the marginal effects. The explanatory variable `college_2cat_num` was chosen to be binary to make it easier to see how the marginal effect for one value of the binary variable is different from the marginal effect for the other value.
+The variables in this example are county level demographic and voting measures from 2016. The data was chosen to emphasize the twist in the regression surface and highlight changes in the marginal effects. The explanatory variable `college_2cat_num` was chosen to be binary to make it easier to see how the marginal effect for one value of the binary variable is different from the marginal effect for the other value.
 
 * `prcnt_GOP16`: the percent of the county's voters who voted for Trump in 2016,
 * `prcnt_unemployed_log`: the logged percent of the county that was unemployed in 2016, and 
@@ -76,13 +76,13 @@ plot_ly( data = county_data,
                 x1_constant_val = 1, x2_constant_val =1) 
 ```
 
-See the article on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#code-and-graphic) for more information on how to manipulate this graphic. 
+Click, hold, and drag the regression surface to spin it. See the article on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#code-and-graphic) for more information on how to manipulate this graphic. 
 
 ## More on marginal effects
 
-Because $x_2$ (education) is binary, the magnitude of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ and $1$ is easily recoverable from the multiple regression with an interaction term. Simply estimate the regression on the subset of data where education has the value of 1, and again for 0. 
+Because $x_2$ (education) is binary, the magnitude of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ or $1$ is easily recoverable from the multiple regression with an interaction term. Simply estimate the regression on the subset of data where education has the value of 1, and again for 0. 
 
-* The standard errors for unemployment in the simple regression estimated for `college_2cat_num` $== 0$  are **different** from those created in the multiple regression where `college_2cat_num` $== 0$. The same holds for `college_2cat_num` $== 1$.
+* The standard errors for unemployment in the simple regression estimated for `college_2cat_num` $== 0$  are **different** from those created in the multiple regression where `college_2cat_num`== 0. The same holds for `college_2cat_num` $== 1$.
 * The estimated value for unemployment in the simple regression estimated for `college_2cat_num` $== 0$  are **the same** as those created in the multiple regression where `college_2cat_num` $== 0$. The same holds for `college_2cat_num` $== 1$.
 
 We can highlight this fact in the image using __plotly__, __scales__, and __regress3d__.
