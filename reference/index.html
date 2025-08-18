@@ -19,9 +19,9 @@ gtag('config', 'G-21JNL53E33'); </script></head><body>
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/generalized_linear_models_3d.html">Generalized Linear Models in 3D</a></li>
-    <li><a class="dropdown-item" href="../articles/linear_models_3d.html">Linear Regression Surfaces with Marginal Effects in 3D</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/linear_models_3d.html">Linear Regression Surfaces with Marginal Effects in 3D</a></li>
     <li><a class="dropdown-item" href="../articles/linear_models_w_interactions_3d.html">Interaction Terms in 3D</a></li>
+    <li><a class="dropdown-item" href="../articles/generalized_linear_models_3d.html">Generalized Linear Models in 3D</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -37,9 +37,9 @@ gtag('config', 'G-21JNL53E33'); </script></head><body>
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="adding-d-layers-to-plotly-objects">Adding 3d layers to plotly objects<a class="anchor" aria-label="anchor" href="#adding-d-layers-to-plotly-objects"></a></h2>
 
-
+      <div class="section-desc"><p>These functions add layers to a 3D plotly object. Each calls functions that create the data required for that layer.</p></div>
 
 
     </div><div class="section level2">
@@ -58,26 +58,54 @@ gtag('config', 'G-21JNL53E33'); </script></head><body>
           <code><a href="add_direction.html">add_direction()</a></code>
 
         </dt>
-        <dd>Add a line of predicted effects to the plotly surface, with optional confidence intervals. Primarily used by functions such as add_3d_surface or add_marginals. If user defines "direction_data" appropriately, any line can be shown.</dd>
+        <dd>Add a line of predicted effects to the plotly surface, with optional confidence intervals. User can add a line in any direction.</dd>
       </dl><dl><dt>
 
           <code><a href="add_jitter.html">add_jitter()</a></code>
 
         </dt>
-        <dd>Jittered points</dd>
+        <dd>Jitter scattercloud points</dd>
       </dl><dl><dt>
 
           <code><a href="add_marginals.html">add_marginals()</a></code>
 
         </dt>
         <dd>Add 3d marginal effects to a plot_ly plot</dd>
-      </dl><dl><dt>
+      </dl></div><div class="section level2">
+      <h2 id="creating-data-for-d-graphics">Creating data for 3D graphics<a class="anchor" aria-label="anchor" href="#creating-data-for-d-graphics"></a></h2>
 
-          <code><a href="county_data.html">county_data</a></code>
+
+
+
+    </div><div class="section level2">
+
+      <h3 id="create-data-that-can-be-used-by-add-direction">Create data that can be used by add_direction<a class="anchor" aria-label="anchor" href="#create-data-that-can-be-used-by-add-direction"></a></h3>
+      <div class="section-desc"><p>This function uses a specified model, a dataframe with an x1 and x2 column, and a named character vector. The columns in the dataframe contain values for x1 and x2 that can be plotted as a line in the 3D graphic. The function returns the y estimates for each (x1,x2) pair.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="create_y_estimates.html">create_y_estimates()</a></code>
 
         </dt>
-        <dd>County level voting and demographics data</dd>
-      </dl><dl><dt>
+        <dd>Create predicted y values from a data frame of x values</dd>
+      </dl></div><div class="section level2">
+
+      <h3 id="create-all-other-data-for-d-graphics">Create all other data for 3D graphics<a class="anchor" aria-label="anchor" href="#create-all-other-data-for-d-graphics"></a></h3>
+      <div class="section-desc"><p>These functions use the specified model to generate the x, y, and z values required to create regression surfaces, marginal effects, and jitter the scatterpoints.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
 
           <code><a href="create_constant_value.html">create_constant_value()</a></code>
 
@@ -115,18 +143,6 @@ gtag('config', 'G-21JNL53E33'); </script></head><body>
         <dd>Create matrix of x variables for regression surface</dd>
       </dl><dl><dt>
 
-          <code><a href="create_y_estimates.html">create_y_estimates()</a></code>
-
-        </dt>
-        <dd>Create predicted y values from a data frame of x values</dd>
-      </dl><dl><dt>
-
-          <code><a href="hair_data.html">hair_data</a></code>
-
-        </dt>
-        <dd>Simulated hair length data</dd>
-      </dl><dl><dt>
-
           <code><a href="jitter_40pct.html">jitter_40pct()</a></code>
 
         </dt>
@@ -136,9 +152,33 @@ gtag('config', 'G-21JNL53E33'); </script></head><body>
           <code><a href="tibble_to_dataframe.html">tibble_to_dataframe()</a></code>
 
         </dt>
-        <dd>Coerce tibble to data frame</dd>
+        <dd>Coerce tibble to data frame, used for testing</dd>
+      </dl></div><div class="section level2">
+      <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a></h2>
+
+      <div class="section-desc"><p>Data used in the vignettes and examples.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="county_data.html">county_data</a></code>
+
+        </dt>
+        <dd>County level voting and demographics data</dd>
+      </dl><dl><dt>
+
+          <code><a href="hair_data.html">hair_data</a></code>
+
+        </dt>
+        <dd>Simulated hair length data</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
