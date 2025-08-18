@@ -2,7 +2,7 @@
 % Please edit documentation in R/misc.R
 \name{tibble_to_dataframe}
 \alias{tibble_to_dataframe}
-\title{Coerce tibble to data frame}
+\title{Coerce tibble to data frame, used for testing}
 \usage{
 tibble_to_dataframe(tibble)
 }

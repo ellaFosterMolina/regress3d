@@ -129,7 +129,10 @@ add_marginals <- function(p, model, data =NULL, ci = T,
 }
 
 
-#' Add a line of predicted effects to the plotly surface, with optional confidence intervals. Primarily used by functions such as add_3d_surface or add_marginals. If user defines "direction_data" appropriately, any line can be shown.
+#' Add a line of predicted effects to the plotly surface, with optional confidence intervals. User can add a line in any direction.
+#'
+#' Primarily used by functions such as add_3d_surface or add_marginals.
+#' If user defines "direction_data" appropriately, any line can be shown.
 #'
 #' @param p A plotly object
 #' @param model A glm with exactly two x variables

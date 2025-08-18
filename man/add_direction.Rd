@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_3d_layers.R
 \name{add_direction}
 \alias{add_direction}
-\title{Add a line of predicted effects to the plotly surface, with optional confidence intervals. Primarily used by functions such as add_3d_surface or add_marginals. If user defines "direction_data" appropriately, any line can be shown.}
+\title{Add a line of predicted effects to the plotly surface, with optional confidence intervals. User can add a line in any direction.}
 \usage{
 add_direction(
   p,
@@ -30,5 +30,6 @@ add_direction(
 A plotly object
 }
 \description{
-Add a line of predicted effects to the plotly surface, with optional confidence intervals. Primarily used by functions such as add_3d_surface or add_marginals. If user defines "direction_data" appropriately, any line can be shown.
+Primarily used by functions such as add_3d_surface or add_marginals.
+If user defines "direction_data" appropriately, any line can be shown.
 }

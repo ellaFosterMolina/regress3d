@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_jitter_layers.R
 \name{add_jitter}
 \alias{add_jitter}
-\title{Jittered points}
+\title{Jitter scattercloud points}
 \usage{
 add_jitter(
   p,

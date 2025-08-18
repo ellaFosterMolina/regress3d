@@ -119,7 +119,7 @@ The code above renders to an html figure. It displays the outputs of:
 
 Since the landing page for a package does not support interactive html figures, a gif is displayed below. See https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly for an interactive version of this image.
 
-```{r, out.width = '70%', echo = F}
+```{r, out.width = '70%', echo = F, fig.alt = "A gif of a rotating 3D regression plot"}
 knitr::include_graphics("man/figures/regression-rotating.gif")
 ```
 

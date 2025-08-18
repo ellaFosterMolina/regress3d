@@ -1,4 +1,4 @@
-#' Coerce tibble to data frame
+#' Coerce tibble to data frame, used for testing
 #'
 #' Commented out the message as unnecessary. Could get rid of this function.
 #'
