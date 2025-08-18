@@ -124,3 +124,27 @@ plot_ly( data = county_data,
     legend = list(font = list(size = 8))
     )
 ```
+
+## Numeric regression results
+
+This graphic corresponds to the following numerical regression results.
+
+```{r, results='asis', echo =F}
+library(stargazer)
+
+county_data$median_income16_1k <- county_data$median_income16/1000
+
+mymodel <- lm(r_shift ~ median_income16_1k + any_college, 
+              data = county_data, weight = pop_estimate16)
+
+stargazer(mymodel, type = 'html',
+          keep.stat = c("n", "adj.rsq"),
+          star.cutoffs = c(0.05),
+          covariate.labels = c("County median income (&#36;1,000s)", "County college experience", "Constant"),
+          dep.var.labels = "% shift to Trump, 2012-2016",
+          dep.var.caption = "",
+          model.numbers          = FALSE, 
+          notes="<span>&#42;</span> p<0.05",
+          notes.append=F)
+```
+

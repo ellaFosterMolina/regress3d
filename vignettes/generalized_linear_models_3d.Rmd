@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-A multiple *linear* regression creates a flat regression surface. A multiple linear regression with an *interaction* term can be depicted as a curved regression surface with linear marginal effects. A *generalized linear model (glm)* takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. 
+A multiple **linear** regression creates a flat regression surface. A multiple linear regression with an **interaction** term can be depicted as a curved regression surface with linear marginal effects. A **generalized linear model (glm)** takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. 
 
 This vignette demonstrates a binomial model and a Gamma model. 
 
@@ -84,7 +84,7 @@ plot_ly( data = county_data,
 
 ## More on marginal effects
 
-In a linear regression, the marginal effect of $x_1$ stays constant for all values of $x_2$. This is technically true for generalised linear models as well. However, note that for a given range of $x_1$, the magnitude of the change in the outcome $y$ can depend on the value of $x_2$. This is depicted in the image below, where the marginal effects of education ($x_1$)
+In a linear regression, the marginal effect of $x_1$ stays constant for all values of $x_2$. This is technically true for generalised linear models as well. However, note that for a given range of $x_1$, the magnitude of the change in the outcome $y$ can depend on the value of $x_2$. This is depicted in the image below, where the marginal effects of education ($x_1$) are shown for two different values of $x_2$ (\% Black).
 
 ```{r, out.width = "800px", out.height = "450px"}
 plot_ly( data = county_data,
@@ -103,6 +103,7 @@ plot_ly( data = county_data,
 
 ## Numeric regression results
 
+This graphic corresponds to the following numerical regression results.
 
 ```{r, results='asis', echo =F}
 library(stargazer)
