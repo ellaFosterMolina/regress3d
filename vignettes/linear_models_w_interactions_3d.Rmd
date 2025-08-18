@@ -59,7 +59,6 @@ In this example, each call to `add_marginals()` specifies different constant val
 * The size of the marginal effect of $x_1$ ($x_2$) is different for the two values of $x_2$ ($x_1$) plotted.
 
 ```{r, out.width = "800px", out.height = "450px"}
-
 county_data$prcnt_unemployed_log <- log(county_data$prcnt_unemployed)
 
 mymodel <- lm(prcnt_GOP16~ prcnt_unemployed_log * college_2cat_num, 
@@ -94,19 +93,21 @@ mymodel <- lm(prcnt_GOP16~ prcnt_unemployed_log * college_2cat_num,
               data = county_data, weights = pop_estimate16)
 
 plot_ly(data = county_data, 
-              x = ~prcnt_unemployed_log,
-              y = ~college_2cat_num,
-              z = ~prcnt_GOP16 ) %>%
+        x = ~prcnt_unemployed_log,
+        y = ~college_2cat_num,
+        z = ~prcnt_GOP16 ) %>%
   add_markers(size = ~pop_estimate16,
               hovertemplate = ~paste("<b>", county_state,"</b><br>",
-                            "County population: ",comma(pop_estimate16),
-                            "<br><br>", 
-                            "County unemployment (logged): ",round(prcnt_unemployed_log, 2),"<br>",
-                            "County unemployment: ",percent(prcnt_unemployed, accuracy = 0.1, scale = 1),"<br>",
-                            "County college experience: ",
-                            percent(any_college, accuracy = 0.1, scale = 1),"<br>",
-                            "Trump Vote %: ",
-                            percent(prcnt_GOP16, accuracy = 0.01, scale = 1),"<br>"),
+                                     "County population: ",comma(pop_estimate16),
+                                     "<br><br>", 
+                                     "County unemployment (logged): ",
+                                     round(prcnt_unemployed_log, 2),"<br>",
+                                     "County unemployment: ",
+                                     percent(prcnt_unemployed, accuracy = 0.1, scale = 1),"<br>",
+                                     "County college experience: ",
+                                     percent(any_college, accuracy = 0.1, scale = 1),"<br>",
+                                     "Trump Vote %: ",
+                                     percent(prcnt_GOP16, accuracy = 0.01, scale = 1),"<br>"),
               showlegend = F, name = "county",
               color = ~college_2cat,
               colors = c("deepskyblue", "dimgrey"))  %>%
@@ -128,7 +129,7 @@ plot_ly(data = county_data,
                  zaxis = list(title = '% vote for Trump 2016')),
     # width = 500, height = 500,
     legend = list(font = list(size = 8))
-    )
+  )
 ```
 
 Because $x_2$ (education) is binary, the numeric value of the marginal effect of $x_1$ (unemployment) when $x_2$ has the value of $0$ or $1$ is easily recoverable from the multiple regression with an interaction term. Either perform some algebra by substituting the values of 0 and 1 into the equation for predicted values, or estimate the regression on the subset of data where education has the value of 1, and again for 0. Note the following. 
@@ -150,13 +151,13 @@ library(stargazer)
 county_data$prcnt_unemployed_log <- log(county_data$prcnt_unemployed)
 
 unemployed_model_edu0 <- lm(prcnt_GOP16~ prcnt_unemployed_log, 
-              data = subset(county_data, college_2cat_num == 0), 
-              weights = pop_estimate16)
+                            data = subset(county_data, college_2cat_num == 0), 
+                            weights = pop_estimate16)
 unemployed_model_edu1 <- lm(prcnt_GOP16~ prcnt_unemployed_log, 
-              data = subset(county_data, college_2cat_num == 1), 
-              weights = pop_estimate16)
+                            data = subset(county_data, college_2cat_num == 1), 
+                            weights = pop_estimate16)
 two_vars_model <- lm(prcnt_GOP16~ prcnt_unemployed_log * college_2cat_num, 
-              data = county_data, weights = pop_estimate16)
+                     data = county_data, weights = pop_estimate16)
 
 stargazer(two_vars_model, unemployed_model_edu0, unemployed_model_edu1,
           type = 'html',

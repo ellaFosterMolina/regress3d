@@ -57,7 +57,6 @@ The regression is weighted by `pop_estimate16`, the number of people in a county
 The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables. Next layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
 ```{r, out.width = "800px", out.height = "450px"}
-
 mymodel <- lm(r_shift ~ median_income16 + any_college, 
               data = county_data, weight = pop_estimate16)
 
@@ -94,7 +93,6 @@ The library __scales__ helps present the numeric values, percentages, and dollar
 
 __regress3d__ lets us modify the legend text by changing `x1_direction_name` and `x2_direction_name`. The default is "Predicted marginal effect of x1". It is possible, but not shown here, to adjust which value $x_2$ ($x_1$) is held constant at. See the [vignette on interaction terms](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html) for an example.
 
-
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)
 plot_ly( data = county_data,
@@ -103,13 +101,13 @@ plot_ly( data = county_data,
          z = ~r_shift) %>%
   add_markers(size = ~pop_estimate16, 
               hovertemplate = ~paste("<b>", county_state,"</b><br>", 
-                            "County population: ",comma(pop_estimate16),"<br><br>",
-                            "County median income: ",dollar(median_income16),"<br>", 
-                            "County college experience: ",percent(any_college, 
-                                                                  accuracy = 0.1, 
-                                                                  scale = 1),"<br>", 
-                            "Shift to Trump: ",percent(r_shift, 
-                                                       accuracy = 0.01, scale = 1),"<br>"),
+                                     "County population: ",comma(pop_estimate16),"<br><br>",
+                                     "County median income: ",dollar(median_income16),"<br>", 
+                                     "County college experience: ",percent(any_college, 
+                                                                           accuracy = 0.1, 
+                                                                           scale = 1),"<br>", 
+                                     "Shift to Trump: ",percent(r_shift, 
+                                                                accuracy = 0.01, scale = 1),"<br>"),
               showlegend = F, name = "county",
               color = I("black")) %>%
   add_3d_surface(model = mymodel) %>%
@@ -122,7 +120,7 @@ plot_ly( data = county_data,
                  yaxis = list(title = 'County college experience'),
                  zaxis = list(title = 'Shift to Trump')),
     legend = list(font = list(size = 8))
-    )
+  )
 ```
 
 ## Numeric regression results

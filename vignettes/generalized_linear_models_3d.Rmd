@@ -72,14 +72,13 @@ mymodel <- glm(plurality_Trump16 ~ any_college+prcnt_black,
                family = "binomial")
 
 plot_ly( data = county_data,
-                        x = ~any_college,
-                        y = ~prcnt_black,
-                        z = ~plurality_Trump16) %>%
-  add_jitter(, x_jitter = 0, y_jitter = 0, z_jitter = 0.1,
+         x = ~any_college,
+         y = ~prcnt_black,
+         z = ~plurality_Trump16) %>%
+  add_jitter(x_jitter = 0, y_jitter = 0, z_jitter = 0.1,
              size = 1, color = I('black'))%>%
   add_3d_surface(model = mymodel, ci = T) %>%
   add_marginals(model = mymodel, ci = T) 
-
 ```
 
 ## More on marginal effects
@@ -90,9 +89,9 @@ This is depicted in the image below. Each call to `add_marginals()` specifies a 
 
 ```{r, out.width = "800px", out.height = "450px"}
 plot_ly( data = county_data,
-                        x = ~any_college,
-                        y = ~prcnt_black,
-                        z = ~plurality_Trump16) %>%
+         x = ~any_college,
+         y = ~prcnt_black,
+         z = ~plurality_Trump16) %>%
   add_jitter(, x_jitter = 0, y_jitter = 0, z_jitter = 0.1,
              size = 1, color = I('black'))%>%
   add_3d_surface(model = mymodel, ci = T) %>%
@@ -101,8 +100,6 @@ plot_ly( data = county_data,
   add_marginals(model = mymodel, ci = T, omit_x2 =T,
                 x2_constant_val = 50,
                 x1_direction_name = "Marginal effect of education<br>with % Black held constant at 50%") 
-
-
 ```
 
 Click, hold, and drag the regression surface to spin it. See the article on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#code-and-graphic) for more information on how to manipulate this graphic. 
@@ -115,12 +112,12 @@ This graphic corresponds to the following numerical regression results.
 library(stargazer)
 
 one_var_model <- glm(plurality_Trump16 ~ prcnt_black, 
-               data = county_data, 
-               family = "binomial")
+                     data = county_data, 
+                     family = "binomial")
 
 two_vars_model <- glm(plurality_Trump16 ~ any_college+prcnt_black, 
-               data = county_data, 
-               family = "binomial")
+                      data = county_data, 
+                      family = "binomial")
 
 stargazer(one_var_model, two_vars_model , type = 'html',
           keep.stat = c("n", "adj.rsq"),
@@ -170,9 +167,9 @@ mymodel <- glm(median_income16_1k ~ prcnt_black +any_college,
                data = county_data, weight = pop_estimate16, family = Gamma)
 
 plot_ly( data = county_data,
-              x = ~prcnt_black,
-              y = ~any_college,
-              z = ~median_income16_1k) %>%
+         x = ~prcnt_black,
+         y = ~any_college,
+         z = ~median_income16_1k) %>%
   add_markers(size = ~pop_estimate16, color = I('black')) %>%
   add_3d_surface(model = mymodel)%>%
   add_marginals(model = mymodel) 
@@ -186,9 +183,9 @@ In a linear regression, the marginal effect of $x_1$ stays constant for all valu
 
 ```{r, out.width = "800px", out.height = "450px"}
 plot_ly( data = county_data,
-              x = ~prcnt_black,
-              y = ~any_college,
-              z = ~median_income16_1k) %>%
+         x = ~prcnt_black,
+         y = ~any_college,
+         z = ~median_income16_1k) %>%
   add_markers(size = ~pop_estimate16, color = I('black')) %>%
   add_3d_surface(model = mymodel, ci = T) %>%
   add_marginals(model = mymodel, ci = T, omit_x2=T,
@@ -204,14 +201,14 @@ plot_ly( data = county_data,
 library(stargazer)
 county_data$median_income16_1k <- county_data$median_income16/1000
 one_var_model <- glm(median_income16_1k ~ any_college, 
-               data = county_data, 
-               # weight = pop_estimate16,
-               family = "Gamma")
+                     data = county_data, 
+                     weight = pop_estimate16,
+                     family = "Gamma")
 
-two_vars_model <- glm(median_income16_1k ~ prcnt_black +any_college, 
-               data = county_data, 
-               # weight = pop_estimate16,
-               family = "Gamma")
+two_vars_model <- glm(median_income16_1k ~ prcnt_black + any_college, 
+                      data = county_data, 
+                      weight = pop_estimate16,
+                      family = "Gamma")
 
 stargazer(one_var_model, two_vars_model , 
           type = 'text',

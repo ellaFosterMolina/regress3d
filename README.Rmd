@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/ellaFosterMolina/regress3d/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ellaFosterMolina/regress3d/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-__regress3d__ is an R package for plotting regression surfaces and marginal effects in three dimensions. The plots created by __regress3d__ are __plotly__ objects. They can be customized using functions and arguments from the __plotly__ package. 
+__regress3d__ is an R package for plotting regression surfaces and marginal effects in three dimensions. The plots created by __regress3d__ are __plotly__ objects. They can be customized using functions and arguments from the __plotly__ package.
 
 The core two functions of __regress3d__ are  
 
@@ -37,11 +37,9 @@ The vignettes walk you through examples of regression surfaces for three types o
 * [Linear models with an interaction term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html): A linear model with an interaction term creates a curved regression surface with linear marginal effects.
 * [Generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html): These models produce curved regression surfaces.
 
-A handy feature for binomial glms and other regressions that use discrete data is the function `add_jitter()`. This function mimics `ggplot2::geom_jitter()` in __ggplot2__, helping users visualize overlaid points in a three dimensional graphic. It is demonstrated in the Generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html) vignette.
+A handy feature for binomial glms and other regressions that use discrete data is the function `add_jitter()`. This function mimics `ggplot2::geom_jitter()` in __ggplot2__, helping users visualize overlaid points in a three dimensional graphic. It is demonstrated in the [generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html#logistic-regression) vignette.
 
 We recommend you start with the vignette on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html), which will introduce you to working with the interactive images, interpreting the regression surface, and understanding how the marginal effects are depicted. 
-
-
 ## Installation
 
 Install __regress3d__ from __GitHub__:
@@ -109,7 +107,7 @@ plot_ly( data = county_data,
     scene = list(xaxis = list(title = 'County median income'),
                  yaxis = list(title = 'County college experience'),
                  zaxis = list(title = 'Shift to Trump'))
-    )
+  )
 ```
 
 The code above renders to an html figure. It displays the outputs of:
