@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-A multiple **linear** regression creates a flat regression surface. A multiple linear regression with an **interaction** term can be depicted as a curved regression surface with linear marginal effects. A **generalized linear model (glm)** takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. 
+A multiple **linear** regression creates a flat regression surface. A multiple linear regression with an **interaction** term can be depicted as a curved regression surface with linear marginal effects. A **generalized linear model (glm)** takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. The functionality of `add_3d_surface()` and `add_marginals()` in a glm is the same as in a linear regression model. However, the visuals are sufficiently different to merit a separate description.
 
 This vignette demonstrates a binomial model and a Gamma model. 
 
@@ -86,6 +86,8 @@ plot_ly( data = county_data,
 
 In a linear regression, the marginal effect of $x_1$ stays constant for all values of $x_2$. This is true for generalised linear models as well. However, note that for a given range of $x_1$, the magnitude of the change in the outcome $y$ can depend on the value of $x_2$. This is depicted in the image below, where the marginal effects of education ($x_1$) are shown for two different values of  \% Black ($x_2$).
 
+This is depicted in the image below. Each call to `add_marginals()` specifies a different constant value for the marginal effect of \% Black ($x_1$)  using the argument `x2_constant_val`. 
+
 ```{r, out.width = "800px", out.height = "450px"}
 plot_ly( data = county_data,
                         x = ~any_college,
@@ -102,6 +104,8 @@ plot_ly( data = county_data,
 
 
 ```
+
+Click, hold, and drag the regression surface to spin it. See the article on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#code-and-graphic) for more information on how to manipulate this graphic. 
 
 ## Numeric regression results
 
@@ -173,6 +177,8 @@ plot_ly( data = county_data,
   add_3d_surface(model = mymodel)%>%
   add_marginals(model = mymodel) 
 ```
+
+Click, hold, and drag the regression surface to spin it. See the article on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#code-and-graphic) for more information on how to manipulate this graphic. 
 
 ## More on marginal effects
 
