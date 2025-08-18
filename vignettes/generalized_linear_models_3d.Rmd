@@ -132,11 +132,17 @@ stargazer(one_var_model, two_vars_model , type = 'html',
 
 ## Data
 
+The variables in the regression are county level measures from 2016. 
+
+* `median_income16`: county level median income. This is the outcome variable chosen to allow for a Gamma model, as it is positive continuous, and right skewed.
+* `any_college`: the percent of adults in the county that had ever enrolled in college, regardless of whether they graduated.
+* `prcnt_black`: the percent of the county that identified as Black in the 2016 census. 
+
+The regression is weighted by `pop_estimate16`, the number of people in a county, to capture the influence of large counties.
+
 ## 2D code and graphic
 
 For reference, a two dimensional plot of Gamma regression can look like this. 
-
-* The outcome variable, `median_income16`, is continuous, positive, and right skewed. 
 
 ```{r}
 county_data %>%
@@ -150,21 +156,21 @@ county_data %>%
 
 The three dimensional plot adds `prcnt_black` to the Gamma regression depicted above. 
 
+The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables. Next layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
+
 ```{r, out.width = "800px", out.height = "450px"}
 county_data$median_income16_1k <- county_data$median_income16/1000
 
 mymodel <- glm(median_income16_1k ~ prcnt_black +any_college, 
                data = county_data, weight = pop_estimate16, family = Gamma)
 
-p <- plot_ly( data = county_data,
+plot_ly( data = county_data,
               x = ~prcnt_black,
               y = ~any_college,
               z = ~median_income16_1k) %>%
   add_markers(size = ~pop_estimate16, color = I('black')) %>%
   add_3d_surface(model = mymodel)%>%
   add_marginals(model = mymodel) 
-
-p
 ```
 
 
