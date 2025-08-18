@@ -46,14 +46,12 @@ The variables in the regression are county level measures from 2016. For pedagog
 * `any_college`: the percent of adults in the county that had ever enrolled in college, regardless of whether they graduated.
 * `prcnt_black`: the percent of the county that identified as Black in the 2016 census. 
 
-For the purpose of this example the regression is not weighted by `pop_estimate16`. When using weights, the regression only produces 0 and 1 estimates. 
-
 ## 2D plot of a logistic regression
 
 For reference, a two dimensional plot of logistic regression can look like this. 
 
 * The outcome variable, `plurality_Trump16`, is binary. We use `ggplot2::geom_jitter()` to reveal the density of observations for counties that have very few Black residents. 
-* In this case, the explanatory variable, `prcnt_black`, is continuous. 
+* In this case the explanatory variable `prcnt_black` is continuous. 
 * A logistic regression model is specified to require an s-shape for the predicted probabilities so that they cannot exceed the range $(0,1)$.
 
 ```{r}
@@ -149,22 +147,22 @@ p
 ```
 
 
-## Numeric regression results
 
-
-```{r, results='asis', echo =F}
+```{r, results='asis', echo =F, include=F, eval=F}
 library(stargazer)
-
-one_var_model <- glm(median_income16 ~ any_college, 
-               data = county_data, weight = pop_estimate16,
+county_data$median_income16_1k <- county_data$median_income16/1000
+one_var_model <- glm(median_income16_1k ~ any_college, 
+               data = county_data, 
+               # weight = pop_estimate16,
                family = "Gamma")
 
 two_vars_model <- glm(median_income16_1k ~ prcnt_black +any_college, 
-               data = county_data, weight = pop_estimate16,
+               data = county_data, 
+               # weight = pop_estimate16,
                family = "Gamma")
 
 stargazer(one_var_model, two_vars_model , 
-          type = 'html',
+          type = 'text',
           keep.stat = c("n", "adj.rsq"),
           star.cutoffs = c(0.05),
           covariate.labels = c("% Black", "County college experience", "Constant"),

@@ -42,7 +42,7 @@ The basic functionality of the functions `add_3d_surface()` and `add_marginals()
 
 Both the marginal effects and the regression surface are shown below, but either can be plotted independently of the other.
 
-### Data
+## Data
 
 The variables in this example are county level demographic and voting measures from 2016.
 
@@ -52,7 +52,7 @@ The variables in this example are county level demographic and voting measures f
 
 The regression is weighted by `pop_estimate16`, the number of people in a county, to capture the influence of large counties.
 
-### Code and graphic
+## Code and graphic
 
 The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables. Next layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
 
@@ -78,7 +78,7 @@ plot_ly( data = county_data,
 -   Remove a marginal effect by clicking once on the marginal effect in the legend. Return it by clicking on the marginal effect again.
 -   Isolate a marginal effect and remove all other layers by double clicking on the marginal effect in the legend. Double click again to return all layers.
 
-### More on marginal effects
+## More on marginal effects
 
 The [orange]{style="color: orange;"} marginal effects in the graphic represent the change in $x_1$, median income, as $x_2$ is held constant. The orange line traverses the range of median income while $x_2$, education, is held constant at its mean 51.2\%. Note that although the regression is weighted by county population, the mean value is not weighted. Therefore 51.2\% does not represent the mean value of college attendance for the country in 2016. 
 
