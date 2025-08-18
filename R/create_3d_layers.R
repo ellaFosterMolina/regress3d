@@ -92,6 +92,7 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
 #' @param x2_color The color to be used for the line(s) depicting the marginal effect of x2. Defaults to "crimson".
 #' @param x1_direction_name The hover text for the plotted line(s). Defaults to "Predicted marginal effect of x1".
 #' @param x2_direction_name The hover text for the plotted line(s). Defaults to "Predicted marginal effect of x2".
+#' @param omit_x1,omit_x2 An optional logical. Defaults to FALSE. If set to TRUE, the marginal effect for that variable will not be included.
 #'
 #' @return A plotly object with the predicted marginal effects added to the plot.
 #' @export
@@ -99,26 +100,31 @@ add_marginals <- function(p, model, data =NULL, ci = T,
                           x1_constant_val = "mean", x2_constant_val = "mean",
                           x1_color = "darkorange", x2_color = "crimson",
                           x1_direction_name = "Predicted marginal effect of x1",
-                          x2_direction_name = "Predicted marginal effect of x2"){
+                          x2_direction_name = "Predicted marginal effect of x2",
+                          omit_x1 =F, omit_x2 = F){
   data <- data %||% plotly::plotly_data(p, id = names(p$x$visdat)[1])
   if(is_tibble(data)) data <- tibble_to_dataframe(tibble = data)
   coefficients <- create_named_coeffs(model)
-  marginal_x1_vars <- create_marginal_x_vars(data, model = model, marginal_of_x1 = T,
-                                             constant_value = x2_constant_val)
-  predicted_marginal_x1_data <- create_y_estimates(x_vals = marginal_x1_vars,
-                                                   model = model, coefficient_names = coefficients )
 
-  p <- add_direction(p, model, predicted_marginal_x1_data, direction_name = x1_direction_name,
-                     linecolor = x1_color, ci)
+  if(!omit_x1){
+    marginal_x1_vars <- create_marginal_x_vars(data, model = model, marginal_of_x1 = T,
+                                               constant_value = x2_constant_val)
+    predicted_marginal_x1_data <- create_y_estimates(x_vals = marginal_x1_vars,
+                                                     model = model, coefficient_names = coefficients )
 
-  marginal_x2_vars <- create_marginal_x_vars(data, model= model, marginal_of_x1 = F,
-                                             constant_value = x1_constant_val)
-  predicted_marginal_x2_data <- create_y_estimates(x_vals = marginal_x2_vars,
-                                                   model = model, coefficient_names = coefficients )
+    p <- add_direction(p, model, predicted_marginal_x1_data, direction_name = x1_direction_name,
+                       linecolor = x1_color, ci)
+  }
 
-  p <- add_direction(p, model, predicted_marginal_x2_data, direction_name = x2_direction_name,
-                     linecolor = x2_color, ci)
+  if(!omit_x2){
+    marginal_x2_vars <- create_marginal_x_vars(data, model= model, marginal_of_x1 = F,
+                                               constant_value = x1_constant_val)
+    predicted_marginal_x2_data <- create_y_estimates(x_vals = marginal_x2_vars,
+                                                     model = model, coefficient_names = coefficients )
 
+    p <- add_direction(p, model, predicted_marginal_x2_data, direction_name = x2_direction_name,
+                       linecolor = x2_color, ci)
+  }
   p
 }
 

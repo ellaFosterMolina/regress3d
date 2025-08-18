@@ -82,6 +82,23 @@ plot_ly( data = county_data,
 
 ```
 
+## More on marginal effects
+
+```{r, out.width = "800px", out.height = "450px"}
+plot_ly( data = county_data,
+                        x = ~any_college,
+                        y = ~prcnt_black,
+                        z = ~plurality_Trump16) %>%
+  add_jitter(, x_jitter = 0, y_jitter = 0, z_jitter = 0.1,
+             size = 1, color = I('black'))%>%
+  add_3d_surface(model = mymodel, ci = T) %>%
+  add_marginals(model = mymodel, ci = T, omit_x2=T) %>%
+  add_marginals(model = mymodel, ci = T, omit_x2 =T,
+                x2_constant_val = 50) 
+
+
+```
+
 ## Numeric regression results
 
 
@@ -111,7 +128,9 @@ stargazer(one_var_model, two_vars_model , type = 'html',
 
 # Gamma Model
 
-## 2D plot of a Gamma regression
+## Data
+
+## 2D code and graphic
 
 For reference, a two dimensional plot of Gamma regression can look like this. 
 
@@ -125,7 +144,7 @@ county_data %>%
   theme_classic()
 ```
 
-## 3D plot of a Gamma regression
+## 3D code and graphic
 
 The three dimensional plot adds `prcnt_black` to the Gamma regression depicted above. 
 

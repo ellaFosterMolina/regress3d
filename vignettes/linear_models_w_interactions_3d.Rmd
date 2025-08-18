@@ -113,14 +113,14 @@ plot_ly(data = county_data,
   add_3d_surface(model = mymodel)%>%
   add_marginals(model = mymodel, ci = F,
                 x1_constant_val = 2.5, x2_constant_val =0,
-                x1_color = "black", x2_color = "grey",
+                x1_color = "black",
                 x1_direction_name = "Marginal effect of unemployment<br>for low education counties",
-                x2_direction_name = "")%>%
+                omit_x2 = T)%>%
   add_marginals(model = mymodel, ci = F,
                 x1_constant_val = 1, x2_constant_val =1,
-                x1_color = "blue",x2_color = "grey",
+                x1_color = "blue",
                 x1_direction_name = "Marginal effect of unemployment<br>for high education counties",
-                x2_direction_name = "") %>%
+                omit_x2 = T) %>%
   layout( 
     title = "\nCounty Vote for Trump by\n unemployment & education",
     scene = list(xaxis = list(title = 'logged unemployment'),

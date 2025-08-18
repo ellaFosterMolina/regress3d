@@ -14,7 +14,9 @@ add_marginals(
   x1_color = "darkorange",
   x2_color = "crimson",
   x1_direction_name = "Predicted marginal effect of x1",
-  x2_direction_name = "Predicted marginal effect of x2"
+  x2_direction_name = "Predicted marginal effect of x2",
+  omit_x1 = F,
+  omit_x2 = F
 )
 }
 \arguments{
@@ -37,6 +39,8 @@ add_marginals(
 \item{x1_direction_name}{The hover text for the plotted line(s). Defaults to "Predicted marginal effect of x1".}
 
 \item{x2_direction_name}{The hover text for the plotted line(s). Defaults to "Predicted marginal effect of x2".}
+
+\item{omit_x1, omit_x2}{An optional logical. Defaults to FALSE. If set to TRUE, the marginal effect for that variable will not be included.}
 }
 \value{
 A plotly object with the predicted marginal effects added to the plot.
