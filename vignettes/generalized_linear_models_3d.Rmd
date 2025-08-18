@@ -84,6 +84,8 @@ plot_ly( data = county_data,
 
 ## More on marginal effects
 
+In a linear regression, the marginal effect of $x_1$ stays constant for all values of $x_2$. This is technically true for generalised linear models as well. However, note that for a given range of $x_1$, the magnitude of the change in the outcome $y$ can depend on the value of $x_2$. This is depicted in the image below, where the marginal effects of education ($x_1$)
+
 ```{r, out.width = "800px", out.height = "450px"}
 plot_ly( data = county_data,
                         x = ~any_college,

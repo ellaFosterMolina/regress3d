@@ -84,7 +84,7 @@ In a linear regression, the marginal effect of $x_1$ is constant for changing va
 
 * Using __plotly__ functions and arguments, we add scatterpoints, a hovertemplate for each point, and better labels. We adjust the colors of the scatterpoints to emphasize the low (**black**) and high ([blue]{style="color: blue;"}) values of the education variable.
 * The package __scales__ presents the numeric values and percentages in the hovertext more clearly.
-* __regress3d__ lets us modify the marginal effects to highlight their changing values. In `add_marginals()`, we adjust the  legend text by changing `x1_direction_name` and `x2_direction_name`. We also adjust the color of the lines using `x1_color` and `x2_color`. As before, we adjust the location of the marginal effects using `x1_constant_val` and `x2_constant_val`.
+* __regress3d__ lets us modify the marginal effects to highlight their changing values. In `add_marginals()`, we remove the marginal effect of $x_2$ (education) using `omit_x2` and adjust the  legend text by changing `x1_direction_name`. We also adjust the color of the lines using `x1_color`. As before, we adjust the location of the marginal effects using `x2_constant_val`.
 
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)
@@ -112,12 +112,12 @@ plot_ly(data = county_data,
               colors = c("deepskyblue", "dimgrey"))  %>%
   add_3d_surface(model = mymodel)%>%
   add_marginals(model = mymodel, ci = F,
-                x1_constant_val = 2.5, x2_constant_val =0,
+                x2_constant_val =0,
                 x1_color = "black",
                 x1_direction_name = "Marginal effect of unemployment<br>for low education counties",
                 omit_x2 = T)%>%
   add_marginals(model = mymodel, ci = F,
-                x1_constant_val = 1, x2_constant_val =1,
+                x2_constant_val =1,
                 x1_color = "blue",
                 x1_direction_name = "Marginal effect of unemployment<br>for high education counties",
                 omit_x2 = T) %>%
