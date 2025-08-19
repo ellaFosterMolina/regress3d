@@ -52,7 +52,7 @@ add_jitter <- function(p, x = NULL, y = NULL, z = NULL, data = NULL,
 #' @param jitter_val The amount of jitter to add. If it is NULL (default value), then the function calculates 40% of the range of the data.
 #'
 #' @return A dataframe containing one jittered column.
-#' @export
+#' @noRd
 jitter_40pct <- function(data, varname, jitter_val =NULL){
   jitter_val <- jitter_val %||% 0.4* (max(data[ , varname], na.rm=T) - min(data[ , varname], na.rm=T))
   jitter_var <- data[ , varname] + runif(length(data[ , varname]),

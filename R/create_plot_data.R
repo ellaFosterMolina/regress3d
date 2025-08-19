@@ -33,7 +33,7 @@ create_named_coeffs <- function(model){
 #' @param coefficient_names A named character vector that attaches coefficient names to standardized names (e.g. x1, x2, y)
 #'
 #' @return A data frame of x values that span the minimum to maximum values of both x variables
-#' @export
+#' @noRd
 create_surface_x_vars <- function(data, model, coefficient_names){
   # if(is_tibble(data)) data <- tibble_to_dataframe(tibble = data)
   x1_seq = rep(seq(min(data[ ,coefficient_names["x1"]  ], na.rm =T),
@@ -60,7 +60,7 @@ create_surface_x_vars <- function(data, model, coefficient_names){
 #' @param x_thats_constant The variable used to create the constant value.
 #'
 #' @return A numeric value corresponding to the constant value desired (e.g. the mean, median, etc)
-#' @export
+#' @noRd
 create_constant_value <- function(constant_value, data, coefficients, x_thats_constant){
   if(constant_value == "mean"){
     constant_value <- mean(data[ ,coefficients[x_thats_constant]  ], na.rm =T)
@@ -84,7 +84,7 @@ create_constant_value <- function(constant_value, data, coefficients, x_thats_co
 #' @param constant_value A string or number indicating which constant value to use for the variable that remains constant. The string can take on "mean", "median", "min", or "max". Alternately, a numeric value may be specified.
 #'
 #' @return A data frame of x values that span the minimum to maximum values of the marginal effect, holding the other x variable constant
-#' @export
+#' @noRd
 create_marginal_x_vars <- function(data, model, marginal_of_x1,
                                    constant_value = "mean"){
   if(marginal_of_x1){
@@ -151,7 +151,7 @@ create_y_estimates <- function(x_vals, model, coefficient_names){
 #' @return A data frame or tibble with x values and their corresponding predicted y values.
 #'        This is an intermediary function.
 #'        create_y_estimates generates the appropriate column names and data structure.
-#' @export
+#' @noRd
 create_glm_adjustment <- function(x_vals, model){
   inverse_link <- stats::family(model)$linkinv
   predicted_glm_data <- dplyr::bind_cols(x_vals,

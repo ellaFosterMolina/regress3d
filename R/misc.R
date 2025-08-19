@@ -5,7 +5,7 @@
 #' @param tibble A tibble
 #'
 #' @return A data frame.
-#' @export
+#' @noRd
 tibble_to_dataframe <- function(tibble){
   # message("Coercing tibble into a data frame.")
   as.data.frame(tibble)

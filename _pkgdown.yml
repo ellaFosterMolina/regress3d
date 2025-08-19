@@ -34,15 +34,9 @@ reference:
     required to create regression surfaces, marginal effects, and jitter
     the scatterpoints.
   contents:
-  - create_constant_value
-  - create_glm_adjustment
-  - create_marginal_x_vars
   - create_named_coeffs
   - create_surface_data
-  - create_surface_x_vars
   - create_y_estimates
-  - jitter_40pct
-  - tibble_to_dataframe
 
 - title: Data
   desc: >
