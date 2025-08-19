@@ -13,7 +13,7 @@ template:
             </script>
 
 articles:
-- title: Testing
+- title: Articles
   navbar: ~
   contents:
   - linear_models_3d
@@ -21,28 +21,14 @@ articles:
   - generalized_linear_models_3d
 
 reference:
-- title: Adding 3d layers to plotly objects
-  desc: >
-    These functions add layers to a 3D plotly object. Each calls functions that
-    create the data required for that layer.
+- title: Add 3d layers to plotly objects
   contents:
   - add_3d_surface
   - add_direction
   - add_jitter
   - add_marginals
 
-- title: Creating data for 3D graphics
-
-- subtitle: Create data that can be used by add_direction
-  desc: >
-    This function uses a specified model, a dataframe with an x1 and x2
-    column, and a named character vector. The columns in the dataframe contain
-    values for x1 and x2 that can be plotted as a line in the 3D graphic. The
-    function returns the y estimates for each (x1,x2) pair.
-  contents:
-  - create_y_estimates
-
-- subtitle: Create all other data for 3D graphics
+- title: Create data for 3D graphics
   desc: >
     These functions use the specified model to generate the x, y, and z values
     required to create regression surfaces, marginal effects, and jitter
@@ -54,6 +40,7 @@ reference:
   - create_named_coeffs
   - create_surface_data
   - create_surface_x_vars
+  - create_y_estimates
   - jitter_40pct
   - tibble_to_dataframe
 

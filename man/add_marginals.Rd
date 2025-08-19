@@ -22,15 +22,16 @@ add_marginals(
 \arguments{
 \item{p}{A plotly object}
 
-\item{model}{A glm with exactly two x variables}
+\item{model}{A lm or glm with exactly two x variables}
 
 \item{data}{An optional dataframe to be used to create the regression surface. By default, this will be the data used by the inherited plotly object.}
 
-\item{ci}{An optional logical. Defaults to TRUE, showing the confidence intervals of the predicted effects.}
+\item{ci}{A logical. Defaults to TRUE, showing the confidence intervals of the predicted effects.}
 
-\item{x1_constant_val}{A string or numeric value indicating which constant value to set for x1 when the marginal effect of x2 is plotted. Defaults to the mean value. The string can take on "mean", "median", "min", or "max". Alternately, a numeric value may be specified.}
-
-\item{x2_constant_val}{A string or numeric value indicating which constant value to set for x2 when the marginal effect of x1 is plotted. Defaults to the mean value. The string can take on "mean", "median", "min", or "max". Alternately, a numeric value may be specified.}
+\item{x1_constant_val, x2_constant_val}{A string or numeric value indicating which constant value to
+set for x1 or x2 when the marginal effect of x2 is plotted.
+Defaults to the mean value. The string can take on "mean", "median", "min", or "max".
+Alternately, a numeric value may be specified.}
 
 \item{x1_color}{The color to be used for the line(s) depicting the marginal effect of x1. Defaults to "darkorange".}
 
@@ -49,4 +50,14 @@ A plotly object with the predicted marginal effects added to the plot.
 Additional plotly layers such as add_markers() can
 be added to the plotly plot, but be aware that many plotly layers inherit the data from the prior layer.
 As such, a function such as add_markers may not work as intended if called after add_marginals().
+}
+\examples{
+library(plotly)
+mymodel <- lm(r_shift ~ median_income16 + any_college,
+              data = county_data, weight = pop_estimate16)
+plot_ly( data = county_data,
+         x = ~median_income16,
+         y = ~any_college,
+         z = ~r_shift) \%>\%
+  add_marginals(model = mymodel)
 }

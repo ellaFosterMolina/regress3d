@@ -83,11 +83,13 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
 #' As such, a function such as add_markers may not work as intended if called after add_marginals().
 #'
 #' @param p A plotly object
-#' @param model A glm with exactly two x variables
+#' @param model A lm or glm with exactly two x variables
 #' @param data An optional dataframe to be used to create the regression surface. By default, this will be the data used by the inherited plotly object.
-#' @param ci An optional logical. Defaults to TRUE, showing the confidence intervals of the predicted effects.
-#' @param x1_constant_val A string or numeric value indicating which constant value to set for x1 when the marginal effect of x2 is plotted. Defaults to the mean value. The string can take on "mean", "median", "min", or "max". Alternately, a numeric value may be specified.
-#' @param x2_constant_val A string or numeric value indicating which constant value to set for x2 when the marginal effect of x1 is plotted. Defaults to the mean value. The string can take on "mean", "median", "min", or "max". Alternately, a numeric value may be specified.
+#' @param ci A logical. Defaults to TRUE, showing the confidence intervals of the predicted effects.
+#' @param x1_constant_val,x2_constant_val A string or numeric value indicating which constant value to
+#'     set for x1 or x2 when the marginal effect of x2 is plotted.
+#'     Defaults to the mean value. The string can take on "mean", "median", "min", or "max".
+#'     Alternately, a numeric value may be specified.
 #' @param x1_color The color to be used for the line(s) depicting the marginal effect of x1. Defaults to "darkorange".
 #' @param x2_color The color to be used for the line(s) depicting the marginal effect of x2. Defaults to "crimson".
 #' @param x1_direction_name The hover text for the plotted line(s). Defaults to "Predicted marginal effect of x1".
@@ -96,6 +98,16 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
 #'
 #' @return A plotly object with the predicted marginal effects added to the plot.
 #' @export
+#'
+#' @examples
+#' library(plotly)
+#' mymodel <- lm(r_shift ~ median_income16 + any_college,
+#'               data = county_data, weight = pop_estimate16)
+#' plot_ly( data = county_data,
+#'          x = ~median_income16,
+#'          y = ~any_college,
+#'          z = ~r_shift) %>%
+#'   add_marginals(model = mymodel)
 add_marginals <- function(p, model, data =NULL, ci = T,
                           x1_constant_val = "mean", x2_constant_val = "mean",
                           x1_color = "darkorange", x2_color = "crimson",

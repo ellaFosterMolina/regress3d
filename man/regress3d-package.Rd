@@ -20,7 +20,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Ella Foster-Molina \email{ella.fostermolina@gmail.com} (\href{https://orcid.org/0000-0001-7455-7221}{ORCID})
+\strong{Maintainer}: Ella Foster-Molina \email{ella.fostermolina@gmail.com} (\href{https://orcid.org/0000-0001-7455-7221}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}
