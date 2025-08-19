@@ -50,7 +50,8 @@ xvars <- data.frame(x1 = seq(min(county_data$median_income16, na.rm=TRUE),
 predicted_xvars_data <- create_y_estimates(x_vals = xvars,
                                            model = mymodel,
                                            coefficient_names = c(y = "r_shift",
-                                           x1= "median_income16", x2= "any_college") )
+                                                                x1= "median_income16",
+                                                                x2= "any_college") )
 plot_ly( data = county_data,
          x = ~median_income16,
          y = ~any_college,

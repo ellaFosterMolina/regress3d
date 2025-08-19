@@ -7,15 +7,35 @@
 create_y_estimates(x_vals, model, coefficient_names)
 }
 \arguments{
-\item{x_vals}{A data frame  or tibble with x values}
+\item{x_vals}{A data frame  or tibble with exactly two columns.
+The first column has x1 values and the second column has x2 values.
+These will form a curve or line if plotted in the regression surface.
+The column names do not matter.}
 
 \item{model}{A glm with exactly two x variables}
 
-\item{coefficient_names}{A named character vector that attaches coefficient names to standardized names (e.g. x1, x2, y)}
+\item{coefficient_names}{A named character vector that attaches coefficient names
+to standardized names (x1, x2, y)}
 }
 \value{
-A data frame with x values and their corresponding predicted y values
+A data frame with x values and their corresponding predicted y values,
+as well as 95\% confidence intervals
 }
 \description{
 Create predicted y values from a data frame of x values
+}
+\examples{
+mymodel <- lm(r_shift ~ median_income16 + any_college, data = county_data)
+xvars <- data.frame(x1 = seq(min(county_data$median_income16, na.rm=TRUE),
+                             max(county_data$median_income16, na.rm=TRUE),
+                              length.out=10),
+                    x2 = seq(min(county_data$any_college, na.rm=TRUE),
+                             max(county_data$any_college, na.rm=TRUE),
+                             length.out=10))
+
+predicted_xvars_data <- create_y_estimates(x_vals = xvars,
+                                           model = mymodel,
+                                           coefficient_names = c(y = "r_shift",
+                                                                 x1= "median_income16",
+                                                                 x2= "any_college") )
 }
