@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_3d_layers.R
 \name{add_direction}
 \alias{add_direction}
-\title{Add a line of predicted effects to the plotly surface, with optional confidence intervals. User can add a line in any direction.}
+\title{A flexible function to add a line of predicted effects to the plotly surface with optional confidence intervals.}
 \usage{
 add_direction(
   p,
@@ -18,7 +18,11 @@ add_direction(
 
 \item{model}{A glm with exactly two x variables}
 
-\item{direction_data}{A data frame with of x values, predicted y values and predicted confidence interval for each pair of x values. The variable names are c("rownum", actual x1 variable name, actual x2 variable name, actual y variable name, "lowerCI", "upperCI")}
+\item{direction_data}{A data frame with a column of x1 values,
+a column of x2 values, predicted y values and optional predicted
+confidence interval for each pair of x values.
+The variable names are c("rownum", actual x1 variable name, actual x2 variable name,
+actual y variable name, "lowerCI", "upperCI").}
 
 \item{direction_name}{The hover text for the plotted line(s). Defaults to "User defined line".}
 
@@ -32,4 +36,27 @@ A plotly object
 \description{
 Primarily used by functions such as add_3d_surface or add_marginals.
 If user defines "direction_data" appropriately, any line can be shown.
+}
+\examples{
+library(plotly)
+mymodel <- lm(r_shift ~ median_income16 + any_college, data = county_data)
+xvars <- data.frame(x1 = seq(min(county_data$median_income16, na.rm=TRUE),
+                             max(county_data$median_income16, na.rm=TRUE),
+                              length.out=10),
+                    x2 = seq(min(county_data$any_college, na.rm=TRUE),
+                             max(county_data$any_college, na.rm=TRUE),
+                             length.out=10))
+
+predicted_xvars_data <- create_y_estimates(x_vals = xvars,
+                                           model = mymodel,
+                                           coefficient_names = c(y = "r_shift",
+                                           x1= "median_income16", x2= "any_college") )
+plot_ly( data = county_data,
+         x = ~median_income16,
+         y = ~any_college,
+         z = ~r_shift) \%>\%
+  add_markers(size = ~pop_estimate16, color = I('black')) \%>\%
+  add_3d_surface(model = mymodel)\%>\%
+  add_direction(model = mymodel, direction_data = predicted_xvars_data)
+
 }

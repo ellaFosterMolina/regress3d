@@ -3,7 +3,7 @@
 #' @param model A glm with exactly two x variables
 #'
 #' @return A named character vector attaching coefficient names to standardized names (e.g. x1, x2, y)
-#' @export
+#' @noRd
 #'
 #' @examples
 #' mymodel <- lm(length ~ isFemale_num + isMale_num, data = hair_data)

@@ -34,7 +34,6 @@ reference:
     required to create regression surfaces, marginal effects, and jitter
     the scatterpoints.
   contents:
-  - create_named_coeffs
   - create_surface_data
   - create_y_estimates
 
