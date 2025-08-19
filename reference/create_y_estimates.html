@@ -53,7 +53,10 @@ gtag('config', 'G-21JNL53E33'); </script></head><body>
 
 
 <dl><dt id="arg-x-vals">x_vals<a class="anchor" aria-label="anchor" href="#arg-x-vals"></a></dt>
-<dd><p>A data frame  or tibble with x values</p></dd>
+<dd><p>A data frame  or tibble with exactly two columns.
+The first column has x1 values and the second column has x2 values.
+These will form a curve or line if plotted in the regression surface.
+The column names do not matter.</p></dd>
 
 
 <dt id="arg-model">model<a class="anchor" aria-label="anchor" href="#arg-model"></a></dt>
@@ -61,14 +64,33 @@ gtag('config', 'G-21JNL53E33'); </script></head><body>
 
 
 <dt id="arg-coefficient-names">coefficient_names<a class="anchor" aria-label="anchor" href="#arg-coefficient-names"></a></dt>
-<dd><p>A named character vector that attaches coefficient names to standardized names (e.g. x1, x2, y)</p></dd>
+<dd><p>A named character vector that attaches coefficient names
+to standardized names (x1, x2, y)</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data frame with x values and their corresponding predicted y values</p>
+    <p>A data frame with x values and their corresponding predicted y values,
+as well as 95% confidence intervals</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mymodel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">r_shift</span> <span class="op">~</span> <span class="va">median_income16</span> <span class="op">+</span> <span class="va">any_college</span>, data <span class="op">=</span> <span class="va">county_data</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">xvars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">county_data</span><span class="op">$</span><span class="va">median_income16</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                             <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">county_data</span><span class="op">$</span><span class="va">median_income16</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                              length.out<span class="op">=</span><span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                    x2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">county_data</span><span class="op">$</span><span class="va">any_college</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                             <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">county_data</span><span class="op">$</span><span class="va">any_college</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                             length.out<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">predicted_xvars_data</span> <span class="op">&lt;-</span> <span class="fu">create_y_estimates</span><span class="op">(</span>x_vals <span class="op">=</span> <span class="va">xvars</span>,</span></span>
+<span class="r-in"><span>                                           model <span class="op">=</span> <span class="va">mymodel</span>,</span></span>
+<span class="r-in"><span>                                           coefficient_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"r_shift"</span>,</span></span>
+<span class="r-in"><span>                                                                 x1<span class="op">=</span> <span class="st">"median_income16"</span>,</span></span>
+<span class="r-in"><span>                                                                 x2<span class="op">=</span> <span class="st">"any_college"</span><span class="op">)</span> <span class="op">)</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
