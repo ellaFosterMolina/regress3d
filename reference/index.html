@@ -37,9 +37,9 @@ gtag('config', 'G-21JNL53E33'); </script></head><body>
     </div>
 
     <div class="section level2">
-      <h2 id="adding-d-layers-to-plotly-objects">Adding 3d layers to plotly objects<a class="anchor" aria-label="anchor" href="#adding-d-layers-to-plotly-objects"></a></h2>
+      <h2 id="add-d-layers-to-plotly-objects">Add 3d layers to plotly objects<a class="anchor" aria-label="anchor" href="#add-d-layers-to-plotly-objects"></a></h2>
 
-      <div class="section-desc"><p>These functions add layers to a 3D plotly object. Each calls functions that create the data required for that layer.</p></div>
+
 
 
     </div><div class="section level2">
@@ -72,31 +72,8 @@ gtag('config', 'G-21JNL53E33'); </script></head><body>
         </dt>
         <dd>Add 3d marginal effects to a plot_ly plot</dd>
       </dl></div><div class="section level2">
-      <h2 id="creating-data-for-d-graphics">Creating data for 3D graphics<a class="anchor" aria-label="anchor" href="#creating-data-for-d-graphics"></a></h2>
+      <h2 id="create-data-for-d-graphics">Create data for 3D graphics<a class="anchor" aria-label="anchor" href="#create-data-for-d-graphics"></a></h2>
 
-
-
-
-    </div><div class="section level2">
-
-      <h3 id="create-data-that-can-be-used-by-add-direction">Create data that can be used by add_direction<a class="anchor" aria-label="anchor" href="#create-data-that-can-be-used-by-add-direction"></a></h3>
-      <div class="section-desc"><p>This function uses a specified model, a dataframe with an x1 and x2 column, and a named character vector. The columns in the dataframe contain values for x1 and x2 that can be plotted as a line in the 3D graphic. The function returns the y estimates for each (x1,x2) pair.</p></div>
-
-
-    </div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="create_y_estimates.html">create_y_estimates()</a></code>
-
-        </dt>
-        <dd>Create predicted y values from a data frame of x values</dd>
-      </dl></div><div class="section level2">
-
-      <h3 id="create-all-other-data-for-d-graphics">Create all other data for 3D graphics<a class="anchor" aria-label="anchor" href="#create-all-other-data-for-d-graphics"></a></h3>
       <div class="section-desc"><p>These functions use the specified model to generate the x, y, and z values required to create regression surfaces, marginal effects, and jitter the scatterpoints.</p></div>
 
 
@@ -141,6 +118,12 @@ gtag('config', 'G-21JNL53E33'); </script></head><body>
 
         </dt>
         <dd>Create matrix of x variables for regression surface</dd>
+      </dl><dl><dt>
+
+          <code><a href="create_y_estimates.html">create_y_estimates()</a></code>
+
+        </dt>
+        <dd>Create predicted y values from a data frame of x values</dd>
       </dl><dl><dt>
 
           <code><a href="jitter_40pct.html">jitter_40pct()</a></code>
