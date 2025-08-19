@@ -20,13 +20,17 @@ add_3d_surface(
 
 \item{model}{An lm or glm with exactly two x variables}
 
-\item{data}{An optional dataframe to be used to create the regression surface. By default, this will be the data used by the inherited plotly object.}
+\item{data}{An optional dataframe to be used to estimate the regression surface.
+By default, this will be the data used by the inherited plotly object.}
 
-\item{ci}{An optional logical. Defaults to TRUE, showing the confidence intervals of the predicted effects.}
+\item{ci}{An optional logical. Defaults to TRUE, showing the confidence intervals
+of the predicted effects.}
 
-\item{surfacecolor}{A color recognized by plotly. Used within the colorscale parameter in add_trace. Defaults to 'blue'.}
+\item{surfacecolor}{A color recognized by plotly. Used within the
+colorscale parameter in add_trace. Defaults to 'blue'.}
 
-\item{surfacecolor_ci}{A color recognized by plotly. Used within the colorscale parameter in add_trace. Defaults to 'grey'.}
+\item{surfacecolor_ci}{A color recognized by plotly. Used within
+the colorscale parameter in add_trace. Defaults to 'grey'.}
 
 \item{opacity}{Sets the opacity of the surface. Defaults to 0.5.}
 
@@ -40,7 +44,9 @@ provided at this level may override other arguments
 A plotly object with the regression surface added to the plot.
 }
 \description{
-This function adds a 3 dimensional regression surface to a plotly plot.
+This function adds a 3 dimensional regression surface to a plotly plot. Note
+that the data used to estimate the regression surface in model must be
+the same as the data called in plot_ly or specified by the argument \code{data}.
 }
 \details{
 Additional plotly layers such as add_markers() can
