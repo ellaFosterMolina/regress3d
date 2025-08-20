@@ -16,9 +16,9 @@ articles:
 - title: Articles
   navbar: ~
   contents:
-  - linear_models_3d
-  - linear_models_w_interactions_3d
-  - generalized_linear_models_3d
+  - articles/linear_models_3d
+  - articles/linear_models_w_interactions_3d
+  - articles/generalized_linear_models_3d
 
 reference:
 - title: Add 3d layers to plotly objects

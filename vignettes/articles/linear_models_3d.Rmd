@@ -1,10 +1,5 @@
 ---
 title: "Linear Regression Surfaces with Marginal Effects in 3D"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Linear Regression Surfaces with Marginal Effects in 3D}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
