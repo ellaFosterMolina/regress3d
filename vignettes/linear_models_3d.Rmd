@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-Multiple regressions create regression **surfaces**, which have as many dimensions as there are explanatory and outcome variables in the multiple regression model. Marginal effects are a direction in this surface and can be visualized by a line in the surface. 
+Multiple regressions create regression **surfaces**, which have as many dimensions as there are explanatory and outcome variables in the multiple regression model. Marginal effects are a direction in this surface and can be visualized by a line in the surface.
 
 This vignette demonstrates a 3 dimensional visualization of marginal effects with `add_marginals()` and regression surface with `add_3d_surface()` for a linear regression with two explanatory variables. This kind of model creates a flat regression surface.
 
