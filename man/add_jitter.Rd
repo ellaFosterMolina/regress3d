@@ -37,9 +37,12 @@ a plotly object
 }
 \description{
 The jitter trace is a scatter trace with the mode of markers.
+}
+\details{
 It adds a small amount of random variation to the location of each point, and is a useful way of handling overplotting caused by discreteness.
 It is based on ggplot's geom_jitter.
-New attributes in this function are: x_jitter, y_jitter, z_jitter. If these attributes are misspelled, plot_ly will generate a warning message listing all valid attributes.
+New attributes in this function are: x_jitter, y_jitter, z_jitter.
+If these attributes are misspelled, plot_ly will generate a warning message listing all valid attributes.
 Since regress3d is an add on to plotly, this list of valid attributes does not include the attributes created in this function.
 }
 \examples{

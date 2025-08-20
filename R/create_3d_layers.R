@@ -1,12 +1,13 @@
 #' Add 3D regression surface to a plot_ly plot.
 #'
-#' This function adds a 3 dimensional regression surface to a plotly plot. Note
-#' that the data used to estimate the regression surface in model must be
+#' This function adds a 3 dimensional regression surface to a plotly plot.
+#'
+#' Note that the data used to estimate the regression surface in model must be
 #' the same as the data called in plot_ly or specified by the argument `data`.
 #'
 #' Additional plotly layers such as add_markers() can
 #' be added to the plotly plot, but be aware that many plotly layers inherit the data from the prior layer.
-#' As such, a function such as add_markers may not work as intended if called after add_3d_surface.
+#' As such, a function such as add_markers() may not work as intended if called after add_3d_surface().
 #'
 #' The surface can be built from either an lm or glm. For glms, testing has been primarily focused on
 #' binomial and Gamma families.
@@ -149,7 +150,7 @@ add_marginals <- function(p, model, data =NULL, ci = T,
 
 #' A flexible function to add a line of predicted effects to the plotly surface with optional confidence intervals.
 #'
-#' Primarily used by functions such as add_3d_surface or add_marginals.
+#' Primarily used by functions such as `add_3d_surface()` or add_marginals().
 #' If user defines "direction_data" appropriately, any line can be shown.
 #'
 #' @param p A plotly object

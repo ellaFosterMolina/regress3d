@@ -34,7 +34,7 @@ actual y variable name, "lowerCI", "upperCI").}
 A plotly object
 }
 \description{
-Primarily used by functions such as add_3d_surface or add_marginals.
+Primarily used by functions such as \code{add_3d_surface()} or add_marginals().
 If user defines "direction_data" appropriately, any line can be shown.
 }
 \examples{
