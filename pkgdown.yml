@@ -2,10 +2,10 @@ pandoc: 3.1.11
 pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
-  generalized_linear_models_3d: generalized_linear_models_3d.html
-  linear_models_3d: linear_models_3d.html
-  linear_models_w_interactions_3d: linear_models_w_interactions_3d.html
-last_built: 2025-08-20T18:14Z
+  articles/generalized_linear_models_3d: generalized_linear_models_3d.html
+  articles/linear_models_3d: linear_models_3d.html
+  articles/linear_models_w_interactions_3d: linear_models_w_interactions_3d.html
+last_built: 2025-08-20T18:49Z
 urls:
   reference: https://ellafostermolina.github.io/regress3d/reference
   article: https://ellafostermolina.github.io/regress3d/articles
