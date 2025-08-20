@@ -2,7 +2,7 @@
 #'
 #' Add a jitter to a scatter trace with the mode of markers.
 #'
-#' It adds a small amount of random variation to the location of each point, and
+#' This adds a small amount of random variation to the location of each point, and
 #' is a useful way of handling overplotting caused by discreteness.
 #' It is based on ggplot's `ggplot2::geom_jitter()`.
 #'

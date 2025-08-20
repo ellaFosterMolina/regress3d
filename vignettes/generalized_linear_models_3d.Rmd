@@ -52,7 +52,7 @@ For reference, a two dimensional plot of logistic regression can look like this.
 
 * The outcome variable, `plurality_Trump16`, is binary. We use `ggplot2::geom_jitter()` to reveal the density of observations for counties that have very few Black residents. 
 * In this case the explanatory variable `prcnt_black` is continuous. 
-* A logistic regression model is specified to require an s-shape for the predicted probabilities so that they cannot exceed the range $(0,1)$.
+* The logistic regression model requires an s-shape for the predicted probabilities so that they cannot exceed the range $(0,1)$.
 
 ```{r}
 county_data %>%

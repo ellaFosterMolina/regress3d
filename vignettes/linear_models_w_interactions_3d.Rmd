@@ -31,13 +31,13 @@ library(plotly)
 
 ## Interaction terms
 
-An interaction term in a linear regression can be depicted as a curved regression surface with linear marginal effects. The marginal effect of $x_1$ ($x_2$) is allowed to linearly change as $x_2$ ($x_1$) changes. This captures heterogenous effects in a regression, where the effect of $x_1$ is different for different values of $x_2$. Note that the change in the effect of $x_1$ as $x_2$ changes is restricted by the linearity of the interaction term.
-
 The equation for the predicted values from a linear regression with two $x$ variables and an interaction term is below.
 
 \begin{align*}
 \hat{y} =& \hat{\beta}_1 x_1 +\hat{\beta}_2 x_2 +\hat{\beta}_{12} x_1 x_2 +  \hat{\beta}_0 
 \end{align*}
+
+An interaction term in a linear regression can be depicted as a curved regression surface with linear marginal effects. The marginal effect of $x_1$ ($x_2$) is allowed to linearly change as $x_2$ ($x_1$) changes. This captures heterogenous effects in a regression, where the effect of $x_1$ is different for different values of $x_2$. Note that the change in the effect of $x_1$ as $x_2$ changes is restricted by the linearity of the interaction term.
 
 ## Data
 
