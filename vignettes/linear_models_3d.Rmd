@@ -18,9 +18,9 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-Multiple regressions create regression **surfaces**, which have as many dimensions as there are variables (both $x$ and $y$) in the multiple regression equation. Marginal effects are a direction in this surface and can be visualized by a line in the surface. 
+Multiple regressions create regression **surfaces**, which have as many dimensions as there are explanatory and outcome variables in the multiple regression equation. Marginal effects are a direction in this surface and can be visualized by a line in the surface. 
 
-This vignette demonstrates a 3 dimensional visualization of marginal effects with `add_marginals()` and regression surface with `add_3d_surface()` for a linear regression with two $x$ variables. This kind of model creates a flat regression surface.
+This vignette demonstrates a 3 dimensional visualization of marginal effects with `add_marginals()` and regression surface with `add_3d_surface()` for a linear regression with two explanatory variables. This kind of model creates a flat regression surface.
 
 Other types of regression surfaces are shown in `vignette("linear_models_w_interactions_3d")` and `vignette("generalized_linear_models_3d")`.
 
@@ -54,7 +54,7 @@ The regression is weighted by `pop_estimate16`, the number of people in a county
 
 ## Code and graphic
 
-The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables. Next layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome. The plotly command denotes the explanatory variables as $x$ and $y$, and the outcome variable is $z$.
+The code starts by specifying a model. We then create a `plotly::plot_ly()` object using the same variables. Next we layer on the scattercloud, 3D surface, marginals, and labels. Note that while regression notation often uses $x_1$ and $x_2$ to represent the explanatory variables, and $y$ for the outcome, the plotly command will use $x$ and $y$ for the explanatory variables and $z$ for the outcome variable.
 
 ```{r, out.width = "800px", out.height = "450px"}
 mymodel <- lm(r_shift ~ median_income16 + any_college, 
@@ -87,7 +87,7 @@ The same logic holds for the [red]{style="color: crimson;"} line representing th
 
 ## Improvements with plotly, scales, and regress3d
 
-We can make this interactive image prettier by adding scatterpoints with the __plotly__ function `add_markers()`, a hovertemplate for each point, and better labels. 
+We can improve this interactive image by adding scatterpoints with the __plotly__ function `add_markers()`, a hovertemplate for each point, and better labels. 
 
 The library __scales__ helps present the numeric values, percentages, and dollars more clearly.
 
