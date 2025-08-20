@@ -19,16 +19,14 @@ add_jitter(
 \arguments{
 \item{p}{a plotly object}
 
-\item{x}{the x variable}
+\item{x, y, z}{an optional x, y, and/or z variable.
+Defaults to the data inherited from the plotly object p.}
 
-\item{y}{the y variable}
-
-\item{z}{the z variable}
-
-\item{data}{a data frame (optional)}
+\item{data}{an optional data frame.
+Defaults to the data inherited from the plotly object p.}
 
 \item{x_jitter, y_jitter, z_jitter}{Amount of vertical, horizontal, and depth jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here.
-If omitted, defaults to 40\% of the resolution of the data: this means the jitter values will occupy 80\% of the implied bins.}
+If omitted, defaults to 40\% of the spread in the data, so the jitter values will occupy 80\% of the implied bins.}
 
 \item{...}{Arguments (i.e., attributes) passed along to the trace \code{type}.
 See \code{\link[plotly:schema]{schema()}} for a list of acceptable attributes for a given trace \code{type}
@@ -40,12 +38,13 @@ provided at this level may override other arguments
 a plotly object
 }
 \description{
-The jitter trace is a scatter trace with the mode of markers.
+Add a jitter to a scatter trace with the mode of markers.
 }
 \details{
 It adds a small amount of random variation to the location of each point, and
 is a useful way of handling overplotting caused by discreteness.
 It is based on ggplot's \code{ggplot2::geom_jitter()}.
+
 New attributes in this function are: \code{x_jitter}, \code{y_jitter}, \code{z_jitter.}
 If these attributes are misspelled, plot_ly will generate a warning message listing all valid attributes.
 Since regress3d is an add on to plotly, this list of valid attributes does not
@@ -53,7 +52,7 @@ include the attributes created in this function.
 }
 \examples{
 library(plotly)
-p <- plot_ly( data = hair_data,
+plot_ly( data = hair_data,
               x = ~isFemale_num,
               y = ~isMale_num,
               z = ~length) \%>\%

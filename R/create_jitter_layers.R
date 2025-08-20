@@ -1,22 +1,23 @@
 #' Jitter scattercloud points
 #'
-#' The jitter trace is a scatter trace with the mode of markers.
+#' Add a jitter to a scatter trace with the mode of markers.
 #'
 #' It adds a small amount of random variation to the location of each point, and
 #' is a useful way of handling overplotting caused by discreteness.
 #' It is based on ggplot's `ggplot2::geom_jitter()`.
+#'
 #' New attributes in this function are: `x_jitter`, `y_jitter`, `z_jitter.`
 #' If these attributes are misspelled, plot_ly will generate a warning message listing all valid attributes.
 #' Since regress3d is an add on to plotly, this list of valid attributes does not
 #' include the attributes created in this function.
 #'
 #' @param p a plotly object
-#' @param x the x variable
-#' @param y the y variable
-#' @param z the z variable
-#' @param data a data frame (optional)
+#' @param x,y,z an optional x, y, and/or z variable.
+#'      Defaults to the data inherited from the plotly object p.
+#' @param data an optional data frame.
+#'      Defaults to the data inherited from the plotly object p.
 #' @param x_jitter,y_jitter,z_jitter Amount of vertical, horizontal, and depth jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here.
-#'    If omitted, defaults to 40% of the resolution of the data: this means the jitter values will occupy 80% of the implied bins.
+#'    If omitted, defaults to 40% of the spread in the data, so the jitter values will occupy 80% of the implied bins.
 #' @inheritParams plotly::plot_ly
 #'
 #' @return a plotly object
@@ -24,7 +25,7 @@
 #'
 #' @examples
 #' library(plotly)
-#' p <- plot_ly( data = hair_data,
+#' plot_ly( data = hair_data,
 #'               x = ~isFemale_num,
 #'               y = ~isMale_num,
 #'               z = ~length) %>%

@@ -203,8 +203,10 @@ create_glm_adjustment <- function(x_vals, model){
 #' @export
 #'
 #' @examples
-#' mymodel <- lm(length ~ isFemale_num + isMale_num, data = hair_data)
-#' surface_data <- create_surface_data(data = hair_data, model = mymodel)
+#' mymodel <- lm(length ~ isFemale_num + isMale_num,
+#'               data = hair_data)
+#' surface_data <- create_surface_data(data = hair_data,
+#'                                     model = mymodel)
 create_surface_data <- function(data, model){
   coefficients <- create_named_coeffs(model)
   x_vals <- create_surface_x_vars(data =data, model = model, coefficient_names = coefficients)

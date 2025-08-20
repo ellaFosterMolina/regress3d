@@ -1,6 +1,6 @@
-#' Add 3D regression surface to a plot_ly plot.
+#' Add 3D regression surface to a plot_ly object
 #'
-#' This function adds a 3 dimensional regression surface to a plotly plot.
+#' Add a 3 dimensional regression surface layer to a plot_ly object.
 #'
 #' Note that the data used to estimate the regression surface in model must be
 #' the same as the data called in plot_ly or specified by the argument `data`.

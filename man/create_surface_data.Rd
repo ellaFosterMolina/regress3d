@@ -18,6 +18,8 @@ A data frame with a matrix of x values, predicted y values and predicted confide
 Create data frame used to plot a surface of predicted y values
 }
 \examples{
-mymodel <- lm(length ~ isFemale_num + isMale_num, data = hair_data)
-surface_data <- create_surface_data(data = hair_data, model = mymodel)
+mymodel <- lm(length ~ isFemale_num + isMale_num,
+              data = hair_data)
+surface_data <- create_surface_data(data = hair_data,
+                                    model = mymodel)
 }

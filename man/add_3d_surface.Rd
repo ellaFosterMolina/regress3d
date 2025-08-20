@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_3d_layers.R
 \name{add_3d_surface}
 \alias{add_3d_surface}
-\title{Add 3D regression surface to a plot_ly plot.}
+\title{Add 3D regression surface to a plot_ly object}
 \usage{
 add_3d_surface(
   p,
@@ -44,7 +44,7 @@ provided at this level may override other arguments
 A plotly object with the regression surface added to the plot.
 }
 \description{
-This function adds a 3 dimensional regression surface to a plotly plot.
+Add a 3 dimensional regression surface layer to a plot_ly object.
 }
 \details{
 Note that the data used to estimate the regression surface in model must be
