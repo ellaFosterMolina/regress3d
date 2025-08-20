@@ -30,7 +30,8 @@ create_named_coeffs <- function(model){
 #'
 #' @param data A data frame or a tibble (check it works with a tibble)
 #' @param model A glm with exactly two x variables
-#' @param coefficient_names A named character vector that attaches coefficient names to standardized names (e.g. x1, x2, y)
+#' @param coefficient_names A named character vector that attaches coefficient
+#'         names to standardized names (e.g. x1, x2, y)
 #'
 #' @return A data frame of x values that span the minimum to maximum values of both x variables
 #' @noRd
@@ -54,9 +55,11 @@ create_surface_x_vars <- function(data, model, coefficient_names){
 
 #' Create a constant value
 #'
-#' @param constant_value The desired constant value for the marginal effect. It can take the value "mean", "median", "min", "max", or a numeric value
+#' @param constant_value The desired constant value for the marginal effect.
+#'        It can take the value "mean", "median", "min", "max", or a numeric value
 #' @param data The data frame being used for the regression.
-#' @param coefficients A named character vector where the names are the c("y","x1","x2") and the values are the variable names associated with each element in the named vector.
+#' @param coefficients A named character vector where the names are the c("y","x1","x2")
+#'         and the values are the variable names associated with each element in the named vector.
 #' @param x_thats_constant The variable used to create the constant value.
 #'
 #' @return A numeric value corresponding to the constant value desired (e.g. the mean, median, etc)
@@ -78,12 +81,15 @@ create_constant_value <- function(constant_value, data, coefficients, x_thats_co
 
 #' Create a data frame of x variables to plot the marginal effect
 #'
-#' @param data A data frame or a tibble (check it works with a tibble)
+#' @param data A data frame or a tibble
 #' @param model A glm with exactly two x variables
-#' @param marginal_of_x1 A logical. If true, then the data frame represents the marginal effect of x1. If false, the marginal effect of x2.
-#' @param constant_value A string or number indicating which constant value to use for the variable that remains constant. The string can take on "mean", "median", "min", or "max". Alternately, a numeric value may be specified.
+#' @param marginal_of_x1 A logical. If true, then the data frame represents the marginal effect of x1.
+#'        If false, the marginal effect of x2.
+#' @param constant_value A string or number indicating which constant value to use for
+#'         the variable that remains constant. The string can take on "mean", "median", "min", or "max". Alternately, a numeric value may be specified.
 #'
-#' @return A data frame of x values that span the minimum to maximum values of the marginal effect, holding the other x variable constant
+#' @return A data frame of x values that span the minimum to maximum values
+#'       of the marginal effect, holding the other x variable constant
 #' @noRd
 create_marginal_x_vars <- function(data, model, marginal_of_x1,
                                    constant_value = "mean"){
@@ -161,7 +167,7 @@ create_y_estimates <- function(x_vals, model, coefficient_names){
 
 #' Create predicted and confidence interval values from a glm model.
 #'
-#' Used by create_y_estimates when the model is a glm.
+#' Used by `create_y_estimates()` when the model is a glm.
 #' This has been tested on the binomial family, but may work for all glms.
 #' Uses the inverse link function to generate both predicted values and confidence intervals for the range of x values.
 #'

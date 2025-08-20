@@ -47,9 +47,9 @@ Alternately, a numeric value may be specified.}
 A plotly object with the predicted marginal effects added to the plot.
 }
 \description{
-Additional plotly layers such as add_markers() can
+Additional plotly layers such as \code{add_markers()} can
 be added to the plotly plot, but be aware that many plotly layers inherit the data from the prior layer.
-As such, a function such as add_markers may not work as intended if called after add_marginals().
+As such, a function such as \code{add_markers()} may not work as intended if called after \code{add_marginals()}.
 }
 \examples{
 library(plotly)

@@ -5,9 +5,9 @@
 #' Note that the data used to estimate the regression surface in model must be
 #' the same as the data called in plot_ly or specified by the argument `data`.
 #'
-#' Additional plotly layers such as add_markers() can
+#' Additional plotly layers such as `add_markers()` can
 #' be added to the plotly plot, but be aware that many plotly layers inherit the data from the prior layer.
-#' As such, a function such as add_markers() may not work as intended if called after add_3d_surface().
+#' As such, a function such as `add_markers()` may not work as intended if called after `add_3d_surface()`.
 #'
 #' The surface can be built from either an lm or glm. For glms, testing has been primarily focused on
 #' binomial and Gamma families.
@@ -85,9 +85,9 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
 
 #' Add 3d marginal effects to a plot_ly plot
 #'
-#' Additional plotly layers such as add_markers() can
+#' Additional plotly layers such as `add_markers()` can
 #' be added to the plotly plot, but be aware that many plotly layers inherit the data from the prior layer.
-#' As such, a function such as add_markers may not work as intended if called after add_marginals().
+#' As such, a function such as `add_markers()` may not work as intended if called after `add_marginals()`.
 #'
 #' @param p A plotly object
 #' @param model A lm or glm with exactly two x variables
@@ -150,8 +150,8 @@ add_marginals <- function(p, model, data =NULL, ci = T,
 
 #' A flexible function to add a line of predicted effects to the plotly surface with optional confidence intervals.
 #'
-#' Primarily used by functions such as `add_3d_surface()` or add_marginals().
-#' If user defines "direction_data" appropriately, any line can be shown.
+#' Primarily used by functions such as `add_3d_surface()` or `add_marginals()`.
+#' If user defines `direction_data` appropriately, any line can be shown.
 #'
 #' @param p A plotly object
 #' @param model A glm with exactly two x variables

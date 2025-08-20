@@ -30,7 +30,11 @@ add_jitter(
 \item{x_jitter, y_jitter, z_jitter}{Amount of vertical, horizontal, and depth jitter. The jitter is added in both positive and negative directions, so the total spread is twice the value specified here.
 If omitted, defaults to 40\% of the resolution of the data: this means the jitter values will occupy 80\% of the implied bins.}
 
-\item{...}{Arguments (i.e., attributes) passed along to the trace type. See schema() for a list of acceptable attributes for a given trace type (by going to traces -> type -> attributes). Note that attributes provided at this level may override other arguments (e.g. plot_ly(x = 1:10, y = 1:10, color = I("red"), marker = list(color = "blue"))).}
+\item{...}{Arguments (i.e., attributes) passed along to the trace \code{type}.
+See \code{\link[plotly:schema]{schema()}} for a list of acceptable attributes for a given trace \code{type}
+(by going to \code{traces} -> \code{type} -> \code{attributes}). Note that attributes
+provided at this level may override other arguments
+(e.g. \code{plot_ly(x = 1:10, y = 1:10, color = I("red"), marker = list(color = "blue"))}).}
 }
 \value{
 a plotly object
@@ -39,11 +43,13 @@ a plotly object
 The jitter trace is a scatter trace with the mode of markers.
 }
 \details{
-It adds a small amount of random variation to the location of each point, and is a useful way of handling overplotting caused by discreteness.
-It is based on ggplot's geom_jitter.
-New attributes in this function are: x_jitter, y_jitter, z_jitter.
+It adds a small amount of random variation to the location of each point, and
+is a useful way of handling overplotting caused by discreteness.
+It is based on ggplot's \code{ggplot2::geom_jitter()}.
+New attributes in this function are: \code{x_jitter}, \code{y_jitter}, \code{z_jitter.}
 If these attributes are misspelled, plot_ly will generate a warning message listing all valid attributes.
-Since regress3d is an add on to plotly, this list of valid attributes does not include the attributes created in this function.
+Since regress3d is an add on to plotly, this list of valid attributes does not
+include the attributes created in this function.
 }
 \examples{
 library(plotly)
