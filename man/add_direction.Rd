@@ -21,7 +21,7 @@ add_direction(
 \item{direction_data}{A data frame with a column of x1 values,
 a column of x2 values, predicted y values and optional predicted
 confidence interval for each pair of x values.
-The variable names are c("rownum", actual x1 variable name, actual x2 variable name,
+The variable names must be c("rownum", actual x1 variable name, actual x2 variable name,
 actual y variable name, "lowerCI", "upperCI").}
 
 \item{direction_name}{The hover text for the plotted line(s). Defaults to "User defined line".}

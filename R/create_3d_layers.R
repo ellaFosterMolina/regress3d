@@ -83,7 +83,7 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
   p
 }
 
-#' Add 3d marginal effects to a plot_ly plot
+#' Add 3d marginal effects to a plot_ly object
 #'
 #' Add 3d marginal effects to a plot_ly plot
 #'
@@ -160,7 +160,7 @@ add_marginals <- function(p, model, data =NULL, ci = T,
 #' @param direction_data A data frame with a column of x1 values,
 #'      a column of x2 values, predicted y values and optional predicted
 #'      confidence interval for each pair of x values.
-#'      The variable names are c("rownum", actual x1 variable name, actual x2 variable name,
+#'      The variable names must be c("rownum", actual x1 variable name, actual x2 variable name,
 #'      actual y variable name, "lowerCI", "upperCI").
 #' @param direction_name The hover text for the plotted line(s). Defaults to "User defined line".
 #' @param linecolor The color for the plotted line. Defaults to "black".

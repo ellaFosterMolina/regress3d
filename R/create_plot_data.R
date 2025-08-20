@@ -121,7 +121,12 @@ create_marginal_x_vars <- function(data, model, marginal_of_x1,
   xvars_for_prediction
 }
 
-#' Create predicted y values from a data frame of x values
+#' Create predicted y values from a data frame of x values.
+#'
+#'  Create predicted y values from a data frame of x values.
+#'  There can be only exactly 2 columns of x values. The predicted y values
+#' can be estimated from an lm or glm model. Interaction terms are allowed, as are
+#' weights.
 #'
 #' @param x_vals A data frame  or tibble with exactly two columns.
 #'      The first column has x1 values and the second column has x2 values.
@@ -165,7 +170,7 @@ create_y_estimates <- function(x_vals, model, coefficient_names){
   as.data.frame(predicteddata) #plot_ly wasn't accepting a tibble
 }
 
-#' Create predicted and confidence interval values from a glm model.
+#' Create predicted and confidence interval values for a regression
 #'
 #' Used by `create_y_estimates()` when the model is a glm.
 #' This has been tested on the binomial family, but may work for all glms.
@@ -196,10 +201,18 @@ create_glm_adjustment <- function(x_vals, model){
 
 #' Create data frame used to plot a surface of predicted y values
 #'
-#' @param data A data frame being used to create the regression model
+#' Create data frame used to plot a surface of predicted y values.
+#' There can be only exactly 2 columns of x values. The predicted y values
+#' can be estimated from an lm or glm model. Interaction terms are allowed, as are
+#' weights.
+#'
+#' @param data A data frame being used to estimate the regression model
 #' @param model A glm with exactly two x variables
 #'
-#' @return A data frame with a matrix of x values, predicted y values and predicted confidence intervals for each pair of x values
+#' @return A data frame with generated values for two x variables, as well as the
+#'        predicted y values and predicted
+#'        confidence intervals for each pair of x values. These can be used to plot
+#'        the estimated regression surface and confidence interval surfaces.
 #' @export
 #'
 #' @examples

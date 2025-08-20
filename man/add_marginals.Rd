@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_3d_layers.R
 \name{add_marginals}
 \alias{add_marginals}
-\title{Add 3d marginal effects to a plot_ly plot}
+\title{Add 3d marginal effects to a plot_ly object}
 \usage{
 add_marginals(
   p,

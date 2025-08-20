@@ -45,10 +45,11 @@ It adds a small amount of random variation to the location of each point, and
 is a useful way of handling overplotting caused by discreteness.
 It is based on ggplot's \code{ggplot2::geom_jitter()}.
 
-New attributes in this function are: \code{x_jitter}, \code{y_jitter}, \code{z_jitter.}
-If these attributes are misspelled, plot_ly will generate a warning message listing all valid attributes.
+The arguments \code{x_jitter}, \code{y_jitter}, \code{z_jitter} are not from plotly's syntax.
+If these arguments are misspelled, plot_ly will generate a warning message listing all valid
+arguments, but note that plotly uses the term attributes instead of arguments.
 Since regress3d is an add on to plotly, this list of valid attributes does not
-include the attributes created in this function.
+include the attributes/arguments created in this function.
 }
 \examples{
 library(plotly)

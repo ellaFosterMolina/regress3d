@@ -7,15 +7,21 @@
 create_surface_data(data, model)
 }
 \arguments{
-\item{data}{A data frame being used to create the regression model}
+\item{data}{A data frame being used to estimate the regression model}
 
 \item{model}{A glm with exactly two x variables}
 }
 \value{
-A data frame with a matrix of x values, predicted y values and predicted confidence intervals for each pair of x values
+A data frame with generated values for two x variables, as well as the
+predicted y values and predicted
+confidence intervals for each pair of x values. These can be used to plot
+the estimated regression surface and confidence interval surfaces.
 }
 \description{
-Create data frame used to plot a surface of predicted y values
+Create data frame used to plot a surface of predicted y values.
+There can be only exactly 2 columns of x values. The predicted y values
+can be estimated from an lm or glm model. Interaction terms are allowed, as are
+weights.
 }
 \examples{
 mymodel <- lm(length ~ isFemale_num + isMale_num,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_plot_data.R
 \name{create_y_estimates}
 \alias{create_y_estimates}
-\title{Create predicted y values from a data frame of x values}
+\title{Create predicted y values from a data frame of x values.}
 \usage{
 create_y_estimates(x_vals, model, coefficient_names)
 }
@@ -22,7 +22,10 @@ A data frame with x values and their corresponding predicted y values,
 as well as 95\% confidence intervals
 }
 \description{
-Create predicted y values from a data frame of x values
+Create predicted y values from a data frame of x values.
+There can be only exactly 2 columns of x values. The predicted y values
+can be estimated from an lm or glm model. Interaction terms are allowed, as are
+weights.
 }
 \examples{
 mymodel <- lm(r_shift ~ median_income16 + any_college, data = county_data)

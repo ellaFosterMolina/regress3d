@@ -6,10 +6,11 @@
 #' is a useful way of handling overplotting caused by discreteness.
 #' It is based on ggplot's `ggplot2::geom_jitter()`.
 #'
-#' New attributes in this function are: `x_jitter`, `y_jitter`, `z_jitter.`
-#' If these attributes are misspelled, plot_ly will generate a warning message listing all valid attributes.
+#' The arguments `x_jitter`, `y_jitter`, `z_jitter` are not from plotly's syntax.
+#' If these arguments are misspelled, plot_ly will generate a warning message listing all valid
+#' arguments, but note that plotly uses the term attributes instead of arguments.
 #' Since regress3d is an add on to plotly, this list of valid attributes does not
-#' include the attributes created in this function.
+#' include the attributes/arguments created in this function.
 #'
 #' @param p a plotly object
 #' @param x,y,z an optional x, y, and/or z variable.

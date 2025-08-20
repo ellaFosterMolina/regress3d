@@ -31,8 +31,7 @@ reference:
 - title: Create data for 3D graphics
   desc: >
     These functions use the specified model to generate the x, y, and z values
-    required to create regression surfaces, marginal effects, and jitter
-    the scatterpoints.
+    required to create regression surfaces and marginal effects.
   contents:
   - create_surface_data
   - create_y_estimates
