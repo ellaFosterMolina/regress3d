@@ -85,6 +85,8 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
 
 #' Add 3d marginal effects to a plot_ly plot
 #'
+#' Add 3d marginal effects to a plot_ly plot
+#'
 #' Additional plotly layers such as `add_markers()` can
 #' be added to the plotly plot, but be aware that many plotly layers inherit the data from the prior layer.
 #' As such, a function such as `add_markers()` may not work as intended if called after `add_marginals()`.
