@@ -185,14 +185,16 @@ create_y_estimates <- function(x_vals, model, coefficient_names){
 #' @noRd
 create_glm_adjustment <- function(x_vals, model){
   inverse_link <- stats::family(model)$linkinv
-  predicted_glm_data <- dplyr::bind_cols(x_vals,
-                                         tibble::as_tibble(stats::predict(model, newdata = x_vals,
-                                                                          type = "link", se.fit = T) [1:2]))
+
+  predicted_y_ci <- tibble::as_tibble(stats::predict(model, newdata = x_vals,
+                                                     type = "link", se.fit = T) [1:2])
+
+  predicted_glm_data <- dplyr::bind_cols(x_vals, predicted_y_ci)
   names(predicted_glm_data) <- c(names(x_vals), 'fit_link','se_link')
 
   predicted_glm_data <- predicted_glm_data %>%
     dplyr::mutate(fit_response = inverse_link(.data$fit_link),
-                  lowerCI = inverse_link(.data$fit_link-(stats::qnorm(.975)*.data$se_link)),  # should this be t values?
+                  lowerCI = inverse_link(.data$fit_link-(stats::qnorm(.975)*.data$se_link)),
                   upperCI = inverse_link(.data$fit_link+(stats::qnorm(.975)*.data$se_link)) ) %>%
     dplyr::select(-.data$fit_link, -.data$se_link)
 
