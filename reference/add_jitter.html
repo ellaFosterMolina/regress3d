@@ -88,7 +88,11 @@ If omitted, defaults to 40% of the resolution of the data: this means the jitter
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Arguments (i.e., attributes) passed along to the trace type. See schema() for a list of acceptable attributes for a given trace type (by going to traces -&gt; type -&gt; attributes). Note that attributes provided at this level may override other arguments (e.g. plot_ly(x = 1:10, y = 1:10, color = I("red"), marker = list(color = "blue"))).</p></dd>
+<dd><p>Arguments (i.e., attributes) passed along to the trace <code>type</code>.
+See <code><a href="https://rdrr.io/pkg/plotly/man/schema.html" class="external-link">schema()</a></code> for a list of acceptable attributes for a given trace <code>type</code>
+(by going to <code>traces</code> -&gt; <code>type</code> -&gt; <code>attributes</code>). Note that attributes
+provided at this level may override other arguments
+(e.g. <code>plot_ly(x = 1:10, y = 1:10, color = I("red"), marker = list(color = "blue"))</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -97,11 +101,13 @@ If omitted, defaults to 40% of the resolution of the data: this means the jitter
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>It adds a small amount of random variation to the location of each point, and is a useful way of handling overplotting caused by discreteness.
-It is based on ggplot's geom_jitter.
-New attributes in this function are: x_jitter, y_jitter, z_jitter.
+    <p>It adds a small amount of random variation to the location of each point, and
+is a useful way of handling overplotting caused by discreteness.
+It is based on ggplot's <code><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">ggplot2::geom_jitter()</a></code>.
+New attributes in this function are: <code>x_jitter</code>, <code>y_jitter</code>, <code>z_jitter.</code>
 If these attributes are misspelled, plot_ly will generate a warning message listing all valid attributes.
-Since regress3d is an add on to plotly, this list of valid attributes does not include the attributes created in this function.</p>
+Since regress3d is an add on to plotly, this list of valid attributes does not
+include the attributes created in this function.</p>
     </div>
 
     <div class="section level2">
