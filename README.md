@@ -45,14 +45,24 @@ effects are depicted.
 
 ## Installation
 
-Install **regress3d** from **GitHub**:
+From CRAN
 
 ``` r
+install.packages("regress3d", type = "source", repos = "https://cran.rstudio.com/")
+```
+
+or from GitHub using
+
+``` r
+# note: There are a number of interactive html images in the vignettes. 
+# Setting build_vignettes=FALSE will make the installation faster. You can find
+# the vignettes at https://ellafostermolina.github.io/regress3d/articles/
+
 if (!require("devtools")) {
   install.packages("devtools")
 }
 
-devtools::install_github("ellaFosterMolina/regress3d")
+devtools::install_github("ellaFosterMolina/regress3d", build_vignettes = TRUE)
 ```
 
 ## Example
