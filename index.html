@@ -82,36 +82,28 @@ gtag('config', 'G-21JNL53E33'); </script>
 </h2>
 <p>The vignettes walk you through examples of regression surfaces for three types of models.</p>
 <ul>
-<li><a href="https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html">Linear models</a></li>
-<li><a href="https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html">Linear models with an interaction term</a></li>
-<li><a href="https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html">Generalized linear models</a></li>
+<li>
+<a href="https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html">Linear models</a>: These models create flat regression surfaces.</li>
+<li>
+<a href="https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html">Linear models with an interaction term</a>: A linear model with an interaction term creates a curved regression surface with linear marginal effects.</li>
+<li>
+<a href="https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html">Generalized linear models</a>: These models produce curved regression surfaces.</li>
 </ul>
-<p>A handy feature for binomial glms and other regressions that use discrete data is the function <code><a href="reference/add_jitter.html">add_jitter()</a></code>. This function mimics <code><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">ggplot2::geom_jitter()</a></code> in <strong>ggplot2</strong>, helping users visualize overlaid points in a three dimensional graphic.</p>
-<p>We recommend you start with the vignette on <a href="https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html">linear models</a>, which will introduce you to working with the interactive images, interpreting the regression surface, and understanding how the marginal effects are depicted.</p>
-</div>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>From CRAN</p>
+<p>A handy feature for binomial glms and other regressions that use discrete data is the function <code><a href="reference/add_jitter.html">add_jitter()</a></code>. This function mimics <code><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">ggplot2::geom_jitter()</a></code> in <strong>ggplot2</strong>, helping users visualize overlaid points in a three dimensional graphic. It is demonstrated in the <a href="https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html#logistic-regression">generalized linear models</a> vignette.</p>
+<p>We recommend you start with the vignette on <a href="https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html">linear models</a>, which will introduce you to working with the interactive images, interpreting the regression surface, and understanding how the marginal effects are depicted. ## Installation</p>
+<p>Install <strong>regress3d</strong> from <strong>GitHub</strong>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"regress3d"</span>, type <span class="op">=</span> <span class="st">"source"</span>, repos <span class="op">=</span> <span class="st">"https://cran.rstudio.com/"</span><span class="op">)</span></span></code></pre></div>
-<p>or from GitHub using</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># note: There are a number of interactive html images in the vignettes. </span></span>
-<span><span class="co"># Setting build_vignettes=FALSE will make the installation faster. You can find</span></span>
-<span><span class="co"># the vignettes at https://ellafostermolina.github.io/regress3d/articles/</span></span>
-<span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ellaFosterMolina/regress3d"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ellaFosterMolina/regress3d"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p><strong>regress3d</strong> allows the user to plot regression surfaces and marginal effects in three dimensions. Linear models, generalized linear models, and either of those model types with interaction terms are currently supported.</p>
-<p>A multiple linear regression is shown below using the core two functions in <strong>regress3d</strong>:</p>
+<p>A multiple linear regression surface and marginal effects are shown below using the core two functions in <strong>regress3d</strong>:</p>
 <ul>
 <li>
 <code><a href="reference/add_3d_surface.html">add_3d_surface()</a></code>, and</li>
@@ -122,14 +114,14 @@ gtag('config', 'G-21JNL53E33'); </script>
 <h3 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h3>
 <p>Start by calling the two required libraries: <strong>regress3d</strong> and <strong>plotly</strong>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ellaFosterMolina/regress3d" class="external-link">regress3d</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com" class="external-link">plotly</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h3>
-<p>The variables in the regression are county level measures from 2016.</p>
+<p>The variables in this example are county level measures from 2016.</p>
 <ul>
 <li>
 <code>r_shift</code>: the shift towards Donald Trump in 2016, as measured as the difference between the county’s vote for Trump in 2016 and the county’s vote for the Republican presidential nominee, Mitt Romney, in 2012,</li>
@@ -143,16 +135,17 @@ gtag('config', 'G-21JNL53E33'); </script>
 <div class="section level3">
 <h3 id="model">Model<a class="anchor" aria-label="anchor" href="#model"></a>
 </h3>
-<p>Specify the model. Here we use a multiple linear regression with two <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> variables.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p>The model can be specified within <code><a href="reference/add_3d_surface.html">add_3d_surface()</a></code> and <code><a href="reference/add_marginals.html">add_marginals()</a></code>, but for clarity we specify it before we create the graphic. Here we use a multiple linear regression with two <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> variables.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mymodel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">r_shift</span> <span class="op">~</span> <span class="va">median_income16</span> <span class="op">+</span> <span class="va">any_college</span>, </span>
 <span>              data <span class="op">=</span> <span class="va">county_data</span>, weight <span class="op">=</span> <span class="va">pop_estimate16</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="regression-surface">Regression surface<a class="anchor" aria-label="anchor" href="#regression-surface"></a>
 </h3>
-<p>Next, create a <code><a href="https://rdrr.io/pkg/plotly/man/plot_ly.html" class="external-link">plotly::plot_ly()</a></code> object using the same variables and layer on the scattercloud, 3D surface, marginals, and labels. Note that regression notation uses <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>1</mn></msub><annotation encoding="application/x-tex">x_1</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>2</mn></msub><annotation encoding="application/x-tex">x_2</annotation></semantics></math> to represent the explanatory variables, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math> for the outcome. The plotly command denotes the explanatory variables as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>, and the outcome variable is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p>Next, we create a <code><a href="https://rdrr.io/pkg/plotly/man/plot_ly.html" class="external-link">plotly::plot_ly()</a></code> object using the same variables as in the model. We then layer on the scattercloud, 3D surface, marginals, and labels.</p>
+<p>Note that regression notation typically uses <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>1</mn></msub><annotation encoding="application/x-tex">x_1</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>2</mn></msub><annotation encoding="application/x-tex">x_2</annotation></semantics></math> to represent the explanatory variables, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math> for the outcome. The plotly command denotes the explanatory variables as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>, and the outcome variable is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/plot_ly.html" class="external-link">plot_ly</a></span><span class="op">(</span> data <span class="op">=</span> <span class="va">county_data</span>,</span>
 <span>         x <span class="op">=</span> <span class="op">~</span><span class="va">median_income16</span>,</span>
 <span>         y <span class="op">=</span> <span class="op">~</span><span class="va">any_college</span>,</span>
@@ -164,11 +157,11 @@ gtag('config', 'G-21JNL53E33'); </script>
 <span>    scene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>xaxis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">'County median income'</span><span class="op">)</span>,</span>
 <span>                 yaxis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">'County college experience'</span><span class="op">)</span>,</span>
 <span>                 zaxis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">'Shift to Trump'</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span></code></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p>The code above renders to an html figure. It displays the outputs of:</p>
 <ul>
 <li>
-<code><a href="reference/add_3d_surface.html">add_3d_surface()</a></code>: a regression surface in translucent blue, and the 95% confidence intervals in translucent grey;</li>
+<code><a href="reference/add_3d_surface.html">add_3d_surface()</a></code>: a regression surface in translucent blue with 95% confidence intervals in translucent grey;</li>
 <li>
 <code><a href="reference/add_marginals.html">add_marginals()</a></code>: the marginal effects and 95% confidence intervals of each <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> variable with red and orange lines;</li>
 <li>
@@ -176,8 +169,12 @@ gtag('config', 'G-21JNL53E33'); </script>
 <li>
 <code>plotly::layout()</code>: a plotly function to adjust the graphic’s labels.</li>
 </ul>
-<p>The landing page for a package does not support interactive html figures. A gif of the interactive html figure is displayed below to demonstrate some of the functionality of the interactive html image. See <a href="https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly" class="uri">https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly</a> for an interactive version of this image.</p>
-<p><img src="reference/figures/regression-rotating.gif" width="70%"></p>
+<p>Since the landing page for a package does not support interactive html figures, a gif is displayed below. See <a href="https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly" class="uri">https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly</a> for an interactive version of this image.</p>
+<p><img src="reference/figures/regression-rotating.gif" alt="A gif of a rotating 3D regression plot" width="70%"></p>
+</div>
+<div class="section level3">
+<h3 id="numeric-regression-results">Numeric regression results<a class="anchor" aria-label="anchor" href="#numeric-regression-results"></a>
+</h3>
 <p>This graphic corresponds to the following numerical regression results.</p>
 <table style="text-align:center" class="table">
 <tr>
