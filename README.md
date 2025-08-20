@@ -116,10 +116,10 @@ Next, we create a `plotly::plot_ly()` object using the same variables as
 in the model. We then layer on the scattercloud, 3D surface, marginals,
 and labels.
 
-Note that regression notation typically uses $x_1$ and $x_2$ to
-represent the explanatory variables, and $y$ for the outcome. The plotly
-command denotes the explanatory variables as $x$ and $y$, and the
-outcome variable is $z$.
+Note that while regression notation often uses $x_1$ and $x_2$ to
+represent the explanatory variables and $y$ for the outcome, the plotly
+command will use $x$ and $y$ for the explanatory variables and $z$ for
+the outcome variable.
 
 ``` r
 plot_ly( data = county_data,
