@@ -122,7 +122,7 @@ plot_ly( data = county_data,
 
 This graphic corresponds to the following numerical regression results.
 
-```{r, results='asis', echo =F}
+```{r, results='asis', echo =F, messages = F}
 library(stargazer)
 
 county_data$median_income16_1k <- county_data$median_income16/1000
