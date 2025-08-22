@@ -23,7 +23,7 @@ Imports:
     stats,
     tibble
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5)
 LazyData: true
 Suggests: 
     knitr,
@@ -32,7 +32,6 @@ Suggests:
     stargazer,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-VignetteBuilder: knitr
 URL: https://github.com/ellaFosterMolina/regress3d, https://ellafostermolina.github.io/regress3d/
 BugReports: https://github.com/ellaFosterMolina/regress3d/issues
 Config/Needs/website: rmarkdown

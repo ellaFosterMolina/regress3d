@@ -28,12 +28,12 @@ can be estimated from an lm or glm model. Interaction terms are allowed, as are
 weights.
 }
 \examples{
-mymodel <- lm(r_shift ~ median_income16 + any_college, data = county_data)
-xvars <- data.frame(x1 = seq(min(county_data$median_income16, na.rm=TRUE),
-                             max(county_data$median_income16, na.rm=TRUE),
+mymodel <- lm(r_shift ~ median_income16 + any_college, data = cali_counties)
+xvars <- data.frame(x1 = seq(min(cali_counties$median_income16, na.rm=TRUE),
+                             max(cali_counties$median_income16, na.rm=TRUE),
                               length.out=10),
-                    x2 = seq(min(county_data$any_college, na.rm=TRUE),
-                             max(county_data$any_college, na.rm=TRUE),
+                    x2 = seq(min(cali_counties$any_college, na.rm=TRUE),
+                             max(cali_counties$any_college, na.rm=TRUE),
                              length.out=10))
 
 predicted_xvars_data <- create_y_estimates(x_vals = xvars,

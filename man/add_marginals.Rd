@@ -57,8 +57,8 @@ As such, a function such as \code{add_markers()} may not work as intended if cal
 \examples{
 library(plotly)
 mymodel <- lm(r_shift ~ median_income16 + any_college,
-              data = county_data, weight = pop_estimate16)
-plot_ly( data = county_data,
+              data = cali_counties, weight = pop_estimate16)
+p <- plot_ly( data = cali_counties,
          x = ~median_income16,
          y = ~any_college,
          z = ~r_shift) \%>\%

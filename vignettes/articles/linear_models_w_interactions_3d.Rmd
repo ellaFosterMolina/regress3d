@@ -65,9 +65,9 @@ plot_ly( data = county_data,
          z = ~prcnt_GOP16) %>%
   add_3d_surface(model = mymodel) %>%
   add_marginals(model = mymodel, 
-                x1_constant_val = 2.5, x2_constant_val =0) %>%
+                x1_constant_val = 2.75, x2_constant_val =0) %>%
   add_marginals(model = mymodel, 
-                x1_constant_val = 1, x2_constant_val =1) 
+                x1_constant_val = 1.25, x2_constant_val =1) 
 ```
 
 Click, hold, and drag the regression surface to spin it. See the article on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#code-and-graphic) for more information on how to manipulate this graphic. 

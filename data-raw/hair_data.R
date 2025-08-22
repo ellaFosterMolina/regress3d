@@ -2,7 +2,7 @@
 # Originally in C:\Users\Ella\Dropbox\fr17to_swat\2020Fall\RAs\anovaRegressionPlaneCode.R
 # Modified 2024-08-14
 
-usethis::use_data(hair_data, overwrite = F)
+usethis::use_data(hair_data, overwrite = T)
 
 library(tidyr)
 library(dplyr)
@@ -31,6 +31,8 @@ hairLongNB <-hairLongNB %>%
 hair_data <-hairLong %>%
   mutate(dummy = 1, genderPivot = gender) %>%
   pivot_wider(names_from = genderPivot, values_from = dummy, values_fill=0)
+
+hair_data <- hair_data[sample(nrow(hair_data), 50),]
 
 # save(hair_data, file = "hair_data.Rda")
 

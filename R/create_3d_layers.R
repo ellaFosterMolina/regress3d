@@ -111,8 +111,8 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
 #' @examples
 #' library(plotly)
 #' mymodel <- lm(r_shift ~ median_income16 + any_college,
-#'               data = county_data, weight = pop_estimate16)
-#' plot_ly( data = county_data,
+#'               data = cali_counties, weight = pop_estimate16)
+#' p <- plot_ly( data = cali_counties,
 #'          x = ~median_income16,
 #'          y = ~any_college,
 #'          z = ~r_shift) %>%
@@ -171,12 +171,12 @@ add_marginals <- function(p, model, data =NULL, ci = T,
 #'
 #' @examples
 #' library(plotly)
-#' mymodel <- lm(r_shift ~ median_income16 + any_college, data = county_data)
-#' xvars <- data.frame(x1 = seq(min(county_data$median_income16, na.rm=TRUE),
-#'                              max(county_data$median_income16, na.rm=TRUE),
+#' mymodel <- lm(r_shift ~ median_income16 + any_college, data = cali_counties)
+#' xvars <- data.frame(x1 = seq(min(cali_counties$median_income16, na.rm=TRUE),
+#'                              max(cali_counties$median_income16, na.rm=TRUE),
 #'                               length.out=10),
-#'                     x2 = seq(min(county_data$any_college, na.rm=TRUE),
-#'                              max(county_data$any_college, na.rm=TRUE),
+#'                     x2 = seq(min(cali_counties$any_college, na.rm=TRUE),
+#'                              max(cali_counties$any_college, na.rm=TRUE),
 #'                              length.out=10))
 #'
 #' predicted_xvars_data <- create_y_estimates(x_vals = xvars,
@@ -184,7 +184,7 @@ add_marginals <- function(p, model, data =NULL, ci = T,
 #'                                            coefficient_names = c(y = "r_shift",
 #'                                                                 x1= "median_income16",
 #'                                                                 x2= "any_college") )
-#' plot_ly( data = county_data,
+#' plot_ly( data = cali_counties,
 #'          x = ~median_income16,
 #'          y = ~any_college,
 #'          z = ~r_shift) %>%

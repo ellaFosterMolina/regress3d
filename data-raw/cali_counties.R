@@ -1,4 +1,4 @@
-## code to prepare `county_data` dataset goes here
+## code to prepare `cali_counties` dataset goes here
 
 load("C:\\Users\\Ella\\Dropbox\\research\\dira\\threeD_regressions_DiRA\\functions_data\\countyData.Rda")
 library(tidyverse)
@@ -27,7 +27,6 @@ county_data <- county_data %>%
          college_2cat_num, prcnt_black, prcnt_unemployed, prcnt_unemployed_log,
          median_income16, median_income16_1k, r_shift, prcnt_GOP16, plurality_Trump16 )
 
+cali_counties <- county_data[which(county_data$state_abbrv== "CA"), ]
 
-# cali_counties <- county_data[which(county_data$state_abbrv== "CA"), ]
-
-usethis::use_data(county_data, overwrite = TRUE)
+usethis::use_data(cali_counties, overwrite = TRUE)

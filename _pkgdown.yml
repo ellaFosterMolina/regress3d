@@ -38,7 +38,7 @@ reference:
 
 - title: Data
   desc: >
-    Data used in the vignettes and examples.
+    Data used in the articles and examples.
   contents:
   - county_data
   - hair_data
