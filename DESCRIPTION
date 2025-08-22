@@ -5,10 +5,7 @@ Authors@R:
     person("Ella", "Foster-Molina", email = "ella.fostermolina@gmail.com", 
     role = c("aut", "cre", "cph"),
     comment = c(ORCID = "0000-0001-7455-7221"))
-Description: Plot regression surfaces and 
-marginal effects in three dimensions. The plots are 'plotly' objects and  
-can be customized using functions and arguments 
-from the 'plotly' package.
+Description: Plot regression surfaces and marginal effects in three dimensions. The plots are 'plotly' objects and can be customized using functions and arguments from the 'plotly' package.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
