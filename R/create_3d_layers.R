@@ -36,7 +36,7 @@
 #'               y = ~isMale_num,
 #'               z = ~length )
 #' add_3d_surface(p1, model = mymodel, data = hair_data)
-add_3d_surface <- function(p, model, data = NULL, ci = T,
+add_3d_surface <- function(p, model, data = NULL, ci = TRUE,
                            surfacecolor = "blue", surfacecolor_ci = "grey",
                            opacity = 0.5, ...){
   data <- data %||% plotly::plotly_data(p, id = names(p$x$visdat)[1])
@@ -52,7 +52,7 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
                       intensity = surface_data[,coefficients["y"]],
                       colorscale = list(c(0,surfacecolor),
                                         c(1, surfacecolor)),
-                      opacity = opacity, showscale = F,
+                      opacity = opacity, showscale = FALSE,
                       legendgroup = 'regression.surface',
                       name = "Predicted regression surface")
   if(ci){
@@ -65,8 +65,8 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
                         intensity = surface_data[,"upperCI"],
                         colorscale = list(c(0,surfacecolor_ci),
                                           c(1, surfacecolor_ci)),
-                        opacity = opacity, showscale = F,
-                        legendgroup = 'regression.surface', showlegend = F,
+                        opacity = opacity, showscale = FALSE,
+                        legendgroup = 'regression.surface', showlegend = FALSE,
                         name = "Lower 95% CI") %>%
       plotly::add_trace(data = surface_data,
                         x = surface_data[,coefficients["x1"]],
@@ -76,8 +76,8 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
                         intensity = surface_data[,"lowerCI"],
                         colorscale = list(c(0,surfacecolor_ci),  # color = doesn't work
                                           c(1, surfacecolor_ci)),
-                        opacity = opacity, showscale = F,
-                        legendgroup = 'regression.surface', showlegend = F,
+                        opacity = opacity, showscale = FALSE,
+                        legendgroup = 'regression.surface', showlegend = FALSE,
                         name = "Upper 95% CI")
   }
   p
@@ -117,18 +117,18 @@ add_3d_surface <- function(p, model, data = NULL, ci = T,
 #'          y = ~any_college,
 #'          z = ~r_shift) %>%
 #'   add_marginals(model = mymodel)
-add_marginals <- function(p, model, data =NULL, ci = T,
+add_marginals <- function(p, model, data =NULL, ci = TRUE,
                           x1_constant_val = "mean", x2_constant_val = "mean",
                           x1_color = "darkorange", x2_color = "crimson",
                           x1_direction_name = "Predicted marginal effect of x1",
                           x2_direction_name = "Predicted marginal effect of x2",
-                          omit_x1 =F, omit_x2 = F){
+                          omit_x1 =FALSE, omit_x2 = FALSE){
   data <- data %||% plotly::plotly_data(p, id = names(p$x$visdat)[1])
   if(is_tibble(data)) data <- tibble_to_dataframe(tibble = data)
   coefficients <- create_named_coeffs(model)
 
   if(!omit_x1){
-    marginal_x1_vars <- create_marginal_x_vars(data, model = model, marginal_of_x1 = T,
+    marginal_x1_vars <- create_marginal_x_vars(data, model = model, marginal_of_x1 = TRUE,
                                                constant_value = x2_constant_val)
     predicted_marginal_x1_data <- create_y_estimates(x_vals = marginal_x1_vars,
                                                      model = model, coefficient_names = coefficients )
@@ -138,7 +138,7 @@ add_marginals <- function(p, model, data =NULL, ci = T,
   }
 
   if(!omit_x2){
-    marginal_x2_vars <- create_marginal_x_vars(data, model= model, marginal_of_x1 = F,
+    marginal_x2_vars <- create_marginal_x_vars(data, model= model, marginal_of_x1 = FALSE,
                                                constant_value = x1_constant_val)
     predicted_marginal_x2_data <- create_y_estimates(x_vals = marginal_x2_vars,
                                                      model = model, coefficient_names = coefficients )
@@ -192,18 +192,18 @@ add_marginals <- function(p, model, data =NULL, ci = T,
 #'   add_3d_surface(model = mymodel)%>%
 #'   add_direction(model = mymodel, direction_data = predicted_xvars_data)
 #'
-add_direction <- function(p, model, direction_data, direction_name = "User defined line", linecolor = "black", ci = T){
+add_direction <- function(p, model, direction_data, direction_name = "User defined line", linecolor = "black", ci = TRUE){
   coefficients <- create_named_coeffs(model)
   direction_names <- data.frame(zvals = c(coefficients["y"], "upperCI", "lowerCI"),
                                 trace_names = c(direction_name, "upper 95% CI", "lower 95% CI"),
-                                linewidth = c(6,3,3), legendVal = c(T,F,F),
+                                linewidth = c(6,3,3), legendVal = c(TRUE,FALSE,FALSE),
                                 opacity = c(1,.6,.6))
 
   num_lines_to_draw <- 1
   if(ci) num_lines_to_draw <- 3   # create three lines if confidence intervals should be plotted
   group_rand_num <- runif(n =1)  # makes the prediction & CIs group together
 
-  for(i in 1:num_lines_to_draw){  # loop through direction_names to get CIs if ci == T
+  for(i in 1:num_lines_to_draw){  # loop through direction_names to get CIs if ci == TRUE
     p<- p %>% add_trace( data = direction_data,
                          x = direction_data[,coefficients["x1"]],
                          y = direction_data[,coefficients["x2"]],

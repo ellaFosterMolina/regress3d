@@ -8,15 +8,15 @@ add_marginals(
   p,
   model,
   data = NULL,
-  ci = T,
+  ci = TRUE,
   x1_constant_val = "mean",
   x2_constant_val = "mean",
   x1_color = "darkorange",
   x2_color = "crimson",
   x1_direction_name = "Predicted marginal effect of x1",
   x2_direction_name = "Predicted marginal effect of x2",
-  omit_x1 = F,
-  omit_x2 = F
+  omit_x1 = FALSE,
+  omit_x2 = FALSE
 )
 }
 \arguments{

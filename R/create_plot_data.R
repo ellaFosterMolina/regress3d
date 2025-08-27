@@ -37,14 +37,14 @@ create_named_coeffs <- function(model){
 #' @noRd
 create_surface_x_vars <- function(data, model, coefficient_names){
   # if(is_tibble(data)) data <- tibble_to_dataframe(tibble = data)
-  x1_seq = rep(seq(min(data[ ,coefficient_names["x1"]  ], na.rm =T),
-                   max(data[ ,coefficient_names["x1"]  ], na.rm =T),
+  x1_seq = rep(seq(min(data[ ,coefficient_names["x1"]  ], na.rm =TRUE),
+                   max(data[ ,coefficient_names["x1"]  ], na.rm =TRUE),
                    length.out=30), each =30)
-  x2_min = min(data[ ,coefficient_names["x2"]  ], na.rm =T)
-  x2_max = max(data[ ,coefficient_names["x2"]  ], na.rm =T)
+  x2_min = min(data[ ,coefficient_names["x2"]  ], na.rm =TRUE)
+  x2_max = max(data[ ,coefficient_names["x2"]  ], na.rm =TRUE)
   x2_seq = seq(x2_min, x2_max, length.out = 30)
   if( "weights" %in% names(coefficient_names) ){
-    weights <- mean(data[, coefficient_names["weights"]], na.rm=T) #mean of weights variable, could pass to create_constant_value()
+    weights <- mean(data[, coefficient_names["weights"]], na.rm=TRUE) #mean of weights variable, could pass to create_constant_value()
     xvars_for_prediction <- data.frame(x1_seq, x2_seq, weights) #had direction.name=NA , direction.std=NA in original function
   } else {
     xvars_for_prediction <- data.frame(x1_seq, x2_seq) #had direction.name=NA , direction.std=NA in original function
@@ -66,13 +66,13 @@ create_surface_x_vars <- function(data, model, coefficient_names){
 #' @noRd
 create_constant_value <- function(constant_value, data, coefficients, x_thats_constant){
   if(constant_value == "mean"){
-    constant_value <- mean(data[ ,coefficients[x_thats_constant]  ], na.rm =T)
+    constant_value <- mean(data[ ,coefficients[x_thats_constant]  ], na.rm =TRUE)
   }else if(constant_value == "median"){
-    constant_value <- median(data[ ,coefficients[x_thats_constant]  ], na.rm =T)
+    constant_value <- median(data[ ,coefficients[x_thats_constant]  ], na.rm =TRUE)
   }else if(constant_value == "min"){
-    constant_value <- min(data[ ,coefficients[x_thats_constant]  ], na.rm =T)
+    constant_value <- min(data[ ,coefficients[x_thats_constant]  ], na.rm =TRUE)
   }else if(constant_value == "max"){
-    constant_value <- max(data[ ,coefficients[x_thats_constant]  ], na.rm =T)
+    constant_value <- max(data[ ,coefficients[x_thats_constant]  ], na.rm =TRUE)
   }else{
     constant_value <- as.numeric(constant_value)
   }
@@ -101,8 +101,8 @@ create_marginal_x_vars <- function(data, model, marginal_of_x1,
     x_thats_constant <- "x1"
   }
   coefficients <- create_named_coeffs(model)
-  x_seq = seq(min(data[ ,coefficients[x_that_changes]  ], na.rm =T),
-              max(data[ ,coefficients[x_that_changes]  ], na.rm =T),
+  x_seq = seq(min(data[ ,coefficients[x_that_changes]  ], na.rm =TRUE),
+              max(data[ ,coefficients[x_that_changes]  ], na.rm =TRUE),
               length.out=10)
   constant_num  <- create_constant_value(constant_value = constant_value, data = data,
                                          coefficients = coefficients,
@@ -115,7 +115,7 @@ create_marginal_x_vars <- function(data, model, marginal_of_x1,
   }
 
   if( "weights" %in% names(coefficients) ){
-    mean_weight <- mean(data[, coefficients["weights"]], na.rm=T) #mean of weights variable, could pass to create_constant_value()
+    mean_weight <- mean(data[, coefficients["weights"]], na.rm=TRUE) #mean of weights variable, could pass to create_constant_value()
     xvars_for_prediction$weights <- mean_weight
   }
   xvars_for_prediction
@@ -187,15 +187,16 @@ create_glm_adjustment <- function(x_vals, model){
   inverse_link <- stats::family(model)$linkinv
 
   predicted_y_ci <- tibble::as_tibble(stats::predict(model, newdata = x_vals,
-                                                     type = "link", se.fit = T) [1:2])
+                                                     type = "link", se.fit = TRUE) [1:2])
 
   predicted_glm_data <- dplyr::bind_cols(x_vals, predicted_y_ci)
   names(predicted_glm_data) <- c(names(x_vals), 'fit_link','se_link')
-
+  ci_quantile <- stats::qt(.975, df = stats::df.residual(model))
   predicted_glm_data <- predicted_glm_data %>%
     dplyr::mutate(fit_response = inverse_link(.data$fit_link),
-                  lowerCI = inverse_link(.data$fit_link-(stats::qnorm(.975)*.data$se_link)),
-                  upperCI = inverse_link(.data$fit_link+(stats::qnorm(.975)*.data$se_link)) ) %>%
+                  lowerCI = inverse_link(.data$fit_link-
+                                           (ci_quantile*.data$se_link)),
+                  upperCI = inverse_link(.data$fit_link+(ci_quantile*.data$se_link)) ) %>%
     dplyr::select(-.data$fit_link, -.data$se_link)
 
   predicted_glm_data

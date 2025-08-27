@@ -11,8 +11,8 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%",
-  message = F,
-  warning = F
+  message = FALSE,
+  warning = FALSE
 )
 ```
 
@@ -95,7 +95,7 @@ Next, we create a `plotly::plot_ly()` object using the same variables as in the 
 
 Note that while regression notation often uses $x_1$ and $x_2$ to represent the explanatory variables and $y$ for the outcome, the plotly command will use $x$ and $y$ for the explanatory variables and $z$ for the outcome variable.
 
-```{r, eval=F}
+```{r, eval=FALSE}
 plot_ly( data = county_data,
          x = ~median_income16,
          y = ~any_college,
@@ -119,7 +119,7 @@ The code above renders to an html figure. It displays the outputs of:
 
 Since the landing page for a package does not support interactive html figures, a gif is displayed below. See https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#improvements-with-plotly for an interactive version of this image.
 
-```{r, out.width = '70%', echo = F, fig.alt = "A gif of a rotating 3D regression plot"}
+```{r, out.width = '70%', echo = FALSE, fig.alt = "A gif of a rotating 3D regression plot"}
 knitr::include_graphics("man/figures/regression-rotating.gif")
 ```
 
@@ -127,7 +127,7 @@ knitr::include_graphics("man/figures/regression-rotating.gif")
 
 This graphic corresponds to the following numerical regression results.
 
-```{r, results='asis', echo =F}
+```{r, results='asis', echo =FALSE}
 library(stargazer)
 
 county_data$median_income16_1k <- county_data$median_income16/1000
@@ -143,5 +143,5 @@ stargazer(mymodel, type = 'html',
           dep.var.caption = "",
           model.numbers          = FALSE, 
           notes="<span>&#42;</span> p<0.05",
-          notes.append=F)
+          notes.append=FALSE)
 ```

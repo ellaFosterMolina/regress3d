@@ -93,8 +93,8 @@ plot_ly( data = county_data,
   add_marginals(model = mymodel, ci = T, omit_x2=T,
                 x1_direction_name = "Marginal effect of education<br>with % Black held constant at its mean 8.75%") %>%
   add_marginals(model = mymodel, ci = T, omit_x2 =T,
-                x2_constant_val = 13,
-                x1_direction_name = "Marginal effect of education<br>with % Black held constant at 13%") 
+                x2_constant_val = 50,
+                x1_direction_name = "Marginal effect of education<br>with % Black held constant at 50%") 
 ```
 
 Click, hold, and drag the regression surface to spin it. See the article on [linear models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html#code-and-graphic) for more information on how to manipulate this graphic. 
@@ -186,8 +186,8 @@ plot_ly( data = county_data,
   add_marginals(model = mymodel, ci = T, omit_x2=T,
                 x1_direction_name = "Marginal effect of % Black<br>with education held at the mean 51.24%") %>%
   add_marginals(model = mymodel, ci = T, omit_x2 =T,
-                x2_constant_val = 75,
-                x1_direction_name = "Marginal effect of % Black<br>with education held constant at 75%") 
+                x2_constant_val = 80,
+                x1_direction_name = "Marginal effect of % Black<br>with education held constant at 80%") 
 ```
 
 ```{r, results='asis', echo =F, include=F, eval=F}

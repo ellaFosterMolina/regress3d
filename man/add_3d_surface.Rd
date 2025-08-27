@@ -8,7 +8,7 @@ add_3d_surface(
   p,
   model,
   data = NULL,
-  ci = T,
+  ci = TRUE,
   surfacecolor = "blue",
   surfacecolor_ci = "grey",
   opacity = 0.5,

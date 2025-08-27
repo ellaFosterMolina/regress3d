@@ -10,7 +10,7 @@ add_direction(
   direction_data,
   direction_name = "User defined line",
   linecolor = "black",
-  ci = T
+  ci = TRUE
 )
 }
 \arguments{

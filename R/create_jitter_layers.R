@@ -60,7 +60,7 @@ add_jitter <- function(p, x = NULL, y = NULL, z = NULL, data = NULL,
 #' @return A dataframe containing one jittered column.
 #' @noRd
 jitter_40pct <- function(data, varname, jitter_val =NULL){
-  jitter_val <- jitter_val %||% 0.4* (max(data[ , varname], na.rm=T) - min(data[ , varname], na.rm=T))
+  jitter_val <- jitter_val %||% 0.4* (max(data[ , varname], na.rm=TRUE) - min(data[ , varname], na.rm=TRUE))
   jitter_var <- data[ , varname] + runif(length(data[ , varname]),
                                          min = -jitter_val/2, max = jitter_val/2 )
   jitter_var
