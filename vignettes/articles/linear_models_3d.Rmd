@@ -15,9 +15,9 @@ knitr::opts_chunk$set(
 
 Multiple regressions create regression **surfaces**, which have as many dimensions as there are explanatory and outcome variables in the multiple regression model. Marginal effects are a direction in this surface and can be visualized by a line in the surface.
 
-This vignette demonstrates a 3 dimensional visualization of marginal effects with `add_marginals()` and regression surface with `add_3d_surface()` for a linear regression with two explanatory variables. This kind of model creates a flat regression surface.
+This article demonstrates a 3 dimensional visualization of marginal effects with `add_marginals()` and regression surface with `add_3d_surface()` for a linear regression with two explanatory variables. This kind of model creates a flat regression surface.
 
-Other types of regression surfaces are shown in `vignette("linear_models_w_interactions_3d")` and `vignette("generalized_linear_models_3d")`.
+Other types of regression surfaces are shown in [Linear models with an interaction term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html) and [Generalized linear models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html).
 
 ## Setup 
 
@@ -30,7 +30,7 @@ library(plotly)
 
 ## Linear Regression Surfaces
 
-The basic functionality of the functions `add_3d_surface()` and `add_marginals()` are demonstrated in this vignette. Both functions:
+The basic functionality of the functions `add_3d_surface()` and `add_marginals()` are demonstrated in this article. Both functions:
 
 * default to the plot data specified in the call to `plot_ly()`, and
 * have an optional `ci` argument to visualize the confidence intervals, which defaults to `TRUE`.
@@ -86,7 +86,7 @@ We can improve this interactive image by adding scatterpoints with the __plotly_
 
 The library __scales__ helps present the numeric values, percentages, and dollars more clearly.
 
-__regress3d__ lets us modify the legend text by changing `x1_direction_name` and `x2_direction_name`. The default is "Predicted marginal effect of x1". It is possible, but not shown here, to adjust which value $x_2$ ($x_1$) is held constant at. See the [vignette on interaction terms](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html) for an example.
+__regress3d__ lets us modify the legend text by changing `x1_direction_name` and `x2_direction_name`. The default is "Predicted marginal effect of x1". It is possible, but not shown here, to adjust which value $x_2$ ($x_1$) is held constant at. See the [article on interaction terms](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html) for an example.
 
 ```{r, out.width = "800px", out.height = "450px"}
 library(scales)

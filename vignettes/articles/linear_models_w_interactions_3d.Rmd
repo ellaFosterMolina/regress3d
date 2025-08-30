@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 
 
 ## Introduction
-This vignette examines the functions `add_3d_surface()` and `add_marginals()` for a linear regression surface that features an interaction term. The functionality of `add_3d_surface()` and `add_marginals()` is the same as in a linear regression model without an interaction term. However, the visuals are sufficiently different to merit a separate description.
+This article examines the functions `add_3d_surface()` and `add_marginals()` for a linear regression surface that features an interaction term. The functionality of `add_3d_surface()` and `add_marginals()` is the same as in a linear regression model without an interaction term. However, the visuals are sufficiently different to merit a separate description.
 
 ## Setup 
 

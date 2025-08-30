@@ -22,7 +22,7 @@ The core two functions of **regress3d** are
 
 ## Getting Started
 
-The vignettes walk you through examples of regression surfaces for three
+The articles walk you through examples of regression surfaces for three
 types of models.
 
 - [Linear
@@ -42,13 +42,15 @@ discrete data is the function `add_jitter()`. This function mimics
 overlaid points in a three dimensional graphic. It is demonstrated in
 the [generalized linear
 models](https://ellafostermolina.github.io/regress3d/articles/generalized_linear_models_3d.html#logistic-regression)
-vignette.
+article.
 
-We recommend you start with the vignette on [linear
+We recommend you start with the article on [linear
 models](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html),
 which will introduce you to working with the interactive images,
 interpreting the regression surface, and understanding how the marginal
-effects are depicted. \## Installation
+effects are depicted.
+
+## Installation
 
 Install **regress3d** from **GitHub**:
 

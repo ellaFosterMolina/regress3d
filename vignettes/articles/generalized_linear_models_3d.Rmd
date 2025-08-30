@@ -13,9 +13,9 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-A multiple **linear** regression creates a flat regression surface. A multiple linear regression with an **interaction** term can be depicted as a curved regression surface with linear marginal effects. A **generalized linear model (glm)** takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. The functionality of `add_3d_surface()` and `add_marginals()` in a glm is the same as in a linear regression model. However, the visuals are sufficiently different to merit a separate description.
+A [multiple linear regression](https://ellafostermolina.github.io/regress3d/articles/linear_models_3d.html) creates a flat regression surface. A [multiple linear regression with an interaction term](https://ellafostermolina.github.io/regress3d/articles/linear_models_w_interactions_3d.html) can be depicted as a curved regression surface with linear marginal effects. A **generalized linear model (glm)** takes a linear component as a variable in a nonlinear function, creating a curved regression surface with nonlinear marginal effects. The functionality of `add_3d_surface()` and `add_marginals()` in a glm is the same as in a linear regression model. However, the visuals are sufficiently different to merit a separate description.
 
-This vignette demonstrates a binomial model and a Gamma model. 
+This article demonstrates a binomial model and a Gamma model. 
 
 * At this time, __regress3d__ has been tested on binomial models, negative binomials, and Gammas, but it should work for all generalized linear models. 
 * Interaction terms are also allowed in the graphics for generalized linear regressions.
