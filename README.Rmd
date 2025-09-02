@@ -48,7 +48,7 @@ We recommend you start with the article on [linear models](https://ellafostermol
 install.packages("regress3d")
 ```
 
-* Install __regress3d__ from __GitHub__:
+* Install latest development version from __GitHub__ (requires [devtools](https://github.com/hadley/devtools) package):
 
 ```{r, eval = FALSE}
 if (!require("devtools")) {

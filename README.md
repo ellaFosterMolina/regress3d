@@ -58,7 +58,8 @@ effects are depicted.
 install.packages("regress3d")
 ```
 
-- Install **regress3d** from **GitHub**:
+- Install latest development version from **GitHub** (requires
+  [devtools](https://github.com/hadley/devtools) package):
 
 ``` r
 if (!require("devtools")) {
