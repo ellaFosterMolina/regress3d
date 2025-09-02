@@ -52,7 +52,13 @@ effects are depicted.
 
 ## Installation
 
-Install **regress3d** from **GitHub**:
+- Install **regress3d** from **CRAN**:
+
+``` r
+install.packages("regress3d")
+```
+
+- Install **regress3d** from **GitHub**:
 
 ``` r
 if (!require("devtools")) {
@@ -61,6 +67,10 @@ if (!require("devtools")) {
 
 devtools::install_github("ellaFosterMolina/regress3d")
 ```
+
+This installation does not include the vignettes because interactive 3D
+images take some time to build. You can find all vignettes online at
+<https://ellafostermolina.github.io/regress3d/articles/>.
 
 ## Example
 

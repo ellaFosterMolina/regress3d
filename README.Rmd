@@ -43,7 +43,12 @@ We recommend you start with the article on [linear models](https://ellafostermol
 
 ## Installation
 
-Install __regress3d__ from __GitHub__:
+* Install __regress3d__ from __CRAN__:
+```{r, eval = FALSE}
+install.packages("regress3d")
+```
+
+* Install __regress3d__ from __GitHub__:
 
 ```{r, eval = FALSE}
 if (!require("devtools")) {
@@ -52,6 +57,8 @@ if (!require("devtools")) {
 
 devtools::install_github("ellaFosterMolina/regress3d")
 ```
+
+This installation does not include the vignettes because interactive 3D images take some time to build. You can find all vignettes online at [https://ellafostermolina.github.io/regress3d/articles/](https://ellafostermolina.github.io/regress3d/articles/).
 
 ## Example
 
