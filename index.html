@@ -95,13 +95,21 @@ gtag('config', 'G-21JNL53E33'); </script>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Install <strong>regress3d</strong> from <strong>GitHub</strong>:</p>
+<ul>
+<li>Install <strong>regress3d</strong> from <strong>CRAN</strong>:</li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"regress3d"</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li>Install <strong>regress3d</strong> from <strong>GitHub</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ellaFosterMolina/regress3d"</span><span class="op">)</span></span></code></pre></div>
+<p>This installation does not include the vignettes because interactive 3D images take some time to build. You can find all vignettes online at <a href="https://ellafostermolina.github.io/regress3d/articles/" class="uri">https://ellafostermolina.github.io/regress3d/articles/</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
@@ -118,7 +126,7 @@ gtag('config', 'G-21JNL53E33'); </script>
 <h3 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h3>
 <p>Start by calling the two required libraries: <strong>regress3d</strong> and <strong>plotly</strong>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ellaFosterMolina/regress3d" class="external-link">regress3d</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com" class="external-link">plotly</a></span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -140,7 +148,7 @@ gtag('config', 'G-21JNL53E33'); </script>
 <h3 id="model">Model<a class="anchor" aria-label="anchor" href="#model"></a>
 </h3>
 <p>The model can be specified within <code><a href="reference/add_3d_surface.html">add_3d_surface()</a></code> and <code><a href="reference/add_marginals.html">add_marginals()</a></code>, but for clarity we specify it before we create the graphic. Here we use a multiple linear regression with two <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> variables.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mymodel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">r_shift</span> <span class="op">~</span> <span class="va">median_income16</span> <span class="op">+</span> <span class="va">any_college</span>, </span>
 <span>              data <span class="op">=</span> <span class="va">county_data</span>, weight <span class="op">=</span> <span class="va">pop_estimate16</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -149,7 +157,7 @@ gtag('config', 'G-21JNL53E33'); </script>
 </h3>
 <p>Next, we create a <code><a href="https://rdrr.io/pkg/plotly/man/plot_ly.html" class="external-link">plotly::plot_ly()</a></code> object using the same variables as in the model. We then layer on the scattercloud, 3D surface, marginals, and labels.</p>
 <p>Note that while regression notation often uses <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>1</mn></msub><annotation encoding="application/x-tex">x_1</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>x</mi><mn>2</mn></msub><annotation encoding="application/x-tex">x_2</annotation></semantics></math> to represent the explanatory variables and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math> for the outcome, the plotly command will use <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math> for the explanatory variables and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math> for the outcome variable.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/plotly/man/plot_ly.html" class="external-link">plot_ly</a></span><span class="op">(</span> data <span class="op">=</span> <span class="va">county_data</span>,</span>
 <span>         x <span class="op">=</span> <span class="op">~</span><span class="va">median_income16</span>,</span>
 <span>         y <span class="op">=</span> <span class="op">~</span><span class="va">any_college</span>,</span>
